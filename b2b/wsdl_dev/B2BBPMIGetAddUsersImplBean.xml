@@ -1,0 +1,201 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_GetAddUsers/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_GetAddUsers" targetNamespace="http://www.cttq.com/B2B_BPMI_GetAddUsers/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_GetAddUsers/">
+
+
+			<!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+
+			<xsd:element name="GetAddUsers" type="tns:GetAddUsersRequest">
+			</xsd:element>
+			<xsd:element name="GetAddUsersResponse" type="tns:GetAddUsersResponse">
+			</xsd:element>
+
+			<xsd:complexType name="GetAddUsersRequest">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="BUSSTYPE" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>流程类型</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="BUSSNO" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>单据号</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="STEP" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>步骤号</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="USERID" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>用户ID</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="USERNM" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>用户名称</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="GetAddUsersResponse">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="AddUsers" type="tns:AddUserBean">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="AddUserBean">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="USERID" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>用户ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="USERNM" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>用户名称</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="USERUID" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>用户UID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="STEP" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>步骤号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="GetAddUsersRequest">
+		<wsdl:part element="tns:GetAddUsers" name="input"/>
+	</wsdl:message>
+	<wsdl:message name="GetAddUsersResponse">
+		<wsdl:part element="tns:GetAddUsersResponse" name="output"/>
+	</wsdl:message>
+	<wsdl:portType name="B2B_BPMI_GetAddUsers">
+		<wsdl:operation name="GetAddUsers">
+			<wsdl:input message="tns:GetAddUsersRequest"/>
+			<wsdl:output message="tns:GetAddUsersResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="B2B_BPMI_GetAddUsersSOAP" type="tns:B2B_BPMI_GetAddUsers">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetAddUsers">
+			<soap:operation soapAction="http://www.cttq.com/B2B_BPMI_GetAddUsers/GetAddUsers"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="B2B_BPMI_GetAddUsers">
+		<wsdl:port binding="tns:B2B_BPMI_GetAddUsersSOAP" name="B2B_BPMI_GetAddUsersSOAP">
+			<soap:address location="http://192.168.1.177:50000/B2B_BPMI_GetAddUsers/B2BBPMIGetAddUsersImplBean"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

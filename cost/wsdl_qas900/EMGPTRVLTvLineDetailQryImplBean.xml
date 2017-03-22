@@ -1,0 +1,212 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_GPTRVL_TvLineDetailQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GPTRVL_TvLineDetailQry" targetNamespace="http://www.thitech.com/EM_GPTRVL_TvLineDetailQry/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_GPTRVL_TvLineDetailQry/">
+      <!-- 增加部分1 开始  -->
+      <xsd:complexType name="AbstractType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+            <xsd:annotation>
+              <xsd:documentation>当前员工号</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+            <xsd:annotation>
+              <xsd:documentation>域</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="3"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分1 结束 -->
+      <!-- 增加部分2 开始 -->
+      <xsd:complexType name="ExtendMapType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分2 结束 -->
+      <!-- 增加部分3 开始 -->
+      <xsd:complexType name="Entry">
+        <xsd:sequence>
+          <xsd:element name="Key" type="xsd:anyType"/>
+          <xsd:element name="Value" type="xsd:anyType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分3 结束 -->
+      <!-- 增加部分4 开始 -->
+      <xsd:complexType name="ReturnCode">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回类型</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回码</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回信息</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分4 结束 -->
+      <!-- 增加部分5 开始 -->
+      <xsd:simpleType name="ChannelSerialNoType">
+        <xsd:annotation>
+          <xsd:documentation>渠道流水号</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64"/>
+          <xsd:minLength value="23"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!-- 增加部分5 结束 -->
+      <xsd:element name="EMGPTRVLTvLineDetailQry" type="tns:EMGPTRVLTvLineDetailQry">
+      </xsd:element>
+      <xsd:element name="EMGPTRVLTvLineDetailQryResponse" type="tns:EMGPTRVLTvLineDetailQryResponse">
+      </xsd:element>
+      <xsd:complexType name="EMGPTRVLTvLineDetailQry">
+        <xsd:sequence>
+          <xsd:element name="input" type="tns:EMGPTRVLTvLineDetailQryInput">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPTRVLTvLineDetailQryInput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:AbstractType">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="travsId" type="xsd:string">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPTRVLTvLineDetailQryOutput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ReturnCode">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="travsId" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="travType" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="travTypNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="travClass" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="fillAmt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="transitFlag" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="transitCode" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="transitName" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="origProv" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="origProvNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="origCity" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="origCityNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="origCounty" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="origCountyNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="destProv" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="destProvNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="destCity" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="destCityNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="destCounty" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="destCountyNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="travTopic" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="startDate" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="endDate" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="catt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="cnum" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="bgMileage" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="enMileage" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="aufnr" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="roundFlag" type="xsd:string">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPTRVLTvLineDetailQryResponse">
+        <xsd:sequence>
+          <xsd:element name="output" type="tns:EMGPTRVLTvLineDetailQryOutput">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EMGPTRVLTvLineDetailQryRequest">
+    <wsdl:part element="tns:EMGPTRVLTvLineDetailQry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EMGPTRVLTvLineDetailQryResponse">
+    <wsdl:part element="tns:EMGPTRVLTvLineDetailQryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GPTRVL_TvLineDetailQry">
+    <wsdl:operation name="EMGPTRVLTvLineDetailQry">
+      <wsdl:input message="tns:EMGPTRVLTvLineDetailQryRequest"/>
+      <wsdl:output message="tns:EMGPTRVLTvLineDetailQryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding xmlns:ptns="http://www.thitech.com/EM_GPTRVL_TvLineDetailQry/" name="EM_GPTRVL_TvLineDetailQry_Binding" type="ptns:EM_GPTRVL_TvLineDetailQry">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EMGPTRVLTvLineDetailQry">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EM_GPTRVL_TvLineDetailQry">
+    <wsdl:port xmlns:bprf="http://www.thitech.com/EM_GPTRVL_TvLineDetailQry/" binding="bprf:EM_GPTRVL_TvLineDetailQry_Binding" name="EM_GPTRVL_TvLineDetailQry_Port">
+      <soap:address location="http://bmu.cttq.com:51800/EM_GPTRVL_TvLineDetailQry/EMGPTRVLTvLineDetailQryImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

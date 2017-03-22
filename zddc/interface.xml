@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meap>
+    <interfaces>
+        <interface>
+            <name>if_ZDDC_GET_JCODE_FLOW_INFO</name>
+            <path>ZDDC_GET_JCODE_FLOW_INFO</path>
+            <method>POST</method>
+            <public>true</public>
+        </interface>
+        <interface>
+            <name>if_GeSmsCodeByLoginName</name>
+            <path>GeSmsCodeByLoginName</path>
+            <method>POST</method>
+            <public>true</public>
+        </interface>
+        <interface>
+            <name>if_CheckSmsCode</name>
+            <path>CheckSmsCode</path>
+            <method>POST</method>
+            <public>true</public>
+        </interface>
+        <interface>
+            <name>if_SetPassword</name>
+            <path>SetPassword</path>
+            <method>POST</method>
+            <public>true</public>
+        </interface>
+        <interface>
+            <name>if_GetUserInfoByLoginName</name>
+            <path>GetUserInfoByLoginName</path>
+            <method>POST</method>
+            <public>true</public>
+        </interface>
+        <interface>
+            <name>if_GeSmsCodeByPhone</name>
+            <path>GeSmsCodeByPhone</path>
+            <method>POST</method>
+            <public>true</public>
+        </interface>
+    </interfaces>
+</meap>

@@ -1,0 +1,267 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/PORTAL_BPMI_CompleteTaskListInfo/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PORTAL_BPMI_CompleteTaskListInfo" targetNamespace="http://www.cttq.com/PORTAL_BPMI_CompleteTaskListInfo/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cttq.com/PORTAL_BPMI_CompleteTaskListInfo/">
+      <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			
+			<xsd:complexType name="CpTaskList">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="reqUsrId" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								流程发起人编码
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="reqUsrNm" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								流程发起人名称
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="bussTyp" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>单据类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>单据号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="status" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>状态</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="crtDate" type="xsd:string">
+					</xsd:element>
+
+
+					<xsd:element maxOccurs="1" minOccurs="0" name="currStep" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="deptCode" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="deptName" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="comA" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="comB" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="comC" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="comD" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="comE" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="taskName" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+            
+      <xsd:element name="PORTALBPMI_CompleteTaskListInfo" type="tns:PORTALBPMICompleteTaskListInfo">
+
+      </xsd:element>
+      <xsd:element name="PORTALBPMI_CompleteTaskListInfoResponse" type="tns:PORTALBPMICompleteTaskListInfoResponse">
+
+      </xsd:element>
+
+
+    
+        
+      <xsd:complexType name="PORTALBPMICompleteTaskListInfo">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:PORTALBPMICompleteTaskListInfoInput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="PORTALBPMICompleteTaskListInfoResponse">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:PORTALBPMICompleteTaskListInfoOutput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+      
+            <xsd:complexType name="PORTALBPMICompleteTaskListInfoInput">
+            	<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="qryType" type="xsd:string">
+                                <xsd:annotation>
+                                	<xsd:documentation>查询类型</xsd:documentation>
+                </xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="userId" type="xsd:string">
+                                <xsd:annotation>
+                                	<xsd:documentation>人员编码</xsd:documentation>
+                </xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="bussType" type="xsd:string">
+                                <xsd:annotation>
+                                	<xsd:documentation>单据类型</xsd:documentation>
+                </xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="beginDate" type="xsd:string">
+                                <xsd:annotation>
+                                	<xsd:documentation>开始日期</xsd:documentation>
+                </xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="endDate" type="xsd:string">
+                                <xsd:annotation>
+                                	<xsd:documentation>结束日期</xsd:documentation>
+                </xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="startPage" type="xsd:int">
+								<xsd:annotation>
+									<xsd:documentation>
+										起始页
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="pageSize" type="xsd:int">
+								<xsd:annotation>
+									<xsd:documentation>
+										每页条数
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+            </xsd:complexType>
+            
+            <xsd:complexType name="PORTALBPMICompleteTaskListInfoOutput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:ReturnCode">
+            			<xsd:sequence>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="totalCount" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="unbounded" minOccurs="0" name="cpTaskList" type="tns:CpTaskList">
+            				</xsd:element>
+            			</xsd:sequence>
+            		</xsd:extension>
+            	</xsd:complexContent>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="PORTALBPMI_CompleteTaskListInfoRequest">
+    <wsdl:part element="tns:PORTALBPMI_CompleteTaskListInfo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="PORTALBPMI_CompleteTaskListInfoResponse">
+    <wsdl:part element="tns:PORTALBPMI_CompleteTaskListInfoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="PORTAL_BPMI_CompleteTaskListInfo">
+    <wsdl:operation name="PORTALBPMI_CompleteTaskListInfo">
+      <wsdl:input message="tns:PORTALBPMI_CompleteTaskListInfoRequest"/>
+      <wsdl:output message="tns:PORTALBPMI_CompleteTaskListInfoResponse"/>
+    </wsdl:operation>
+
+  </wsdl:portType>
+
+
+<wsdl:binding xmlns:ptns="http://www.cttq.com/PORTAL_BPMI_CompleteTaskListInfo/" name="PORTAL_BPMI_CompleteTaskListInfo_Binding" type="ptns:PORTAL_BPMI_CompleteTaskListInfo">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="PORTALBPMI_CompleteTaskListInfo">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="PORTAL_BPMI_CompleteTaskListInfo">
+<wsdl:port xmlns:bprf="http://www.cttq.com/PORTAL_BPMI_CompleteTaskListInfo/" binding="bprf:PORTAL_BPMI_CompleteTaskListInfo_Binding" name="PORTAL_BPMI_CompleteTaskListInfo_Port">
+<soap:address location="http://cpq.cttq.com:52200/PORTAL_BPMI_CompleteTaskListInfo/PORTALBPMICompleteTaskListInfoImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

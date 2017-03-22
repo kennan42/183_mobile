@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title id="title_1">我的名片</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/mycss.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+         <script src="js/view/common.js"></script>
+    </head>
+    <body class="um-vp " ontouchstart>
+        <div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
+            <!--header开始-->
+            <div id="header" class="uh ai-ht-head ub bc-head">
+                <div class="ai-nav-btn ai-left-btn ai-ph-color" id="nav-left">
+                   
+                </div>
+                <h class=" ub-f1 ub-ac ub-pc ub ai-ph-color ai-fts-title ut-s tx-c" tabindex="0" id="title_2">我的名片</h>
+                <!-- <div class="nav-btn nav-bt ai-par-stable " id="nav-right"> 
+                    <div class="nav_jia"></div>
+                </div> -->
+                 <div class="ai-nav-btn ai-par-stable " id="nav-right">
+                    <div class="ub-f1 ub"></div>
+                     <div class="ai-ph-common ai-fts-subhead more_gd nav_jia uhide" id="addBtn"></div>
+                </div>
+            </div>
+            <!--header结束-->
+            <!--content开始-->
+            <div id="content" class="ub-f1 tx-l">
+
+            </div>
+            <!--content结束-->
+
+        </div>
+       <script src="js/view/common.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+          
+            /*
+             *隐藏微信右上角菜单接口
+             */
+            loadWxConfig("hideMenu",JSON.stringify({}));
+            
+            /*
+             * 打开浮动窗口
+             */
+            var titHeight = $('#header').offset().height;
+            window.uexWindow.openPopover("content", 0, "index_content.html", "", 0, titHeight, "", "", "");
+            window.uexWindow.refreshBounce;
+            
+              /*
+             * 根据访问的地址，获得tokenId,app和userId,若获得了tokenId,app和userId，则将其存储起来，以备没有获取到时使用
+             */
+            if(getUser()==undefined||getUser()==null||getUser()==""){
+                var user_str=appcan.locStorage.getVal('user');
+                var user=$.parseJSON(user_str);
+                 getUserId(user.tokenId,user.app,user.id);
+            }else{
+                var user=$.parseJSON(getUser());
+                appcan.locStorage.setVal('user',user);
+                getUserId(user.tokenId,user.app,user.id);
+            }
+            
+            addWeinxinBcardAction("我的名片(有)","我的名片进入"); 
+           
+        });
+         
+            $("#nav-right").on("tap", function() {
+             appcan.window.open("cardSelect", "cardSelect.html", 10)
+             
+             addWeinxinBcardAction("我的名片(有)","新增"); 
+            });
+            
+            function loadWxConfig(shareType,render_data){
+             var option = {
+                  url : 'bcard/wxconfig',
+                  data:{"url" : window.location.href.split("#")[0]},
+                  success : function(data) {
+                       data.data.debug = false;
+                      data.data.jsApiList=[
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone',
+                        'hideMenuItems',
+                        'showMenuItems',
+                        'hideAllNonBaseMenuItem',
+                        'showAllNonBaseMenuItem',
+                        'translateVoice',
+                        'startRecord',
+                        'stopRecord',
+                        'onVoiceRecordEnd',
+                        'playVoice',
+                        'onVoicePlayEnd',
+                        'pauseVoice',
+                        'stopVoice',
+                        'uploadVoice',
+                        'downloadVoice',
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage',
+                        'getNetworkType',
+                        'openLocation',
+                        'getLocation',
+                        'showOptionMenu',
+                        'closeWindow',
+                        'scanQRCode',
+                        'chooseWXPay',
+                        'openProductSpecificView',
+                        'addCard',
+                        'chooseCard',
+                        'openCard'
+                      ];
+                      wx.config(data.data);
+                       var share_data = JSON.parse(render_data);
+                     
+                       if(shareType=='hideMenu'){
+                               wx.ready(function(){
+                                   wx.hideOptionMenu();
+                             });
+                       }
+                  }
+                }
+                view.ajax(option);
+        }
+                 /*
+         * 根据访问的地址，获得tokenId,app和userId
+         */
+        function getUser(){
+         
+           var href=window.location.href;
+           var ss1="";
+              if(href.indexOf("?")>-1){
+                var s=href.split("?");
+                for(var i=1;i<s.length;i++){
+                    var s1=s[i].split("&");
+                    for(var j=0;j<s1.length;j++){
+                       var s2=s1[j].split("=");
+                     for(var k=0;k<s2.length;k=k+2){
+                          ss1+='"'+s2[k]+'":"'+s2[k+1].split("#")[0]+'",';
+                     }
+                   }
+                   var ss2="{"+ss1.substring(0,ss1.length-1)+"}";
+                    return ss2;
+                }
+            }
+        }
+        
+        /*
+         * 根据获得的tokenId,app和userId调用接口，获得人员信息
+         */
+        function getUserId(tokenId,app,userId){
+             var option = {
+                  url : 'bcard/getUserInfo',
+                  data:{
+                        "tokenId":tokenId,
+                        "app":app,
+                        "userId":userId
+                   },
+                  success : function(data) {
+                      console.log(data);
+                      appcan.locStorage.remove('isinternal');
+                       appcan.locStorage.remove('user_info');
+                      appcan.locStorage.remove('user_id'); 
+                       if(data.status=="0"){
+                           
+                            var userInfo=data.data;
+                        // appcan.locStorage.setVal('isinternal',"1");
+                        appcan.locStorage.setVal('isinternal',userInfo.isinternal);
+                          appcan.locStorage.setVal('user_info',userInfo);
+                          if(userInfo.name==""||userInfo.name==null||userInfo.name==undefined){
+                              var name="";
+                              window.localStorage.setItem('name',name);
+                          }else{
+                              var name=userInfo.name;
+                              window.localStorage.setItem('name',name);
+                          }
+                        //  var user_id="";
+                         if(userInfo.isinternal=="0"){
+                           appcan.locStorage.setVal('user_display',"false");
+                            appcan.locStorage.setVal('user_id',userId);
+                          }else if(userInfo.isinternal=="1"){
+                             appcan.locStorage.setVal('user_display',"true");
+                             appcan.locStorage.setVal('user_id',userInfo.userid);
+                         }
+                     }else{
+                           // alert(data.msg+",");
+                           uexWindow.alert("提示",data.msg+"，请重新尝试或联系管理员!","确定");
+                     }
+                  }
+                }
+                view.ajax(option);
+        }
+     
+   
+    </script>
+</html>

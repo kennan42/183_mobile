@@ -1,0 +1,248 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/PORTAL_BPMI_SubManu/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PORTAL_BPMI_SubManu" targetNamespace="http://www.thitech.com/PORTAL_BPMI_SubManu/">
+  <wsdl:documentation>流程提交（人事专员指定审批路径）</wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/PORTAL_BPMI_SubManu/">
+      <!-- 增加部分1 开始 -->
+            <xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			<xsd:element name="PORTALBPMISubManu" type="tns:PORTALBPMISubManu">
+
+			</xsd:element>
+			<xsd:element name="PORTALBPMISubManuResponse" type="tns:PORTALBPMISubManuResponse">
+
+			</xsd:element>
+			
+        
+			<xsd:complexType name="PORTALBPMISubManuResponse">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:PORTALBPMISubManuOutput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="PORTALBPMISubManuInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="pubStartPro" type="tns:PubStartPro">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="bussType" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>单据类型</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>单据号</xsd:documentation>
+                </xsd:annotation>
+              </xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="RouteList" type="tns:Route">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="PORTALBPMISubManuOutput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:ReturnCode"/>
+            	</xsd:complexContent>
+            </xsd:complexType>
+            
+            <xsd:complexType name="PORTALBPMISubManu">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:PORTALBPMISubManuInput">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+        <xsd:complexType name="PubStartPro">
+                <xsd:annotation>
+                	<xsd:documentation>申请人</xsd:documentation>
+        </xsd:annotation>
+                <xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="reqUsr" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>申请人</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="reqUsrNm" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>申请人名称</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="Route">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="srnr" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>序号</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprUsrId" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批者</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprUsrNm" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>姓名</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="plans" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>职位</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="plsTx" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>位置（短文本）</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="SPCJ" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批层级</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="SPCJT" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批层级描述</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="orgEh" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>直接隶属单位</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="orgTx" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>组织单位短文本</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="roleType" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>角色类型</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="PORTALBPMISubManuRequest">
+    <wsdl:part element="tns:PORTALBPMISubManu" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="PORTALBPMISubManuResponse">
+    <wsdl:part element="tns:PORTALBPMISubManuResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="PORTAL_BPMI_SubManu">
+    <wsdl:operation name="PORTALBPMISubManu">
+      <wsdl:input message="tns:PORTALBPMISubManuRequest"/>
+      <wsdl:output message="tns:PORTALBPMISubManuResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.thitech.com/PORTAL_BPMI_SubManu/" name="PORTAL_BPMI_SubManu_Binding" type="ptns:PORTAL_BPMI_SubManu">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="PORTALBPMISubManu">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="PORTAL_BPMI_SubManu">
+<wsdl:port xmlns:bprf="http://www.thitech.com/PORTAL_BPMI_SubManu/" binding="bprf:PORTAL_BPMI_SubManu_Binding" name="PORTAL_BPMI_SubManu_Port">
+<soap:address location="http://10.10.1.137:53300/PORTAL_BPMI_SubManu/PORTALBPMISubManuImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

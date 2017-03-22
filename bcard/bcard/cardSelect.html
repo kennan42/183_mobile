@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title>选模版</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/mycss.css">
+        <link rel="stylesheet" href="css/swiper.min.css">
+    </head>
+    <body class="um-vp " ontouchstart>
+        <div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
+            <!--header开始-->
+            <div id="header" class="uh ai-ht-head ub bc-head">
+                <div class="ai-nav-btn ai-left-btn ai-ph-color" id="nav-left">
+                    <div class=" fa fa-angle-left fa-2x "></div>
+                    <div class="ai-ph-color ai-fts-subhead more_gd ai_left">返回</div>
+                </div>
+                <h class=" ub-f1 ub-ac ub-pc ub ai-ph-color ai-fts-title ut-s tx-c" tabindex="0">选模板</h>
+                <div class="ai-nav-btn ai-par-stable " id="nav-right"> </div>
+            </div>
+            <!--header结束-->
+            <!--content开始-->
+            <div id="content" class="ub-f1 tx-l">
+
+            </div>
+            <!--content结束-->
+
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/view/common.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            loadWxConfig("hideMenu",JSON.stringify({}));
+            var titHeight = $('#header').offset().height;
+            window.uexWindow.openPopover("content",0,"cardSelect_content.html","",0,titHeight,"","","");
+        
+         addWeinxinBcardAction("选择模板页面","选择进入"); 
+        });
+         //返回上一页
+        $("#nav-left").on("tap",function (){
+            // appcan.window.close(-1);
+              window.open("index.html","index");
+        })
+            function loadWxConfig(shareType,render_data){
+             var option = {
+                  url : 'bcard/wxconfig',
+                  data:{"url" : window.location.href.split("#")[0]},
+                  success : function(data) {
+                       data.data.debug = false;
+                      data.data.jsApiList=[
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone',
+                        'hideMenuItems',
+                        'showMenuItems',
+                        'hideAllNonBaseMenuItem',
+                        'showAllNonBaseMenuItem',
+                        'translateVoice',
+                        'startRecord',
+                        'stopRecord',
+                        'onVoiceRecordEnd',
+                        'playVoice',
+                        'onVoicePlayEnd',
+                        'pauseVoice',
+                        'stopVoice',
+                        'uploadVoice',
+                        'downloadVoice',
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage',
+                        'getNetworkType',
+                        'openLocation',
+                        'getLocation',
+                        'showOptionMenu',
+                        'closeWindow',
+                        'scanQRCode',
+                        'chooseWXPay',
+                        'openProductSpecificView',
+                        'addCard',
+                        'chooseCard',
+                        'openCard'
+                      ];
+                      wx.config(data.data);
+                       var share_data = JSON.parse(render_data);
+                     
+                       if(shareType=='hideMenu'){
+                               wx.ready(function(){
+                                   wx.hideOptionMenu();
+                                  //  setTimeout('wx.hideOptionMenu()',3000);
+                             });
+                       }
+                  }
+                }
+                view.ajax(option);
+        }
+
+    </script>
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" ?><wsdl:definitions name="BPMServiceImplService" targetNamespace="http://impl.services.gdda.ces/" xmlns:ns1="http://services.gdda.ces/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://impl.services.gdda.ces/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="http://fmsd.cttq.com/zdtqws/cxf/BPMService?wsdl=BPMService.wsdl" namespace="http://services.gdda.ces/"></wsdl:import>
+  <wsdl:binding name="BPMServiceImplServiceSoapBinding" type="ns1:BPMService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="createReturnString">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createReturnString">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createReturnStringResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getJudgeInfo">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getJudgeInfo">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getJudgeInfoResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateBorrowInfo">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateBorrowInfo">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateBorrowInfoResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateFilingInfo">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateFilingInfo">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateFilingInfoResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFilingInfo">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getFilingInfo">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getFilingInfoResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateJudgeInfo">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateJudgeInfo">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateJudgeInfoResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBorrowInfo">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getBorrowInfo">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getBorrowInfoResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BPMServiceImplService">
+    <wsdl:port binding="tns:BPMServiceImplServiceSoapBinding" name="BPMServiceImplPort">
+      <soap:address location="http://fmsd.cttq.com/zdtqws/cxf/BPMService"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

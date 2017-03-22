@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_PROJ_ProjApplQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_PROJ_ProjApplQry" targetNamespace="http://www.thitech.com/EM_PROJ_ProjApplQry/">
+<wsdl:types>
+<xsd:schema targetNamespace="http://www.thitech.com/EM_PROJ_ProjApplQry/">
+<!--  增加部分1   开始  -->
+<xsd:complexType name="AbstractType">
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType"></xsd:element>
+<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+<xsd:annotation>
+<xsd:documentation>当前员工号</xsd:documentation>
+</xsd:annotation>
+<xsd:simpleType>
+<xsd:restriction base="xsd:string"></xsd:restriction>
+</xsd:simpleType>
+</xsd:element>
+<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+<xsd:annotation>
+<xsd:documentation>域</xsd:documentation>
+</xsd:annotation>
+<xsd:simpleType>
+<xsd:restriction base="xsd:string">
+<xsd:length value="3"/>
+</xsd:restriction>
+</xsd:simpleType>
+</xsd:element>
+<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+<xsd:annotation>
+<xsd:documentation>扩展数据</xsd:documentation>
+</xsd:annotation>
+</xsd:element>
+</xsd:sequence>
+</xsd:complexType>
+<!--  增加部分1 结束  -->
+<!--  增加部分2 开始  -->
+<xsd:complexType name="ExtendMapType">
+<xsd:sequence>
+<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry"></xsd:element>
+</xsd:sequence>
+</xsd:complexType>
+<!--  增加部分2 结束  -->
+<!--  增加部分3 开始  -->
+<xsd:complexType name="Entry">
+<xsd:sequence>
+<xsd:element name="Key" type="xsd:anyType"/>
+<xsd:element name="Value" type="xsd:anyType"/>
+</xsd:sequence>
+</xsd:complexType>
+<!--  增加部分3 结束  -->
+<!--  增加部分4 开始  -->
+<xsd:complexType name="ReturnCode">
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+<xsd:annotation>
+<xsd:documentation>返回类型</xsd:documentation>
+</xsd:annotation>
+</xsd:element>
+<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+<xsd:annotation>
+<xsd:documentation>返回码</xsd:documentation>
+</xsd:annotation>
+</xsd:element>
+<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+<xsd:annotation>
+<xsd:documentation>返回信息</xsd:documentation>
+</xsd:annotation>
+</xsd:element>
+<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+<xsd:annotation>
+<xsd:documentation>扩展数据</xsd:documentation>
+</xsd:annotation>
+</xsd:element>
+</xsd:sequence>
+</xsd:complexType>
+<!--  增加部分4 结束  -->
+<!--  增加部分5 开始  -->
+<xsd:simpleType name="ChannelSerialNoType">
+<xsd:annotation>
+<xsd:documentation>渠道流水号</xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+<xsd:maxLength value="64"/>
+<xsd:minLength value="23"/>
+</xsd:restriction>
+</xsd:simpleType>
+<!--  增加部分5 结束  -->
+<xsd:element name="EMPROJProjApplQry" type="tns:EMPROJProjApplQry"></xsd:element>
+<xsd:element name="EMPROJProjApplQryResponse" type="tns:EMPROJProjApplQryResponse"></xsd:element>
+<xsd:complexType name="EMPROJProjApplQry">
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="Input" type="tns:EMPROJProjApplQryInput"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="EMPROJProjApplQryInput">
+<xsd:complexContent>
+<xsd:extension base="tns:AbstractType">
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="usrId" type="xsd:string"></xsd:element>
+<xsd:element maxOccurs="1" minOccurs="1" name="actTyp" type="xsd:string"></xsd:element>
+</xsd:sequence>
+</xsd:extension>
+</xsd:complexContent>
+</xsd:complexType>
+<xsd:complexType name="EMPROJProjApplQryOutput">
+<xsd:complexContent>
+<xsd:extension base="tns:ReturnCode">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="outList" type="tns:EMPROJProjApplQryOutList"></xsd:element>
+</xsd:sequence>
+</xsd:extension>
+</xsd:complexContent>
+</xsd:complexType>
+<xsd:complexType name="EMPROJProjApplQryResponse">
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="Output" type="tns:EMPROJProjApplQryOutput"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="EMPROJProjApplQryOutList">
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="0" name="projDocId" type="xsd:string"></xsd:element>
+<xsd:element maxOccurs="1" minOccurs="0" name="projDocNo" type="xsd:string"></xsd:element>
+<xsd:element maxOccurs="1" minOccurs="0" name="aproAmt" type="xsd:string"></xsd:element>
+<xsd:element maxOccurs="1" minOccurs="0" name="usrCode" type="xsd:string"></xsd:element>
+<xsd:element maxOccurs="1" minOccurs="0" name="usrNm" type="xsd:string"></xsd:element>
+<xsd:element maxOccurs="1" minOccurs="0" name="deptCode" type="xsd:string"></xsd:element>
+<xsd:element maxOccurs="1" minOccurs="0" name="deptNm" type="xsd:string"></xsd:element>
+<xsd:element maxOccurs="1" minOccurs="0" name="crtDat" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="0" name="docTyp" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+</wsdl:types>
+<wsdl:message name="EMPROJProjApplQryRequest">
+<wsdl:part element="tns:EMPROJProjApplQry" name="parameters"/>
+</wsdl:message>
+<wsdl:message name="EMPROJProjApplQryResponse">
+<wsdl:part element="tns:EMPROJProjApplQryResponse" name="parameters"/>
+</wsdl:message>
+<wsdl:portType name="EM_PROJ_ProjApplQry">
+<wsdl:operation name="EMPROJProjApplQry">
+<wsdl:input message="tns:EMPROJProjApplQryRequest"/>
+<wsdl:output message="tns:EMPROJProjApplQryResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.thitech.com/EM_PROJ_ProjApplQry/" name="EM_PROJ_ProjApplQry_Binding" type="ptns:EM_PROJ_ProjApplQry">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="EMPROJProjApplQry">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="EM_PROJ_ProjApplQry_Service">
+<wsdl:port xmlns:bprf="http://www.thitech.com/EM_PROJ_ProjApplQry/" binding="bprf:EM_PROJ_ProjApplQry_Binding" name="EM_PROJ_ProjApplQry_Port">
+<soap:address location="http://bmd.cttq.com:51200/EM_PROJ_ProjApplQry_Service/EMPROJProjApplQryImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

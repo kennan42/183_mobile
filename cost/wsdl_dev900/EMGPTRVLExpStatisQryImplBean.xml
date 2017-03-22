@@ -1,0 +1,186 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_GPTRVL_ExpStatisQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GPTRVL_ExpStatisQry" targetNamespace="http://www.thitech.com/EM_GPTRVL_ExpStatisQry/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_GPTRVL_ExpStatisQry/">
+      <!-- 增加部分1 开始  -->
+      <xsd:complexType name="AbstractType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+            <xsd:annotation>
+              <xsd:documentation>当前员工号</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+            <xsd:annotation>
+              <xsd:documentation>域</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="3"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分1 结束 -->
+      <!-- 增加部分2 开始 -->
+      <xsd:complexType name="ExtendMapType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分2 结束 -->
+      <!-- 增加部分3 开始 -->
+      <xsd:complexType name="Entry">
+        <xsd:sequence>
+          <xsd:element name="Key" type="xsd:anyType"/>
+          <xsd:element name="Value" type="xsd:anyType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分3 结束 -->
+      <!-- 增加部分4 开始 -->
+      <xsd:complexType name="ReturnCode">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回类型</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回码</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回信息</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分4 结束 -->
+      <!-- 增加部分5 开始 -->
+      <xsd:simpleType name="ChannelSerialNoType">
+        <xsd:annotation>
+          <xsd:documentation>渠道流水号</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64"/>
+          <xsd:minLength value="23"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!-- 增加部分5 结束 -->
+      <xsd:element name="EMGPTRVLExpStatisQry" type="tns:EMGPTRVLExpStatisQry">
+      </xsd:element>
+      <xsd:element name="EMGPTRVLExpStatisQryResponse" type="tns:EMGPTRVLExpStatisQryResponse">
+      </xsd:element>
+      <xsd:complexType name="EMGPTRVLExpStatisQry">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Input" type="tns:EMGPTRVLExpStatisQryInput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPTRVLExpStatisQryInput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:AbstractType">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="usrId" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="yMont" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="startPage" type="xsd:int">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="pageSize" type="xsd:int">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPTRVLExpStatisQryOutput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ReturnCode">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="totalCnt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="totalDays" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="totalAmt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="outList" type="tns:EMGPTRVLExpStatisQryOutList">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPTRVLExpStatisQryOutList">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="strDat" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="endDat" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="days" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCity" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCityNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCounty" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCountyNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCity" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCityNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCounty" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCountyNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="aproAmt" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="docStat" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="docStatNm" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPTRVLExpStatisQryResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="Output" type="tns:EMGPTRVLExpStatisQryOutput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EMGPTRVLExpStatisQryRequest">
+    <wsdl:part element="tns:EMGPTRVLExpStatisQry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EMGPTRVLExpStatisQryResponse">
+    <wsdl:part element="tns:EMGPTRVLExpStatisQryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GPTRVL_ExpStatisQry">
+    <wsdl:operation name="EMGPTRVLExpStatisQry">
+      <wsdl:input message="tns:EMGPTRVLExpStatisQryRequest"/>
+      <wsdl:output message="tns:EMGPTRVLExpStatisQryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding xmlns:ptns="http://www.thitech.com/EM_GPTRVL_ExpStatisQry/" name="EM_GPTRVL_ExpStatisQry_Binding" type="ptns:EM_GPTRVL_ExpStatisQry">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EMGPTRVLExpStatisQry">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EM_GPTRVL_ExpStatisQry"> 
+    <wsdl:port xmlns:bprf="http://www.thitech.com/EM_GPTRVL_ExpStatisQry/" binding="bprf:EM_GPTRVL_ExpStatisQry_Binding" name="EM_GPTRVL_ExpStatisQry_Port">
+      <soap:address location="http://bmq.cttq.com:51600/EM_GPTRVL_ExpStatisQry/EMGPTRVLExpStatisQryImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

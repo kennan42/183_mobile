@@ -1,0 +1,170 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_TRVL_Overfulfil/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_TRVL_Overfulfil" targetNamespace="http://www.thitech.com/EM_TRVL_Overfulfil/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_TRVL_Overfulfil/">
+      <!-- 增加部分1 开始 -->
+      <xsd:complexType name="AbstractType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+            <xsd:annotation>
+              <xsd:documentation>当前员工号</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+            <xsd:annotation>
+              <xsd:documentation>域</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="3"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分1 结束 -->
+      <!-- 增加部分2 开始 -->
+      <xsd:complexType name="ExtendMapType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分2 结束 -->
+      <!-- 增加部分3 开始 -->
+      <xsd:complexType name="Entry">
+        <xsd:sequence>
+          <xsd:element name="Key" type="xsd:anyType"/>
+          <xsd:element name="Value" type="xsd:anyType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分3 结束 -->
+      <!-- 增加部分4 开始 -->
+      <xsd:complexType name="ReturnCode">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回类型</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回码</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回信息</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分4 结束 -->
+      <!-- 增加部分5 开始 -->
+      <xsd:simpleType name="ChannelSerialNoType">
+        <xsd:annotation>
+          <xsd:documentation>渠道流水号</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64"/>
+          <xsd:minLength value="23"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!-- 增加部分5 结束 -->
+      <xsd:element name="EM_TRVL_Overfulfil" type="tns:EM_TRVL_Overfulfil">
+      </xsd:element>
+      <xsd:element name="EM_TRVL_OverfulfilResponse" type="tns:EM_TRVL_OverfulfilResponse">
+      </xsd:element>
+      <xsd:complexType name="EM_TRVL_Overfulfil">
+        <xsd:sequence>
+          <xsd:element name="input" type="tns:EM_TRVL_OverfulfilInput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EM_TRVL_OverfulfilInput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:AbstractType">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="usrCode" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="expForm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="cityCode" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="fillAmt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="vehicle" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="level" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="mileage" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="day" type="xsd:string">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EM_TRVL_OverfulfilOutput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ReturnCode">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="overFlag" type="xsd:string"/>
+              <xsd:element maxOccurs="1" minOccurs="0" name="expForm" type="xsd:string"/>
+              <xsd:element maxOccurs="1" minOccurs="0" name="overAmt" type="xsd:string"/>
+              <xsd:element maxOccurs="1" minOccurs="0" name="ssdAmt" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EM_TRVL_OverfulfilResponse">
+        <xsd:sequence>
+          <xsd:element name="output" type="tns:EM_TRVL_OverfulfilOutput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EM_TRVL_OverfulfilRequest">
+    <wsdl:part element="tns:EM_TRVL_Overfulfil" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EM_TRVL_OverfulfilResponse">
+    <wsdl:part element="tns:EM_TRVL_OverfulfilResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_TRVL_Overfulfil">
+    <wsdl:operation name="EM_TRVL_Overfulfil">
+      <wsdl:input message="tns:EM_TRVL_OverfulfilRequest"/>
+      <wsdl:output message="tns:EM_TRVL_OverfulfilResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding xmlns:ptns="http://www.thitech.com/EM_TRVL_Overfulfil/" name="EM_TRVL_Overfulfil_Binding" type="ptns:EM_TRVL_Overfulfil">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EM_TRVL_Overfulfil">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EM_TRVL_Overfulfil">
+    <wsdl:port xmlns:bprf="http://www.thitech.com/EM_TRVL_Overfulfil/" binding="bprf:EM_TRVL_Overfulfil_Binding" name="EM_TRVL_Overfulfil_Port">
+      <soap:address location="http://bmd.cttq.com:51200/EM_TRVL_Overfulfil/EMTRVLOverfulfilImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

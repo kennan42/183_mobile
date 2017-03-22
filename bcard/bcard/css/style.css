@@ -1,0 +1,154 @@
+/*我的名片1(空)*/
+  .card_myphoto_empty{
+       width: 100%; 
+       height: auto; 
+    }
+    .ai-card_1{
+    padding: 1px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 6.0625em 1em 0em 1em;
+    border-radius: 2px;
+    line-height: 0.625em
+    }
+    .ai-card_1 .ai-item:first-child{
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-top: 0;
+    }
+    .ai-card_1 .ai-item {
+        position: relative;
+        z-index: 2;
+        display: block;
+       padding:1.5em;
+     
+     }
+    .ai-card_1-action{
+        padding-bottom: 1em;
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+    .ai-btn_add{
+        min-height: 3em;
+        line-height: 3em;
+    }
+
+
+/*编辑名片（更多）*/
+.gengduo{ position: relative;}
+.xiala{position: absolute;right:0em; color:#000;width: 100%;background:#fff;}
+.xiala ul li{ overflow:hidden; cursor: pointer; padding: 10% 0 10% 0em; margin:0 0.65em;}
+.xiala ul li img{float:left;width: 1.0em;/* height:0.81em; */}
+.xiala ul li div{float:left;margin-left:0.875em;}
+.more_gd{ cursor: pointer;}
+
+/*编辑名片*/
+.card_2{}
+.card_edit_photo{
+      width: 100%; 
+      height: 11.125em 
+}
+     .edit_card_text{
+         /*margin-top:0.56em;*/
+         padding-top:0.625em;
+         padding-left:  1.28em ;
+         padding-bottom:0.625em; 
+     }
+     .card_1{
+         background-color: #ffffff;padding: 0 1.125em;
+     }
+     .card_each{
+     }
+     .bor_db{border-bottom:1px #d6d6d6 solid;}
+     .jc_flex{display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: flex;}
+     /*.pa_b7{padding-bottom:1em;}*/
+     .pa_l7{padding-left:0.7em;}
+     /*.pa_b7{padding-bottom:0.7em;}*/
+     .pa_t7{height:3em;line-height: 3em;}
+     .jc_dbtd_1_left{padding-left: 1em}
+     .jc_dbtd_left{width:5em }
+     .bor0{border:0 none;width: 90%;}
+     .jc_flex_1{-webkit-box-flex: 1;-moz-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;}
+     input,select{outline: none;}
+     .ai-ph-ucommon{color:rgba(0,0,0,.26);}
+     .input_1 input::-webkit-input-placeholder {
+       color:rgba(0,0,0,.26);
+     }
+     .input_1 input:-moz-placeholder {
+        color:rgba(0,0,0,.26);
+     }
+     .input_2 input::-webkit-input-placeholder {
+       color:rgba(0,0,0,.54);
+     }
+     .input_2 input:-moz-placeholder {
+        color:rgba(0,0,0,.54);
+     }
+    .ai-card_2{
+    padding: 1px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0.625em 0em 0em 0em;
+    border-radius: 2px;
+    line-height: 0.625em;
+    }
+    .ai-card_2 .ai-item:first-child{
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-top: 0;
+    }
+    .ai-card_2 .ai-item {
+        position: relative;
+        z-index: 2;
+        display: block;
+       padding:1.5em;
+     
+     }
+    .ai-card_2-action{
+        padding-bottom: 1em;
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+    .ai-btn_add{
+        min-height: 3em;
+        line-height: 3em;
+    }
+    .switch-btn{
+        width: 2.25em;
+        height:0;
+    }
+    .switch_1{
+        width: 2.25em;
+        min-height: 1.56em;
+        height: 1.56em;
+        margin-top: 0.65em
+    }
+    .s{
+        font-size: 0.75em;
+        color: #ffffff;
+        padding-left:0.40625em;
+        
+        line-height: 2em;
+    }
+    .switch.switch-mini[data-checked="true"] .switch-btn {
+        -webkit-transform: translate3d(0.40625em,0,0);
+        transform: translate3d(0.40625em,0,0);
+        left: auto;
+    }
+
+.yingc{ cursor: pointer;margin-top: 0.75em;width:2.25em;height:1.56em; border-radius:0.7em;}
+.color_1_1{background: #d5132d;}
+.color_1_2{background: #bdbdbd;}
+.ying_z{height: 1.56em;line-height: 2.3em;text-align: center;color: #fff;}
+
+.select_all{padding:0;border: 0;height: 2.5em;}
+.text.select_text{padding:0;}
+option{ line-height: 1em;}
+.select_xia{
+   background-image: url('../images/xia.png') !important;
+   width: 1em;
+   height: 1em;
+}
+
+.ai_left{margin-left: 12px}

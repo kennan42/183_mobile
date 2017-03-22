@@ -1,0 +1,213 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_TranTaskListQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_TranTaskListQry" targetNamespace="http://www.cttq.com/B2B_BPMI_TranTaskListQry/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_TranTaskListQry/">
+    <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+      <xsd:element name="B2BBPMITranTaskListQry" type="tns:B2BBPMITranTaskListQry">
+
+      </xsd:element>
+      <xsd:element name="B2BBPMITranTaskListQryResponse" type="tns:B2BBPMITranTaskListQryResponse">
+
+      </xsd:element>
+
+      <xsd:complexType name="B2BBPMITranTaskListQry">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:B2BBPMITranTaskListQryInput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="B2BBPMITranTaskListQryInput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:AbstractType">
+      			<xsd:sequence>
+      			<xsd:element maxOccurs="unbounded" minOccurs="0" name="qryType" type="tns:QryTypeList">
+      					 <xsd:annotation>
+      						<xsd:documentation>
+								查询类型
+							</xsd:documentation>
+						</xsd:annotation>
+      				</xsd:element>
+      				<xsd:element maxOccurs="1" minOccurs="0" name="startDate" type="xsd:string">
+      				</xsd:element>
+      				<xsd:element maxOccurs="1" minOccurs="0" name="endDate" type="xsd:string">
+      				</xsd:element>
+      				
+      				<xsd:element maxOccurs="1" minOccurs="0" name="startPage" type="xsd:int">
+								<xsd:annotation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="pageSize" type="xsd:int">
+								<xsd:annotation>
+								</xsd:annotation>
+							</xsd:element>
+      			</xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="B2BBPMITranTaskListQryResponse">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:B2BBPMITranTaskListQryOutput"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+      <xsd:complexType name="B2BBPMITranTaskListQryOutput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:ReturnCode">
+      			<xsd:sequence>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="totalCount" type="xsd:int">
+      				</xsd:element>
+                            <xsd:element maxOccurs="unbounded" minOccurs="0" name="taskInfoList" type="tns:TaskInfoList">
+      				</xsd:element>
+
+                        </xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+    
+      <xsd:complexType name="TaskInfoList">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+      			<xsd:annotation/>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="custNo" type="xsd:string">
+      			<xsd:annotation/>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="custNM" type="xsd:string">
+      			<xsd:annotation/>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="subDate" type="xsd:string">
+      			<xsd:annotation/>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="amount" type="xsd:string">
+      			<xsd:annotation/>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="currStep" type="xsd:string">
+      			<xsd:annotation/>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="zName" type="xsd:string">
+      			<xsd:annotation/>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="ordType" type="xsd:string"/>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="status" type="xsd:string"/>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="temp" type="xsd:string"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="QryTypeList">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="ordType" type="xsd:string"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="B2BBPMITranTaskListQryRequest">
+    <wsdl:part element="tns:B2BBPMITranTaskListQry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="B2BBPMITranTaskListQryResponse">
+    <wsdl:part element="tns:B2BBPMITranTaskListQryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="B2B_BPMI_TranTaskListQry">
+    <wsdl:operation name="B2BBPMITranTaskListQry">
+      <wsdl:input message="tns:B2BBPMITranTaskListQryRequest"/>
+      <wsdl:output message="tns:B2BBPMITranTaskListQryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.cttq.com/B2B_BPMI_TranTaskListQry/" name="B2B_BPMI_TranTaskListQry_Binding" type="ptns:B2B_BPMI_TranTaskListQry">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="B2BBPMITranTaskListQry">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="B2B_BPMI_TranTaskListQry_Service">
+<wsdl:port xmlns:bprf="http://www.cttq.com/B2B_BPMI_TranTaskListQry/" binding="bprf:B2B_BPMI_TranTaskListQry_Binding" name="B2B_BPMI_TranTaskListQry_Port">
+<soap:address location="http://b2b.cttq.com:50000/B2B_BPMI_TranTaskListQry_Service/B2BBPMITranTaskListQryImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+          <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+         <link rel="stylesheet" href="css/1_content/css/main.css"><!-- 弹框 -->
+         
+        <style>
+         .modal {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.31em;
+            background: #EA006F;
+            color: #000;
+            z-index: 1000000;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: 200ms ease;
+            border-radius: 10px;
+        }
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+       
+       .dialog {
+            background: #f5f5f5;
+            width: 80%;
+            height:13em;
+           top: 10.41em;
+            margin:0 auto;
+            box-shadow: 0 0 0 3000px rgba(0,0,0,0.5);
+          
+       }  
+       .disable-mouse{
+           pointer-events: none;
+       }   
+       .text_color{
+           color:#5677fc;
+       }
+       .umar-t{
+           margin-top: 1em;
+       }
+       .after{ top:1.3125em;border-top: 1px solid #cecece}
+       .after_text{position: relative;padding-top:1em}
+       
+        </style>
+        <script>
+           
+   
+        </script>
+    </head>
+    <body class="um-vp disable-mouse"  ontouchstart>
+       <div class="js-dialog  modal  dialog show" style="text-align: center" id="www">
+            
+            <div class="ai-fts-subhead ai-ph-common uhi" id="title_head">保存成功</div>
+            <div class="ai-pat30 ai-fts-body ai-ph-common">您现在可以将名片分享至</div>
+             <div class="ub ub-ver c-wh">
+          
+                
+                <div class="ub">
+                   
+                    <div class="ub-f1 ub-ver ub ub-ac ub-pc" id="weixing_friend" >
+                        <div class="ub-img uwh-share share1 umar-t-share"></div>
+                        <div class="text_color ai-fts-body umar-t">
+                            微信好友
+                        </div>
+                    </div>
+                    <div class="ub-f1 ub-ver ub ub-ac ub-pc" id="weixing_friends">
+                        <div class="ub-img uwh-share share2 umar-t-share"></div>
+                        <div class="text_color ai-fts-body umar-t">
+                                                                               朋友圈
+                        </div>
+                    </div>
+                     <div class="ub-f1 ub-ver ub ub-ac ub-pc" id="email">
+                        <div class="ub-img uwh-share share3 umar-t-share"></div>
+                        <div class="text_color ai-fts-body umar-t">
+                            邮箱
+                        </div>
+                    </div>
+                </div>
+                 <div  class="after" id="close_btn">
+                        
+                       <div class="after_text">以后再说</div>
+                   
+                 </div>
+            
+           
+           
+        </div>
+
+          
+        </div>
+    </body>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    </body>
+    <script>
+    appcan.ready(function (){
+        var html_1=appcan.locStorage.getVal('msg');//返回保存的值
+        if(html_1=="save"){
+            $("#title_head").removeClass("uhide");
+        }else{
+             $("#title_head").addClass("uhide");
+        }
+         appcan.button("#close_btn", "btn-act", function() {
+             appcan.window.evaluateScript({
+                    name:'cardEdit',
+                    scriptContent:'uexWindow.open("index", "0", "index.html", 1, "", "", "", "");'
+              });
+              uexWindow.closePopover('share');
+             //appcan.window.open("index","index.html",10)
+              
+        });
+       
+          
+            //分享至微信好友
+            appcan.button("#weixing_friend", "btn-act", function() {
+                alert("分享至微信好友");
+             
+            });
+          
+            
+        //分享至朋友圈
+        appcan.button("#weixing_friends", "btn-act", function() {
+                alert("分享至朋友圈");
+            
+        });
+        //分享至邮箱
+        appcan.button("#email", "btn-act", function() {
+               alert("分享至邮箱");
+            
+        });
+    });
+    </script>
+</html>

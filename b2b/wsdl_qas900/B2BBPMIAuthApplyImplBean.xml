@@ -1,0 +1,401 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_AuthApply/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_AuthApply" targetNamespace="http://www.cttq.com/B2B_BPMI_AuthApply/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_AuthApply/">
+
+			<!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+
+
+
+
+			<xsd:element name="B2BBPMIAuthApply" type="tns:B2BBPMIAuthApplyRequest">
+			</xsd:element>
+			<xsd:element name="B2BBPMIAuthApplyResponse" type="tns:B2BBPMIAuthApplyResponse">
+				<xsd:annotation>
+					<xsd:documentation>申请单号</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:complexType name="B2BBPMIAuthApplyRequest">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ProcCommon" type="tns:ProcCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="AuthApplyBean" type="tns:AuthApplyBean">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIAuthApplyResponse">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="APPLYID" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>申请单号</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="KUNNR" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>客户ID</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="VONNR" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>联系人编码</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="MSG" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>消息</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="ProcCommon">
+				<xsd:sequence>
+
+					<xsd:element maxOccurs="1" minOccurs="0" name="CurrUserCode" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								当前步骤人编号
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CurrUserName" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								当前步骤人名称
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="NextStepNo" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>下一步骤号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="NextStepDesc" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>下一步骤描述</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="IsCheck" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单是否需要复核(X-是)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ExtendMap" type="tns:ExtendMapType"/>
+
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="ApprUsers" type="tns:ApprUser"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="ApprUser">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprUserCode" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批人编号
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprUserName" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批人名称</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprDeptCode" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批部门编号
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprDeptDesc" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批部门名称
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprPostCode" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批人职务编号
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprPostDesc" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批人职务描述
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ExtendMap" type="tns:ExtendMapType"/>
+
+				</xsd:sequence>
+			</xsd:complexType>
+
+
+
+			<xsd:complexType name="AuthApplyBean">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="PROCTYPE" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>流程类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ORDTYPE" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>单据类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="COMPANYCODE" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>公司代码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="APPLYID" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>申请单号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNNR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>客户ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNNM" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>客户名称</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="VONNR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>联系人编码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZNAME" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>联系人名称</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="MBNMBR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>联系人电话</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZEMAIL" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>联系人邮箱</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="PAFKT" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>联系人功能</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="PARAU" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>权限说明</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="DISCHANNEL" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>渠道类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="NEEDAPPROVE" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>客户是否需要复核</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="UPDKZ" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>更新标识</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ExtendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展字段</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="B2BBPMIAuthApplyQuery" type="tns:B2BBPMIAuthApplyQueryRequest">
+			</xsd:element>
+			<xsd:element name="B2BBPMIAuthApplyQueryResponse" type="tns:B2BBPMIAuthApplyQueryResponse">
+			</xsd:element>
+
+			<xsd:complexType name="B2BBPMIAuthApplyQueryRequest">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="APPLYID" type="xsd:string">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIAuthApplyQueryResponse">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="AuthApplyBean" type="tns:AuthApplyBean">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="B2BBPMIAuthApplyRequest">
+		<wsdl:part element="tns:B2BBPMIAuthApply" name="input"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIAuthApplyResponse">
+		<wsdl:part element="tns:B2BBPMIAuthApplyResponse" name="output"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIAuthApplyQueryRequest">
+		<wsdl:part element="tns:B2BBPMIAuthApplyQuery" name="input"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIAuthApplyQueryResponse">
+		<wsdl:part element="tns:B2BBPMIAuthApplyQueryResponse" name="output"/>
+	</wsdl:message>
+	<wsdl:portType name="B2B_BPMI_AuthApply">
+		<wsdl:operation name="B2BBPMIAuthApply">
+			<wsdl:input message="tns:B2BBPMIAuthApplyRequest"/>
+			<wsdl:output message="tns:B2BBPMIAuthApplyResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="B2BBPMIAuthApplyQuery">
+			<wsdl:input message="tns:B2BBPMIAuthApplyQueryRequest"/>
+			<wsdl:output message="tns:B2BBPMIAuthApplyQueryResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="B2B_BPMI_AuthApplySOAP" type="tns:B2B_BPMI_AuthApply">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="B2BBPMIAuthApply">
+			<soap:operation soapAction="http://www.cttq.com/B2B_BPMI_AuthApply/B2BBPMIAuthApply"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="B2BBPMIAuthApplyQuery">
+			<soap:operation soapAction="http://www.cttq.com/B2B_BPMI_AuthApply/B2BBPMIAuthApplyQuery"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+	</wsdl:binding>
+	<wsdl:service name="B2B_BPMI_AuthApply">
+		<wsdl:port binding="tns:B2B_BPMI_AuthApplySOAP" name="B2B_BPMI_AuthApplySOAP">
+			<soap:address location="http://b2q.cttq.com:52200/B2B_BPMI_AuthApply/B2BBPMIAuthApplyImplBean"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

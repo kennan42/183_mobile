@@ -1,0 +1,230 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_CMF_GPTRVLApprRcdQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_CMF_GPTRVLApprRcdQry" targetNamespace="http://www.thitech.com/EM_CMF_GPTRVLApprRcdQry/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_CMF_GPTRVLApprRcdQry/">
+      <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:anyType"/>
+					<xsd:element name="Value" type="xsd:anyType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			<xsd:element name="EMCMFGPTRVLApprRcdQry" type="tns:EMCMFGPTRVLApprRcdQry">
+
+			</xsd:element>
+			<xsd:element name="EMCMFGPTRVLApprRcdQryResponse" type="tns:EMCMFGPTRVLApprRcdQryResponse">
+
+			</xsd:element>
+
+			<xsd:complexType name="EMCMFGPTRVLApprRcdQry">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:EMCMFGPTRVLApprRcdQryInput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="EMCMFGPTRVLApprRcdQryResponse">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:EMCMFGPTRVLApprRcdQryOutput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="EMCMFGPTRVLApprRcdQryInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="docNo" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="docType" type="xsd:string">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="EMCMFGPTRVLApprRcdQryOutput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="apprRcds" type="tns:ApprRcd">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="ApprRcd">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="taskId" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="docTypNM" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="coment" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="usrCode" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="dealDat" type="xsd:string">
+					</xsd:element>
+
+					<xsd:element maxOccurs="1" minOccurs="0" name="origAmt" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="cutAmt" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="agrAmt" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="remark" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="usrName" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="deaTyp" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="deaTypNM" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="stell" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>职务编码</xsd:documentation>
+						</xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="stltx" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>职务文本</xsd:documentation>
+						</xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="orgeh" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>部门编码</xsd:documentation>
+						</xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="orgtx" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>部门文本</xsd:documentation>
+						</xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="subRows" type="tns:SubRow">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+    
+			<xsd:complexType name="SubRow">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="oldAmt" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="cutAmt" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="newAmt" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="reamrk" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EMCMFGPTRVLApprRcdQryRequest">
+    <wsdl:part element="tns:EMCMFGPTRVLApprRcdQry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EMCMFGPTRVLApprRcdQryResponse">
+    <wsdl:part element="tns:EMCMFGPTRVLApprRcdQryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_CMF_GPTRVLApprRcdQry">
+    <wsdl:operation name="EMCMFGPTRVLApprRcdQry">
+      <wsdl:input message="tns:EMCMFGPTRVLApprRcdQryRequest"/>
+      <wsdl:output message="tns:EMCMFGPTRVLApprRcdQryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.thitech.com/EM_CMF_GPTRVLApprRcdQry/" name="EM_CMF_GPTRVLApprRcdQry_Binding" type="ptns:EM_CMF_GPTRVLApprRcdQry">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="EMCMFGPTRVLApprRcdQry">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="EM_CMF_GPTRVLApprRcdQry">
+<wsdl:port xmlns:bprf="http://www.thitech.com/EM_CMF_GPTRVLApprRcdQry/" binding="bprf:EM_CMF_GPTRVLApprRcdQry_Binding" name="EM_CMF_GPTRVLApprRcdQry_Port">
+<soap:address location="http://bmq.cttq.com:51600/EM_CMF_GPTRVLApprRcdQry/EMCMFGPTRVLApprRcdQryImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

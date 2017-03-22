@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_PROJ_ProjForB2CQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_PROJ_ProjForB2CQry" targetNamespace="http://www.thitech.com/EM_PROJ_ProjForB2CQry/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://www.thitech.com/EM_PROJ_ProjForB2CQry/">
+            <!--  增加部分1 开始  -->
+            <xsd:complexType name="AbstractType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType"></xsd:element>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+                        <xsd:annotation>
+                            <xsd:documentation>当前员工号</xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"></xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+                        <xsd:annotation>
+                            <xsd:documentation>域</xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:length value="3"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+                        <xsd:annotation>
+                            <xsd:documentation>扩展数据</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <!--  增加部分1 结束  -->
+            <!--  增加部分2 开始  -->
+            <xsd:complexType name="ExtendMapType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <!--  增加部分2 结束  -->
+            <!--  增加部分3 开始  -->
+            <xsd:complexType name="Entry">
+                <xsd:sequence>
+                    <xsd:element name="Key" type="xsd:anyType"/>
+                    <xsd:element name="Value" type="xsd:anyType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <!--  增加部分3 结束  -->
+            <!--  增加部分4 开始  -->
+            <xsd:complexType name="ReturnCode">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation>返回类型</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation>返回码</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation>返回信息</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+                        <xsd:annotation>
+                            <xsd:documentation>扩展数据</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <!--  增加部分4 结束  -->
+            <!--  增加部分5 开始  -->
+            <xsd:simpleType name="ChannelSerialNoType">
+                <xsd:annotation>
+                    <xsd:documentation>渠道流水号</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="64"/>
+                    <xsd:minLength value="23"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <!--  增加部分5 结束  -->
+            <xsd:element name="EMPROJProjForB2CQry" type="tns:EMPROJProjForB2CQry"></xsd:element>
+            <xsd:element name="EMPROJProjForB2CQryResponse" type="tns:EMPROJProjForB2CQryResponse"></xsd:element>
+            <xsd:complexType name="EMPROJProjForB2CQry">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="Input" type="tns:EMPROJProjForB2CQryInput"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="EMPROJProjForB2CQryResponse">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="Output" type="tns:EMPROJProjForB2CQryOutput"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="EMPROJProjForB2CQryInput">
+                <xsd:complexContent>
+                    <xsd:extension base="tns:AbstractType">
+                        <xsd:sequence>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="opType" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="usrId" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="projDocId" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="projDocNo" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="docTyp" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="objTyp" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="projNo" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="projTyp" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="crtUsr" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="approvalType" type="xsd:string"></xsd:element>
+                        </xsd:sequence>
+                    </xsd:extension>
+                </xsd:complexContent>
+            </xsd:complexType>
+            <xsd:complexType name="EMPROJProjForB2CQryOutput">
+                <xsd:complexContent>
+                    <xsd:extension base="tns:ReturnCode">
+                        <xsd:sequence>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="projTopic" type="xsd:string"></xsd:element>
+                            <xsd:element maxOccurs="unbounded" minOccurs="0" name="goodsList" type="tns:goodsList"></xsd:element>
+                            <xsd:element maxOccurs="unbounded" minOccurs="0" name="attendeeList" type="tns:attendeeList"></xsd:element>
+                            <xsd:element maxOccurs="unbounded" minOccurs="0" name="BCMCMFAppRcdOutList" type="tns:BCMCMFAppRcdOutList"></xsd:element>
+                        </xsd:sequence>
+                    </xsd:extension>
+                </xsd:complexContent>
+            </xsd:complexType>
+            <xsd:complexType name="goodsList">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="goodsCode" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="goodsNm" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="toqty" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="unit" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="goalNum" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="goalTyp" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="goalTypNm" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="attendeeList">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="custTyp" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="custTypNm" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="objCode" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="objNm" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="BCMCMFAppRcdOutList">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="coment" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="usrCode" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="dealDat" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="deaTyp" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="deaTypNM" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="argAmt" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="EMPROJProjForB2CQryRequest">
+        <wsdl:part element="tns:EMPROJProjForB2CQry" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="EMPROJProjForB2CQryResponse">
+        <wsdl:part element="tns:EMPROJProjForB2CQryResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:portType name="EM_PROJ_ProjForB2CQry">
+        <wsdl:operation name="EMPROJProjForB2CQry">
+            <wsdl:input message="tns:EMPROJProjForB2CQryRequest"/>
+            <wsdl:output message="tns:EMPROJProjForB2CQryResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding xmlns:ptns="http://www.thitech.com/EM_PROJ_ProjForB2CQry/" name="EM_PROJ_ProjForB2CQry_Binding" type="ptns:EM_PROJ_ProjForB2CQry">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="EMPROJProjForB2CQry">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="EM_PROJ_ProjForB2CQry">
+        <wsdl:port xmlns:bprf="http://www.thitech.com/EM_PROJ_ProjForB2CQry/" binding="bprf:EM_PROJ_ProjForB2CQry_Binding" name="EM_PROJ_ProjForB2CQry_Port">
+            <soap:address location="http://bmd.cttq.com:51200/EM_PROJ_ProjForB2CQry/EMPROJProjForB2CQryImplBean"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

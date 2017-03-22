@@ -1,0 +1,159 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_GRPEXP_QRYRMBEDN/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GRPEXP_QRYRMBEDN" targetNamespace="http://www.thitech.com/EM_GRPEXP_QRYRMBEDN/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_GRPEXP_QRYRMBEDN/">
+       <!-- 增加部分1 开始  -->
+            <xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:anyType"/>
+					<xsd:element name="Value" type="xsd:anyType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+					<xsd:enumeration value="value"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+      
+      <xsd:element name="EMGRPEXP_QRYRMBEDN" type="tns:EMGRPEXPQRYRMBEDN">
+
+      </xsd:element>
+      <xsd:element name="EMGRPEXP_QRYRMBEDNResponse" type="tns:EMGRPEXPQRYRMBEDNResponse">
+
+      </xsd:element>
+    
+      <xsd:complexType name="EMGRPEXPQRYRMBEDN">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:EMGRPEXPQRYRMBEDNInput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="EMGRPEXPQRYRMBEDNResponse">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:EMGRPEXPQRYRMBEDNOutput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+      
+            <xsd:complexType name="EMGRPEXPQRYRMBEDNInput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:AbstractType"/>
+            	</xsd:complexContent>
+            </xsd:complexType>
+            
+            <xsd:complexType name="EMGRPEXPQRYRMBEDNOutput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:ReturnCode"/>
+            	</xsd:complexContent>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EMGRPEXP_QRYRMBEDNRequest">
+    <wsdl:part element="tns:EMGRPEXP_QRYRMBEDN" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EMGRPEXP_QRYRMBEDNResponse">
+    <wsdl:part element="tns:EMGRPEXP_QRYRMBEDNResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GRPEXP_QRYRMBEDN">
+    <wsdl:operation name="EMGRPEXP_QRYRMBEDN">
+      <wsdl:input message="tns:EMGRPEXP_QRYRMBEDNRequest"/>
+      <wsdl:output message="tns:EMGRPEXP_QRYRMBEDNResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+<wsdl:binding xmlns:ptns="http://www.thitech.com/EM_GRPEXP_QRYRMBEDN/" name="EM_GRPEXP_QRYRMBEDN_Binding" type="ptns:EM_GRPEXP_QRYRMBEDN">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="EMGRPEXP_QRYRMBEDN">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="EM_GRPEXP_QRYRMBEDN"> 
+<wsdl:port xmlns:bprf="http://www.thitech.com/EM_GRPEXP_QRYRMBEDN/" binding="bprf:EM_GRPEXP_QRYRMBEDN_Binding" name="EM_GRPEXP_QRYRMBEDN_Port">
+<soap:address location="http://bmq.cttq.com:51600/EM_GRPEXP_QRYRMBEDN/EMGRPEXPQRYRMBEDNImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

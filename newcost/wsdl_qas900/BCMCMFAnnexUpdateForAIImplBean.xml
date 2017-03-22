@@ -1,0 +1,152 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/BCM_CMF_AnnexUpdateForAI/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BCM_CMF_AnnexUpdateForAI" targetNamespace="http://www.thitech.com/BCM_CMF_AnnexUpdateForAI/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/BCM_CMF_AnnexUpdateForAI/">
+      <!-- 增加部分1 开始 -->
+      <xsd:complexType name="AbstractType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="originateTellerId">
+            <xsd:annotation>
+              <xsd:documentation>员工号</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="8"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+            <xsd:annotation>
+              <xsd:documentation>域</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="3"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分1 结束 -->
+      <!-- 增加部分2 开始 -->
+      <xsd:complexType name="ExtendMapType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分2 结束 -->
+      <!-- 增加部分3 开始 -->
+      <xsd:complexType name="Entry">
+        <xsd:sequence>
+          <xsd:element name="Key" type="xsd:anyType"/>
+          <xsd:element name="Value" type="xsd:anyType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分3 结束 -->
+      <!-- 增加部分4 开始 -->
+      <xsd:complexType name="ReturnCode">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回类型</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回码</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回信息</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分4 结束 -->
+      <!-- 增加部分5 开始 -->
+      <xsd:simpleType name="ChannelSerialNoType">
+        <xsd:annotation>
+          <xsd:documentation>渠道流水号</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64"/>
+          <xsd:minLength value="23"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!-- 增加部分5 结束 -->
+      <xsd:element name="BCMCMF_AnnexUpdateForAI" type="tns:BCMCMFAnnexUpdateForAI">
+      </xsd:element>
+      <xsd:element name="BCMCMF_AnnexUpdateForAIResponse" type="tns:BCMCMFAnnexUpdateForAIResponse">
+      </xsd:element>
+      <xsd:complexType name="BCMCMFAnnexUpdateForAI">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:BCMCMFAnnexUpdateForAIInput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BCMCMFAnnexUpdateForAIResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:BCMCMFAnnexUpdateForAIOutput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BCMCMFAnnexUpdateForAIInput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:AbstractType">
+            <xsd:sequence>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="AnnexList" type="tns:AnnexList">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="BCMCMFAnnexUpdateForAIOutput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ReturnCode">
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="AnnexList">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AtchIDs" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="AtchDecl" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BCMCMF_AnnexUpdateForAIRequest">
+    <wsdl:part element="tns:BCMCMF_AnnexUpdateForAI" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BCMCMF_AnnexUpdateForAIResponse">
+    <wsdl:part element="tns:BCMCMF_AnnexUpdateForAIResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="BCM_CMF_AnnexUpdateForAI">
+    <wsdl:operation name="BCMCMF_AnnexUpdateForAI">
+      <wsdl:input message="tns:BCMCMF_AnnexUpdateForAIRequest"/>
+      <wsdl:output message="tns:BCMCMF_AnnexUpdateForAIResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding xmlns:ptns="http://www.thitech.com/BCM_CMF_AnnexUpdateForAI/" name="BCM_CMF_AnnexUpdateForAI_Binding" type="ptns:BCM_CMF_AnnexUpdateForAI">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="BCMCMF_AnnexUpdateForAI">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BCM_CMF_AnnexUpdateForAI">
+    <wsdl:port xmlns:bprf="http://www.thitech.com/BCM_CMF_AnnexUpdateForAI/" binding="bprf:BCM_CMF_AnnexUpdateForAI_Binding" name="BCM_CMF_AnnexUpdateForAI_Port">
+      <soap:address location="http://bmu.cttq.com:51800/BCM_CMF_AnnexUpdateForAI/BCMCMFAnnexUpdateForAIImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

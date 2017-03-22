@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title>分享名片</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    </head>
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/mycss.css">
+        
+        <script src="js/TouchSlide.1.1.js"></script>
+         <script src="js/view/jquery-1.7.2.min.js"></script>
+        <script src="js/view/common.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+        <script>
+        
+        $(document).ready(function() {
+            var  bcard_share_1=window.localStorage.getItem('bcard_share_1');
+            var uuid=getUrl();
+            console.log(bcard_share_1);
+             TouchSlide({ 
+                slideCell:"#slideBox",
+                titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+                mainCell:".bd ul",
+                effect:"leftLoop",
+                interTime:2800,
+                autoPage:true
+            });  
+              if(bcard_share_1==null){
+                   $("#slider").addClass("uhide");
+                   $("#uploadresult").removeClass("uhide");
+              }else{
+                   $("#uploadresult").addClass("uhide");
+                   $("#slider").removeClass("uhide");
+                   var bcard_info= $.parseJSON(bcard_share_1);
+                   $(".img_1").attr("src", bcard_info.fileurl);
+                   $(".img_2").attr("src", bcard_info.backgroundURL);
+              }
+            $("#nav-left").on("click",function (){
+                console.log("sdssf");
+                window.open("index.html","index");
+            });      
+             getWxConfig();
+              var uuid= window.localStorage.getItem('uuid_11');
+              $(".slideBox").data("uuid",uuid);
+               console.log(uuid);
+               $("#slideBox").on("click",function (){
+                   if($(".slideBox .hd li").eq(0).hasClass("on")==true){
+                        var data_1={"fileurl":bcard_info.fileurl,
+                                   "backgroundBcardURL":bcard_info.backgroundURL
+                                 };
+                      console.log(data_1);
+                      preview(data_1);
+                   }else{
+                       var data_2={"fileurl":bcard_info.backgroundURL,"backgroundURL":bcard_info.fileurl};
+                        preview(data_2);
+                   }
+               });        
+        });
+        
+
+        function getWxConfig(){
+               wx.ready(function(){
+                          // alert("******wx is ready, next:show ment, set share content...");
+                           showAllMenu();
+                             var share_data={"title":"名片分享",
+                              "desc":  window.localStorage.getItem('name')+"给您分享了"+window.localStorage.getItem('userName')+"的名片,请要记得保存到通讯录呦~",
+                              "url":view.wx_dev_url+"bcard/shart.html?uuid="+ $(".slideBox").data("uuid"),
+                              "imgUrl":view.wx_dev_url+"bcard/images/share_ico_1.png"
+                              };
+                             shareFriend(share_data);
+                            shareFriendsCircle(share_data);
+               });
+              console.log(window.location.href.split("#")[0]);        
+             var option = {
+                  url : view.wx_dev_url+'bcard/wxconfig',
+                  data:JSON.stringify({"url" : window.location.href.split("#")[0]}),
+                  type : 'post',
+                  
+                  contentType: "application/json",
+                  success : function(data) {
+                    //  alert("ssss");
+                    console.log(data);
+                       data.data.debug = false;
+                      data.data.jsApiList=[
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone',
+                        'hideMenuItems',
+                        'showMenuItems',
+                        'hideAllNonBaseMenuItem',
+                        'showAllNonBaseMenuItem',
+                        'translateVoice',
+                        'startRecord',
+                        'stopRecord',
+                        'onVoiceRecordEnd',
+                        'playVoice',
+                        'onVoicePlayEnd',
+                        'pauseVoice',
+                        'stopVoice',
+                        'uploadVoice',
+                        'downloadVoice',
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage',
+                        'getNetworkType',
+                        'openLocation',
+                        'getLocation',
+                        'showOptionMenu',
+                        'closeWindow',
+                        'scanQRCode',
+                        'chooseWXPay',
+                        'openProductSpecificView',
+                        'addCard',
+                        'chooseCard',
+                        'openCard'
+                      ];
+
+                       wx.error(function(err){
+                          alert("weixin.error "+err); 
+                       });
+                
+                        wx.config(data.data);
+                     //   alert("cnfig ok success");
+                  },
+                  error:function (){
+                      alert("ajax---error");
+                  },
+                  timeout:5000
+                }
+                $.ajax(option);
+        }
+        //分享朋友圈
+        function shareFriendsCircle(data){
+                  wx.onMenuShareTimeline({
+                    title: data.title, // 分享标题
+                    link: data.url, // 分享链接
+                    imgUrl: data.imgUrl, // 分享图标
+                    success: function () { 
+                        alert("分享至朋友圈成功");
+                    },
+                    fail:function(errobj){
+                         alert("set friend circle fail "+errobj);  
+                    },
+                    cancel: function () { 
+                         alert("分享至朋友圈取消");
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+       }
+        
+        function shareFriend(data){
+                 wx.onMenuShareAppMessage({
+                    title: data.title, // 分享标题
+                    desc: data.desc, // 分享描述
+                    link: data.url, // 分享链接
+                    imgUrl:data.imgUrl, // 分享图标
+                    type: '', // 分享类型,music、video或link，不填默认为link
+                    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function () { 
+                        alert("分享给朋友成功");
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () { 
+                        alert("分享给朋友取消");
+                        // 用户取消分享后执行的回调函数
+                     }
+                });
+       }
+       //点击预览
+       function preview(data){
+              wx.previewImage({
+                current: data.fileurl, // 当前显示图片的http链接
+                urls:[data.fileurl,data.backgroundBcardURL] // 需要预览的图片http链接列表
+              });
+      }
+      
+      function showAllMenu(){
+          wx.showOptionMenu();
+      }
+      
+      function onWxAfterReady(){
+                           alert("******wx is ready, next:show ment, set share content...");
+                           showAllMenu();
+                       
+                            var share_data={"title":"测试名片",
+                              "desc": "分享测试名片",
+                              "url":view.wx_dev_url+"bcard/shart.html?uuid=22838b20-be77-11e5-9646-572d07f261b9&from=singlemessage&isappinstalled=0",
+                              "imgUrl":view.wx_dev_url+"bcard/images/share_ico_1.png"
+                              };
+                             shareFriend(share_data);
+                            shareFriendsCircle(share_data);
+        }
+        
+        function findBcardByUUID(uuid){
+              var option = {
+                  //b44bf290-c359-11e5-a76f-337ae2a5681c
+                  //url : 'bcard/findBcardByUUID/'+uuid,
+                  //url : view.wx_dev_url+'bcard/findBcardByUUID/2ecdc910-c4d3-11e5-adbc-5dc4a36e9220',
+                  url : view.wx_dev_url+'bcard/findBcardByUUID/'+uuid,
+                  type:"get",
+                  beforeSend: function(XMLHttpRequest) {
+                      $("#uploadresult").removeClass("uhide");
+                  },
+                  success : function(data) {
+                       $("#uploadresult").addClass("uhide");
+                      console.log(data);
+                      if(data.status=="0"){
+                          var shareCard=data.data;
+                          $(".img_1").attr("src", shareCard.bcardURL);
+                          $(".img_2").attr("src", shareCard.bcardBackgroudURL);
+                       $(".slideBox .hd li").on("click",function (){
+                           if($(".slideBox .hd li").eq(0).hasClass("on")==true){
+                                if(  $(".erweima").hasClass("uhide")==true){
+                                         $(".erweima").removeClass("uhide");
+                                    }
+                           }else{
+                                if( $(".erweima").hasClass("uhide")==false){
+                                         $(".erweima").addClass("uhide");
+                               }
+                           }
+                       });
+                       var qrCodeURL=shareCard.qrCodeURL;
+                       TouchSlide({ 
+                            slideCell:"#slideBox",
+                            titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+                            mainCell:".bd ul",
+                            effect:"leftLoop",
+                            interTime:2800,
+                            autoPage:true,
+                             endFun:function(i,c){
+                                
+                                if(i==0){
+                                    $(".contactErweimaURL").attr("src",shareCard.contactErweimaURL);
+                                    if(  $(".erweima").hasClass("uhide")==true){
+                                         $(".erweima").removeClass("uhide");
+                                    }
+                                }else if(i==1){
+                                     if(qrCodeURL!=""){
+                                         $(".contactErweimaURL").attr("src",qrCodeURL)
+                                     }else{
+                                          if( $(".erweima").hasClass("uhide")==false){
+                                                     $(".erweima").addClass("uhide");
+                                           }
+                                     }
+                                }
+                            }
+                       
+                       });  
+                       
+                      
+                      }
+                  }
+                }
+                console.log(option);
+                $.ajax(option);
+        }
+      
+
+ </script>
+
+ <body class="um-vp bc-bg" ontouchstart>
+        <div id="header" class="uh ai-ht-head ub bc-head">
+                <div class="ai-nav-btn ai-left-btn ai-ph-color" id="nav-left">
+                    <div class=" fa fa-angle-left fa-2x"></div>
+                    <div class="ai-ph-color ai-fts-subhead more_gd ai_left">返回</div>
+                </div>
+                <h class=" ub-f1 ub-ac ub-pc ub ai-ph-color ai-fts-title ut-s tx-c" tabindex="0">分享名片</h>
+                <!-- <div class="nav-btn nav-bt ai-par-stable " id="nav-right"> 
+                    <div class="nav_jia"></div>
+                </div> -->
+                 <div class="ai-nav-btn ai-par-stable " id="nav-right">
+                     <!-- <div class="ub-f1 ub"></div>
+                     <div class="ai-ph-common ai-fts-subhead more_gd nav_jia"></div> -->
+                </div>
+        </div>
+        <div class="share_all">
+            <div class="share_bt ai-fts-body ai-ph-common"></div>
+            <!-- 轮播 -->
+            <div class="ai-pat-default">
+                 <div id="uploadresult" class="uhide" style="margin-top:0px;"> 
+                  <img src="images/loading_2.gif" alt="正在请求，请稍后..." />
+                </div>
+                <div style="clear:both;"></div>
+                <div id="slideBox" class="slideBox">
+                <div class="bd" >
+                    <ul id="bannerList" >
+                           <li >
+                              <a class="pic"><img src="" class="img_1"/></a>
+                            </li>
+                              <li >
+                              <a class="pic"><img src="" class="img_2"/></a>
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="hd">
+                    <ul></ul>
+                </div>
+            </div>
+            </div>
+            <!-- /轮播 -->
+            
+            <!-- 按钮 -->
+            <!-- <div class="ai-btn share_ys ai-btn-block ai-mab-gap ai-btn-primaiy">下载我的名片</div> -->
+            <!-- /按钮 -->
+            <!-- 长按二维码 -->
+            <div class="erweima">
+                <div class="erweima_01"><img src="" width="42%" class="contactErweimaURL" /></div>
+                <div class="erweima_02">点击微信右上角菜单</div>
+                <div class="erweima_02">可将名片分享给"微信好友",分享至"朋友圈"</div>
+                <div class="erweima_03"></div>
+             </div>
+        </div>
+</body>
+
+</html>

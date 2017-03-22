@@ -1,0 +1,231 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_AuthApprove/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_AuthApprove" targetNamespace="http://www.cttq.com/B2B_BPMI_AuthApprove/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_AuthApprove/">
+    <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			
+			
+      <xsd:element name="B2BBPMIAuthAprove" type="tns:B2BBPMIAuthAproveInput">
+
+      </xsd:element>
+      <xsd:element name="B2BBPMIAuthAproveResponse" type="tns:B2BBPMIAuthAproveOutput">
+
+      </xsd:element>
+
+      <xsd:complexType name="B2BBPMIAuthAproveInput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:AbstractType">
+      			<xsd:sequence>
+      				<xsd:element maxOccurs="1" minOccurs="0" name="IM_UPDKZ" type="xsd:string">
+      				</xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="ORDERNO" type="xsd:string">
+      				</xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="ApproveCommon" type="tns:ApproveCommon">
+      				</xsd:element>
+
+      				<xsd:element maxOccurs="1" minOccurs="0" name="ZBCMFIS_CONTACTS" type="tns:ZBCMFISCONTACTS">
+      				</xsd:element>
+
+      			</xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="B2BBPMIAuthAproveOutput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:ReturnCode">
+      			<xsd:sequence>
+      				<xsd:element maxOccurs="unbounded" minOccurs="0" name="ZBCMFIS_CONTACTS_MSG" type="tns:ZBCMFISCONTACTSMSG">
+      				</xsd:element>
+      			</xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="ApprUser">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="ApprUserCode" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="ApprUserName" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="ApprDeptCode" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="ApprDeptDesc" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="ApprPostCode" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="ApprPostDesc" type="xsd:string"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+        
+            <xsd:complexType name="ApproveCommon">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="taskId" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="lastStep" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="appType" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="appOpinion" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="usrId" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="usrName" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="currStep" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="procType" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="nextStepNo" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="nextStepDesc" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="unbounded" minOccurs="0" name="ApprUser" type="tns:ApprUser"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+        
+            <xsd:complexType name="ZBCMFISCONTACTS">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="KUNNR" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="ZNAME" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="AD_MBNMBR1" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="ZEMAIL" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="PARAU" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="VONNR_RV" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="unbounded" minOccurs="0" name="AuthList" type="tns:AuthList">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="AuthList">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="AUTHNAME" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="AUTHDESC" type="xsd:string"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="ZBCMFISCONTACTSMSG">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="KUNNR" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="VONNR_RV" type="xsd:string"/>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="MSG" type="xsd:string"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="B2BBPMIAuthAproveRequest">
+    <wsdl:part element="tns:B2BBPMIAuthAprove" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="B2BBPMIAuthAproveResponse">
+    <wsdl:part element="tns:B2BBPMIAuthAproveResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="B2B_BPMI_AuthApprove">
+    <wsdl:operation name="B2BBPMIAuthAprove">
+      <wsdl:input message="tns:B2BBPMIAuthAproveRequest"/>
+      <wsdl:output message="tns:B2BBPMIAuthAproveResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="B2B_BPMI_AuthApproveSOAP" type="tns:B2B_BPMI_AuthApprove">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="B2BBPMIAuthAprove">
+      <soap:operation soapAction="http://www.cttq.com/B2B_BPMI_AuthApprove/B2BBPMIAuthAprove"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="B2B_BPMI_AuthApprove">
+    <wsdl:port binding="tns:B2B_BPMI_AuthApproveSOAP" name="B2B_BPMI_AuthApproveSOAP">
+      <soap:address location="http://192.168.1.177:50000/B2B_BPMI_AuthApprove/B2BBPMIAuthApproveImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

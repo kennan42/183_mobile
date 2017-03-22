@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title>选模版</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/mycss.css">
+        <link rel="stylesheet" href="css/swiper.css">
+         <link rel="stylesheet" href="css/main.css">
+    </head>
+    <style>
+       .hd{ z-index:1;  text-align: center; }
+       .hd li{display:inline-block; width:1.65em; height:0.187em; background:#e28191; text-indent:-9999px; overflow:hidden; margin:0 6px;}
+       .hd li.on{ background:#d5132d;  }
+       .bc-img-1{
+           width: 100%;
+           height: 5em;
+       }
+       .bc-img-2{
+           width: 50%;
+           height: 5em;
+       }
+       .ub-img-5
+        {-webkit-background-size: auto 100%;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0 1em;
+        }
+         .ub-img-6{
+             -webkit-background-size:auto 100%;
+            background-size: 100% 100%;
+            background-repeat:no-repeat;
+            background-position:center;
+            margin: 0 1em;
+        }
+        .swiper-slide-active {
+          border: 2px solid #d5132d;
+        }
+       
+    </style>
+
+    <body class="um-vp bc-bg" id="zoom" ontouchstart style="width:auto">
+            <div class="ai-pat-default" style="position: relative;">
+            <!-- 轮播 -->
+             <div id="slider" class="slider"> </div>
+             <div class="hd" id="hd">
+                <ul class=""><li class="on">1</li><li class="">2</li></ul>
+             </div>
+            </div>
+            <!-- /轮播 -->
+            <!-- 2轮播 -->
+            <div class="lunbo_con">
+                <div class="lunbo_all ai-ubt">
+                    <div class="lunbo_bt01 ai-ph-display ai-fts-caption">选择模板</div>
+                    <div class="lunbo_bt02 ai-ph-display ai-fts-caption">共有<span id="count"></span>张</div>
+                </div>
+                 <div class="swiper-container gallery-top uhide">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" style="background-image:url(images/card.png"></div>
+                        <div class="swiper-slide" style="background-image:url(images/card_01.png"></div>
+                        <div class="swiper-slide" style="background-image:url(images/card_02.png"></div>
+                         <div class="swiper-slide" style="background-image:url(images/card_02.png"></div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                </div>
+                <div class="swiper-container gallery-thumbs" id="swape_img">
+                    <div class="swiper-wrapper common_ub" id="model_2">
+                    </div>
+                </div>
+                <div class="ub ub-f1 common_ub" id="model_3" style="margin: 2em 0em ;min-height: 4em;position: relative;" class="ub ub-ac ub-pc">
+                    <!-- <div class="ub ub-f1 ub-ver ub-ac">
+                        <div class="ub ub-f1 ub-img-5 bc-img-1" style="background-image:url(http://218.92.66.228:8888/uploads/bcard/second-template-demo.png);width:80%;height: 4em"></div>
+                        <div>dfsdsdf</div>
+                    </div>
+                    <div class="ub ub-f1 ub-ver ub-ac">
+                        <div class="ub ub-f1 ub-img-5 bc-img-1" style="background-image:url(http://218.92.66.228:8888/uploads/bcard/second-template-demo.png);width:80%;height: 4em"></div>
+                        <div>dfsdsdf</div>
+                    </div> -->
+                     
+                </div>
+                
+                 <div class="common_ub ub ub-ac ub-pc" id="model_4" style="margin: 2em 0em ;position: relative">
+                   
+                   
+                </div>
+             
+                
+            </div>
+            <!-- /2轮播 -->
+            
+            <!-- 按钮 -->
+            <div class="ai-btn share_ys ai-btn-block ai-mab-gap ai-btn-primaiy"  id="user">使用</div>
+              <div class="" style="margin-top: 0.5em;height: 1em;width: 100%;"></div>
+            <!-- /按钮 -->
+           
+    </body>
+    <script src="js/TouchSlide.1.1.js"></script>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/view/common.js"></script>
+    <script src="js/appcan.slider.js"></script>
+ </body>
+    <script>
+    document.getElementsByTagName("body")[0].style.width = screen.width+"px";
+        appcan.ready(function() {
+             // appcan.window.evaluateScript({
+                // name:'cardSelect',
+                // scriptContent:'renderW();'
+            // });
+             appcan.window.evaluateScript({
+                name:'cardSelect',
+                scriptContent:'loadWxConfig("hideMenu",\''+JSON.stringify({})+'\');'
+            });
+             var   isinternal=appcan.locStorage.getVal('isinternal');
+            renderModel_1(isinternal);        
+        });
+         
+      
+       $(".gallery-thumbs").on("tap",function (){
+          
+             var img_2="";
+           var length=$(".gallery-thumbs .swiper-wrapper").children().length;
+           var id="";
+           for(var i=0;i<length;i++){
+                if($(".gallery-thumbs .swiper-wrapper").children().eq(i).hasClass("swiper-slide-active")==true){
+                   img_2=$(".gallery-thumbs .swiper-wrapper").children().eq(i).css("background-image").substring(4,$(".gallery-thumbs .swiper-wrapper").children().eq(i).css("background-image").length-1);
+                    var img_back=$(".gallery-thumbs .swiper-wrapper").children().eq(i).data("back_url");
+                   $('#slider').html("");
+                   var slider = appcan.slider({
+                      selector : '#slider',
+                      aspectRatio:10/16,
+                      hasLabel:false,
+                      index:0
+                    });
+        
+                     slider.set([{
+                          img : img_2,
+                          label:""
+                         
+                         }, {
+                            img : img_back,
+                            label:""
+                            
+                     }]); 
+                       
+                } 
+            }
+            addWeinxinBcardAction("选择模板页面","选择进入"); 
+      }); 
+        
+   
+   $(".gallery-thumbs").on("touchmove",function (){
+         var length=$(".gallery-thumbs .swiper-wrapper").children().length;
+          var id="";
+              for(var i=0;i<length;i++){
+                if($(".gallery-thumbs .swiper-wrapper").children().eq(i).hasClass("swiper-slide-active")==true){
+                   var img=$(".gallery-thumbs .swiper-wrapper").children().eq(i).css("background-image").substring(4,$(".gallery-thumbs .swiper-wrapper").children().eq(i).css("background-image").length-1);
+                    var img_back=$(".gallery-thumbs .swiper-wrapper").children().eq(i).data("back_url");
+                    $('#slider').html("");
+                    var slider = appcan.slider({
+                      selector : '#slider',
+                      aspectRatio:10/16,
+                      hasLabel:false,
+                      index:0
+                    });
+                    slider.set([{
+                            img : img,
+                            label:""
+                        }, {
+                           img : img_back,
+                            label:""
+                   }]); 
+                }
+            }  
+            addWeinxinBcardAction("选择模板页面","选择进入"); 
+   });
+   function renderModel_1(isinternal){
+           var option={
+                 url : 'bcard/getBcardTemplate',
+                  data : {
+                    "isinternal":isinternal
+                  },
+                  beforeSend: function(XMLHttpRequest) {
+                       $("#uploadresult").removeClass("uhide");
+                  },
+                success : function(data) {
+                   $("#uploadresult").addClass("uhide");                    
+                     var return_val=data;
+                    var s="";
+                   if(return_val.status=="0"){
+                     var data_1=return_val.data;
+                     if(data_1.length>2){
+                         renderModel_2(data_1);
+                         
+                     }else if(data_1.length==2){
+                         renderModel_3(data_1);
+                     }else if(data_1.length==1){
+                         
+                         renderModel_4(data_1);
+                     }
+                     
+                     $("#count").html(data_1.length);
+                    
+                   }else{
+                      // alert(data.msg);
+                       appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                       appcan.window.evaluateScript('','uexWindow.alert("提示","数据有误，请重新尝试或联系管理员!","确定");');
+                   }
+               }
+            }
+            view.ajax(option);
+       }
+       $("#user").on("click",function (){
+          
+            var length=$(".common_ub").children().length;
+            if(Number($("#count").html())>2){
+                var templateId="";
+                     for(var i=0;i<length;i++){
+                        if($(".common_ub").children().eq(i).hasClass("swiper-slide-active")==true){
+                            templateId=$(".common_ub").children().eq(i).data("template_id");
+                             console.log("templateId:"+templateId)
+                        }
+                    }
+            }else{
+                  var templateId="";
+                     for(var i=0;i<length;i++){
+                        if($(".common_ub").children().eq(i).find(".wx-img").hasClass("swiper-slide-active")==true){
+                            templateId=$(".common_ub").children().eq(i).find(".wx-img").data("template_id");
+                        }
+                    }
+            }
+          
+          appcan.locStorage.setVal('templateId', templateId);
+          //alert("wwwwww");
+            appcan.window.open("cardNew","cardNew.html",10);
+         //appcan.window.open("cardNew","cardNew_content.html",10);
+         addWeinxinBcardAction("选择模板页面","使用"); 
+       });
+       function renderModel_2(data_1){
+           $("#model_3").addClass("uhide");
+           $("#model_4").addClass("uhide");
+           for(var i in data_1){
+                 var temp=data_1[i];
+                 if(temp.templateCnName.indexOf("名片")>-1){
+                    temp.templateCnName= temp.templateCnName.replace("名片",""); 
+                 }
+                  var html_1='<div class="swiper-slide wx-img" style="background-image:url('+temp.templateDemoURL+')" id="mode_img_'+i+'" data-template_id="'+temp._id+'"  data-back_url="'+temp.templateBackgroundURL+'">'
+                                +'<div class="text-model ai-ph-common ai-fts-caption">'+temp.templateCnName+'</div>'
+                            +'</div>';
+                 $("#model_2").append(html_1);
+    
+           }
+
+          var galleryTop = new Swiper('.gallery-top', {
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                spaceBetween: 5,
+                loop:true,
+                loopedSlides: data_1.length, //looped slides should be the same     
+          });
+          var galleryThumbs = new Swiper('.gallery-thumbs', {
+                spaceBetween: 5,    //slide之间的距离（单位px）。
+                slidesPerView: 4, /*设置slider容器能够同时显示的slides数量(carousel模式)。
+                                                                                                 可以设置为number或者 'auto'则自动根据slides的宽度来设定数量。*/
+                touchRatio: 0.2,  //触摸距离与slide滑动距离的比率
+                loop:true,   //设置为true 则开启loop模式
+                loopedSlides: data_1.length, //looped slides should be the same
+                                 //在loop模式下使用slidesPerview:'auto',还需使用该参数设置所要用到的loop个数。
+                slideToClickedSlide: true   //设置为true则swiping时点击slide会过渡到这个slide
+          });
+         galleryTop.params.control = galleryThumbs;
+         galleryThumbs.params.control = galleryTop;
+        
+         var length=$(".gallery-thumbs .swiper-wrapper").children().length;
+         for(var i=0;i<length;i++){
+            if($(".gallery-thumbs .swiper-wrapper").children().eq(i).hasClass("swiper-slide-active")==true){
+               var img=$(".gallery-thumbs .swiper-wrapper").children().eq(i).css("background-image").substring(4,$(".gallery-thumbs .swiper-wrapper").children().eq(i).css("background-image").length-1);
+               var img_back=$(".gallery-thumbs .swiper-wrapper").children().eq(i).data("back_url");
+               var slider = appcan.slider({
+                  selector : '#slider',
+                  aspectRatio:10/16,
+                  hasLabel:false,
+                  index:0
+                });
+                   slider.set([{
+                            img : img,
+                            label:""
+                        }, {
+                            img : img_back,
+                            label:""
+                        }]);
+             
+            }
+        }
+       }
+       
+       function renderModel_3(data_1){
+           $("#swape_img").addClass("uhide");
+            $("#model_4").addClass("uhide");
+                  for(var i in data_1){
+                         var temp=data_1[i];
+                         if(temp.templateCnName.indexOf("名片")>-1){
+                            temp.templateCnName= temp.templateCnName.replace("名片",""); 
+                         }
+                          var html_1=' <div class="ub ub-f1 ub-ver ub-ac">'
+                                +'<div class="ub ub-f1 ub-img-5 bc-img-1 wx-img" style="background-image:url('+temp.templateDemoURL+');width: 65%;height: 4em" id="mode_img_'+i+'" data-template_id="'+temp._id+'"  data-back_url="'+temp.templateBackgroundURL+'"></div>'
+                                +'<div>'+temp.templateCnName+'</div>'
+                            +'</div>'
+                         $("#model_3").append(html_1);
+
+                     }
+                     $("#model_3").find(".bc-img-1").on("click",function (e){
+                         var length=$("#model_3").children().length;
+                          for(var i=0;i<=length;i++){
+                            if(e.target == $("#mode_img_"+i)[0]){
+                                $("#mode_img_"+i).addClass("swiper-slide-active");
+                               }else{
+                                   $("#mode_img_"+i).removeClass("swiper-slide-active");
+                               } 
+                            }
+                             var img_2="";
+        
+                           var length=$("#model_3").children().length;
+                           var id="";
+                           for(var i=0;i<length;i++){
+                                if($("#model_3").children().eq(i).find(".bc-img-1").hasClass("swiper-slide-active")==true){
+                                   img_2=$("#model_3").children().eq(i).find(".bc-img-1").css("background-image").substring(4,$("#model_3").children().eq(i).find(".bc-img-1").css("background-image").length-1);
+                                    var img_back=$("#model_3").children().eq(i).find(".bc-img-1").data("back_url");
+                                   $('#slider').html("");
+                                   var slider = appcan.slider({
+                                      selector : '#slider',
+                                      aspectRatio:10/16,
+                                      hasLabel:false,
+                                      index:0
+                                    });
+                        
+                                     slider.set([{
+                                          img : img_2,
+                                          label:""
+                                         
+                                         }, {
+                                            img : img_back,
+                                            label:""
+                                            
+                                     }]); 
+                                       
+                                } 
+                            }
+                       
+                     });
+                     $("#mode_img_0").addClass("swiper-slide-active");
+                     var length=$("#model_3").children().length;
+                     for(var i=0;i<length;i++){
+                        if($("#model_3").children().eq(i).find(".bc-img-1").hasClass("swiper-slide-active")==true){
+                           var img=$("#model_3").children().eq(i).find(".bc-img-1").css("background-image").substring(4,$("#model_3").children().eq(i).find(".bc-img-1").css("background-image").length-1);
+                           var img_back=$("#model_3").children().eq(i).find(".bc-img-1").data("back_url");
+                           var slider = appcan.slider({
+                              selector : '#slider',
+                              aspectRatio:10/16,
+                              hasLabel:false,
+                              index:0
+                            });
+                            slider.set([{
+                                img : img,
+                                label:""
+                            }, {
+                                img : img_back,
+                                label:""
+                            }]);
+                         
+                        }
+                    }
+       }
+       function renderModel_4(data_1){
+            $("#swape_img").addClass("uhide");
+            $("#model_3").addClass("uhide");
+            for(var i in data_1){
+                 var temp=data_1[i];
+                 if(temp.templateCnName.indexOf("名片")>-1){
+                    temp.templateCnName= temp.templateCnName.replace("名片",""); 
+                 }
+                  var html_1=' <div class="ub ub-f1 ub-ver ub-ac">'
+                             +'<div class="ub ub-f1 ub-img-6 bc-img-2 wx-img" style="background-image:url('+temp.templateDemoURL+');width:35%;height: 4em" id="mode_img_'+i+'" data-template_id="'+temp._id+'"  data-back_url="'+temp.templateBackgroundURL+'"></div>'
+                               +'<div>'+temp.templateCnName+'</div>'
+                            +'</div>';
+                 $("#model_4").append(html_1);
+
+             }
+             
+            $("#mode_img_0").addClass("swiper-slide-active");
+             var length=$("#model_4").children().length;
+             for(var i=0;i<length;i++){
+                if($("#model_4").children().eq(i).find(".bc-img-2").hasClass("swiper-slide-active")==true){
+                   var img=$("#model_4").children().eq(i).find(".bc-img-2").css("background-image").substring(4,$("#model_4").children().eq(i).find(".bc-img-2").css("background-image").length-1);
+                   var img_back=$("#model_4").children().eq(i).find(".bc-img-2").data("back_url");
+                   var slider = appcan.slider({
+                      selector : '#slider',
+                      aspectRatio:10/16,
+                      hasLabel:false,
+                      index:0
+                    });
+                       slider.set([{
+                                img : img,
+                                label:""
+                            }, {
+                                img : img_back,
+                                label:""
+                            }]);
+                 
+                }
+            }
+                       
+                     
+       }
+ </script>
+</html>

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/main.css">
+         <link rel="stylesheet" href="css/main.css">
+    </head>
+    <style>
+        .banner_li{ position: relative;}
+        .banner_xing{ position: absolute;top:20%;left:54%;}
+        .banner_xm{color:#000;}
+        .banner_xm span.mingp{font-size:0.68em;margin-left:1.03em;}
+        .banner_bm{font-size:0.68em;text-align: left;position: absolute;top:32%;left:54%;}
+        .banner_z{font-size:0.68em; text-align: left;}
+        .banner_z_01{position: absolute;top:52%;left:54%;}
+        .banner_z_02{position: absolute;top:60%;left:54%;}
+        .banner_z_03{position: absolute;top:68%;left:54%;}
+        .banner_z_04{position: absolute;top:76%;left:54%;}
+        .banner_z_05{position: absolute;top:84%;left:54%;}
+    </style>
+    <body class="um-vp bc-bg" ontouchstart>
+         <div id="uploadresult" class="uhide"> 
+          <img src="images/loading_1.gif" alt="正在请求，请稍后..." />
+          <div class="logss">请稍后...</div>
+         </div>
+            <!-- slideBox -->
+            <div class="ai-pat-default">
+                   <form id="addForm">
+                <div style="position: relative;">
+                    <div id="slideBox" class="slideBox slideBox_border">
+                    <div class="bd djlb" >
+                        <ul id="bannerList" >
+                               <li class="banner_li">
+                                  <a class="pic"><img src=""  id="img_model"/></a>
+                                   <span id="span_1" class="" style="" >
+                                       <div style="position: absolute;top:44.25%;width: 100%;font-size:1.75em" id="userName_1">
+                                           <div class="ub">
+                                                <div class="ub-f1"></div>
+                                                <div><span id="userName_model">刘洋洋</span></div>
+                                                <div style="width:25%">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div style="position: absolute;top:60%;width: 100%;font-size:0.625em" id="dept_1">
+                                           <div class="ub">
+                                                <div class="ub-f1"></div>
+                                                <div ><span id="dept_model">互联网应用技术部</span></div>
+                                                <div style="width:25%">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div style="position: absolute;top:68%;width: 100%;font-size:0.625em" id="userName_1">
+                                           <div class="ub">
+                                                <div class="ub-f1"></div>
+                                                <div>Tel:<span id="userName_model">13072570679</span></div>
+                                                <div  style="width:25%">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="position: absolute;top:76%;width: 100%;font-size:0.625em" id="email_1">
+                                           <div class="ub">
+                                                <div class="ub-f1"></div>
+                                                <div>E-mail:<span id="email">YANGYANLIU@cttq.com</span></div>
+                                                <div  style="width:25%">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                     <!-- <div class="banner_xing">
+                                        <div class="ai-fts-title banner_xm"><span id="name_model">徐锐</span><span class="ai-ph-common mingp" id="product_model">产品经理</span></div>
+                                    </div>
+                                    <div class="" style="font-size:0.68em;text-align: left;position: absolute;top:32%;left:54%;">互联网应用技术部</div>
+                    
+                                    <div class="" style="position: absolute;top:52%;left:54%;font-size:0.68em">地址：<span id="address_model"></span></div>
+                                    <div class="banner_z banner_z_02">邮编：<span id="zipCode_model"></span></div>
+                                    <div class="banner_z banner_z_03">电话：<span id="phone_model"></span></div>
+                                    <div class="banner_z banner_z_04">传真：<span id="fax_model"></span></div>
+                                    <div class="banner_z banner_z_05">手机：<span id="mobilePhone_model"></span></div> -->
+                                     <div style="position: absolute;top:44.25%;left:76.39%;" id="img_1111">
+                                        <img src="images/appcan_opp.png" style="width: 100%;height:100%"  id=""/>
+                                    </div> 
+                                   
+                                    </span> 
+                                </li>
+                                 <li >
+                                  <a class="pic"><img src="images/card_edit/card_edit_3.png" /></a>
+                                </li> 
+                        </ul>
+                    </div>
+    
+                    <div class="hd" id="hd">
+                        <ul class=""></ul>
+                    </div>
+                </div>
+               
+          </div>
+                
+              
+                
+                
+                <div class="edit_card_text ai-ph-display ai-ubt">基本信息</div>
+                <div class="card_1 ai-us">
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">名片名称</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input type="text" id="templateId" name="templateId" class="uhide" value="" />
+                                 <input type="text" id="userId" name="userId" class="uhide" value="" />
+                                  <input type="text" id="_id" name="bcardId" class="uhide" value="" />
+                                <input placeholder="请输入名片名称" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common"  name="bcardName" id="bcardName"  value="" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">姓名中文</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入姓名中文" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="userName" id="userName" value=""   errorMsg="中文姓名格式不正确！" regex="^[\u4e00-\u9fa5]{2,4}$" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" readonly="true">
+                            </div>
+                             <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                    </div>
+                    <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd uhide">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">公司名称</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 ">
+                                <div class="select uba bc-border bc-text select_all">
+                                    <div class="text select_text ai-fts-body">请选择</div>
+                                    <div class="select_xia"></div>
+                                    <select class="" placeholder="请选择公司" name="company" id="company_select">
+                                        <option value="">请选择</option>
+                                        <option value='0'>正大天晴药业集团有限公司</option>
+                                        <option value='1'>连云港正大天晴医药有限公司</option>
+                                    </select>
+                                </div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd uhide" id="">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">公司名称</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入公司名称" type="text" class="ai-fts-body bor0 tx-l ai-ph-common" name="company" id="company" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)"   readonly="true">
+                            </div>
+                            <div class="yingc uhide color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                           
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">职位</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入职位" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="job" id="job" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)"  readonly="true" >
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                           
+                     </div>
+                      <div class="jc_flex pa_t7 pa_b7 jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">部门</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入部门" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common department" name="dept" id="dept" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)"  readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                             
+                     </div>
+                    
+                </div>
+                <div class="edit_card_text ai-ph-display">更多</div>
+                <div class="card_1 ai-us">
+                    <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">姓名英文</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入姓名英文" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="enName" id="enName"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)"  errorMsg="英文姓名格式不正确" regex="^([A-Za-z]+\s?)*[A-Za-z]$"  readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">手机号码</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入手机号码" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="mobileNumber" id="mobileNumber" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="手机号码格式不正确" regex="^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                          
+                     </div>
+                      <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">电话号码</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入电话号码" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="call" id="call" value=""  oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="电话号码格式不正确" regex="^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^(13[0-9]|15[0|3|6|7|8|9]|18[8|9])\d{8}$)" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                            
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">公司地址</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入公司地址" type="text" class="ai-fts-body bor0 tx-l ai-ph-common" name="companyAddress" id="companyAddress" value=""  oninput="copyByInput(this)" onpropertychange="copyByInput(this)"  readonly="true">
+                            </div>
+                           <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">邮箱</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入邮箱" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="email" id="email"  value="" errorMsg="邮箱格式不正确" regex="^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z][a-z.]{2,8}$" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">QQ</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入QQ号" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="QQ" id="QQ"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="QQ格式不正确" regex="^[1-9]{1}[0-9]{4,8}$" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">微信</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入微信号" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="weixin" id="weixin"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="微信格式不正确" regex="^[a-zA-Z\d_]{5,}$" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">公司邮箱</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入公司邮箱" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="companyEmail" id="companyEmail"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="公司邮箱格式不正确" regex="^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z][a-z.]{2,8}$" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">公司主页</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入公司主页" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="companyPage" id="companyPage"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">传真</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入传真" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="fax" id="fax" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="传真格式不正确" regex="^(\d{3,4}-)?\d{7,8}$" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">邮编</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入邮编号" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="postcode" id="postcode" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="邮编格式不正确" regex="[1-9]\d{5}(?!\d)" readonly="true">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                         
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-ucommon">客服电话</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_1">
+                                <input placeholder="请输入客服电话" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="servicePhone" id="servicePhone"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" readonly="true" data-display="1">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                    
+                </div>
+                <div class="ai-card_2">
+                 <div class="ai-item" style="padding: 0px">
+                   <div class=" ai-btn ai-btn_add ai-btn-block ai-btn-primaiy ai-mab-gap" id="saveBtn" data-action_name="save">保存</div>
+                 </div>
+               </div>
+            </form>    
+            </div>
+        
+       
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+       <script src="js/appcan.listview.js"></script>
+ </body>
+    <script src="js/TouchSlide.1.1.js"></script>
+    <script>
+    $(".djlb").on("tap",function(){
+           appcan.window.open("cardPreview","cardPreview.html",10)
+       })
+       /*var width_div=$("#userName_1").width();
+       var width_window=window.screen.width;
+       var percent_left=window.screen.width-width_div-window.screen.width*0.25;*/
+      var width=$("#dept_1 .ub-f1").width();
+      var width_all=$("body").width();
+      var percent_left=Number(width/width_all)*100;
+       console.log(percent_left);
+       var html='<div style="position: absolute;top:67.47999999999999%;left:'+percent_left+';font-size:0.625em" id="">主页:<span id=""></span></div>';
+        $("#span_1").append(html);
+       // var html_1='<div style="position: absolute;top:'+text_top+'%;left:'+text_left+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model" >'+$("#"+name).val()+'</span></div>';
+       //   $("#span_1").append(html_1);
+       /*
+         "templateOPPOURL": {
+          "locateType": "absolute",
+            "valueY": 0.4263,
+            "valueX": 0.3405,
+            "valueLocY": 272,
+            "valueLocX": 362,
+            "text": "",
+            "required": "1",
+            "float":"left",
+            "value_1":"images/appcan_opp.png",
+     },*/
+           // alert("成功");
+           var data={
+  "status": "0",
+  "data": {
+    "_id": "56726398522c80b781fa5cdc",
+    "templateEnName": "second-template.png",
+    "templateCnName": "对外模版1",
+    "templateURL": "images/appcan_ex.png",
+    "templatePath": "/opt/emm/uploads/bcard/second-template.png",
+    "templateStatus": 1,
+    "templateOrder": 2,
+    "selectedMaxDisplayCount": 7,
+    "startLocConfig": {
+      "incY": 0.0689,
+      "startValueX": 0.4139,
+      "startTextY": 0.6019,
+      "startTextX": 0.3358,
+      "incrementY": 44,
+      "incrementX": 83,
+      "startLocY": 384,
+      "startLocX": 357
+    },
+    "companyConfig": {
+      "inputFormat": "input"
+    },
+    "itemConfig": {
+    
+      "fax": {
+        "locateType": "relative",
+        "text": "传真:",
+        "fontSize": 26.69,
+        "fontFamily": "/etc/fonts/bcard/msyh.ttf",
+        "maxLength": 22,
+        "required": "0",
+        "float":"right"
+      },
+      "QQ": {
+        "locateType": "relative",
+        "text": "QQ:",
+        "fontSize": 26.69,
+        "fontFamily": "/etc/fonts/bcard/msyh.ttf",
+        "maxLength": 22,
+        "required": "0",
+        "float":"right"
+      },
+      "email": {
+        "locateType": "relative",
+        "text": "邮箱:",
+        "fontSize": 26.69,
+        "fontFamily": "/etc/fonts/bcard/msyh.ttf",
+        "maxLength": 22,
+        "required": "0",
+        "float":"right"
+      },
+      "mobileNumber": {
+        "locateType": "relative",
+        "text": "手机:",
+        "fontSize": 26.69,
+        "fontFamily": "/etc/fonts/bcard/msyh.ttf",
+        "maxLength": 13,
+        "required": "0",
+        "float":"right"
+      },
+      "companyAddress": {
+        "locateType": "relative",
+        "text": "地址:",
+        "fontSize": 26.69,
+        "fontFamily": "/etc/fonts/bcard/msyh.ttf",
+        "maxLength": 12,
+        "required": "0",
+        "float":"right"
+      },
+      "company": {
+        "locateType": "absolute",
+        "valueY": 0.4263,
+        "valueX": 0.3405,
+        "valueLocY": 272,
+        "valueLocX": 362,
+        "text": "",
+        "fontSize": 41.7,
+        "fontFamily": "/etc/fonts/bcard/msyh.ttf",
+        "maxLength": 18,
+        "required": "1",
+        "float":"right"
+      },
+      "job": {
+        "locateType": "absolute",
+        "valueY": 0.547,
+        "valueX": 0.0442,
+        "valueLocY": 349,
+        "valueLocX": 47,
+        "text": "",
+        "fontSize": 36.36,
+        "fontFamily": "/etc/fonts/bcard/msyh.ttf",
+        "maxLength": 8,
+        "required": "1",
+        "float":"right"
+      },
+      "userName": {
+        "locateType": "absolute",
+        "valueY": 0.4279,
+        "valueX": 0.0442,
+        "valueLocY": 273,
+        "valueLocX": 47,
+        "text": "",
+        "fontSize": 58.38,
+        "fontFamily": "/etc/fonts/bcard/msyhbd.ttf",
+        "maxLength": 4,
+        "required": "1",
+        "float":"right"
+      }
+    }
+  }
+};
+ console.log("查询模版详情");
+console.log(data);
+if(data.status=="0"){
+  if(data.status=="0"){
+ var data_1=data.data;
+ console.log(data_1);
+$("#img_model").attr("src",data_1.templateURL);
+
+$("#span_1").data("max_select_count",data_1.selectedMaxDisplayCount);
+
+var startLocConfig=data_1.startLocConfig;
+$("#span_1").data("inc_y",startLocConfig.incY*100);
+$("#span_1").data("start_value_x",startLocConfig.startValueX*100);
+$("#span_1").data("start_text_x",startLocConfig.startTextX*100);
+$("#span_1").data("start_text_y",startLocConfig.startTextY*100);
+$("#templateId").val(data_1._id);
+
+
+
+ var itemConfig=data_1.itemConfig;
+ var j=-1;
+ $.each(itemConfig,function(name,value_1){
+     //若该模版支持该属性
+     
+          var startValueX=$("#span_1").data("start_value_x");
+          var starTextX= $("#span_1").data("start_text_x");
+          var startTextY= $("#span_1").data("start_text_y");
+          var incY=$("#span_1").data("inc_y");
+           $("#"+name).attr("maxlength",value_1.maxLength);
+            //公司名称
+            var inputFormat=data_1.companyConfig.inputFormat;
+            if(inputFormat=="input"){
+                $("#company").parents(".jc_flex").removeClass("uhide");
+                removeToDisplay($("#company"));
+            }else if(inputFormat== "background"){
+                  $("#company").parents(".jc_flex").removeClass("uhide");
+            }else if(inputFormat== "select"){
+                $("#company_select").parents(".jc_flex").removeClass("uhide");
+            }
+           if(value_1.required == "1" ){
+               //必要的
+               if(name!="company"){
+                  $("#"+name).addClass("required");
+               }else{
+                  var inputFormat=data_1.companyConfig.inputFormat;
+                     if(inputFormat=="input"){
+                           $("#company").addClass("required");
+                    }else if(inputFormat== "background"){
+                          $("#company").addClass("required");
+                    }else if(inputFormat== "select"){
+                        $("#company_select").addClass("required");
+                    }
+               }                                      
+               var locateType = value_1.locateType;
+               if(locateType == "absolute"){//绝对定位
+                    //输出text
+                    if(value_1.text != ""){
+                        var fontSize=Number(value_1.fontSize)/32;
+                        var text_left=Number(value_1.textX)*100;
+                        var text_top=Number(value_1.textY)*100;
+                        if(value_1.float=="left"){
+                            var html_1='<div style="position: absolute;top:'+text_top+'%;left:'+text_left+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model" >'+$("#"+name).val()+'</span></div>';
+                            $("#span_1").append(html_1);
+                        }
+                        
+                    }else{
+                        var fontSize=Number(value_1.fontSize)/32;
+                       
+                        var value_left=Number(value_1.valueX)*100;
+                        var value_top=Number(value_1.valueY)*100;
+                        if(value_1.float=="left"){
+                          var html_1='<div style="position: absolute;top:'+value_top+'%;left:'+value_left+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model">'+$("#"+name).val()+'</span></div>';
+                           $("#span_1").append(html_1);
+                        }else{
+                            var html_1='<div style="position: absolute;top:'+value_top+'%;left:'+value_left+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model">'+$("#"+name).val()+'</span></div>';
+                           $("#span_1").append(html_1);
+                        }
+                    }
+                }else{ 
+                    if(value_1.text != ""){
+                        var fontSize=Number(value_1.fontSize)/32;
+                         j++;
+                        startTextY=Number(startTextY)+Number(incY)*j;
+                        if(value_1.float=="left"){
+                            var html_1='<div style="position: absolute;top:'+startTextY+'%;left:'+starTextX+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model">'+$("#"+name).val()+'</span></div>';
+                            $("#span_1").append(html_1);
+                        }
+                    }else{
+                         var fontSize=Number(value_1.fontSize)/32;
+                         j++;
+                        startTextY=Number(startTextY)+Number(incY)*j;
+                        if(value_1.float=="left"){
+                          var html_1='<div style="position: absolute;top:'+startTextY+'%;left:'+starTextX+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model" style="">'+$("#"+name).val()+'</span></div>';
+                           $("#span_1").append(html_1);
+                        }
+                    }
+                }
+           }else{
+               //非必要的
+                $("#"+name).parent().siblings(".yingc").removeClass("uhide");
+                var locateType = value_1.locateType;
+               if(locateType == "absolute"){//绝对定位
+                //输出text
+                if(value_1.text != ""){
+                    var fontSize=Number(value_1.fontSize)/32;
+                    var text_left=Number(value_1.textX)*100;
+                    var text_top=Number(value_1.textY)*100;
+                    if(value_1.float=="left"){
+                        var html_1='<div style="position: absolute;top:'+text_top+'%;left:'+text_left+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model" >'+$("#"+name).val()+'</span></div>';
+                        $("#span_1").append(html_1);
+                    }
+                }else{
+                    var fontSize=Number(value_1.fontSize)/32;
+                   
+                    var value_left=Number(value_1.valueX)*100;
+                    var value_top=Number(value_1.valueY)*100;
+                    if(value_1.float=="left"){
+                      var html_1='<div style="position: absolute;top:'+value_top+'%;left:'+value_left+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model">'+$("#"+name).val()+'</span></div>';
+                     $("#span_1").append(html_1);
+                   }
+                }
+               
+            }else{
+                 
+                
+                if(value_1.text != ""){
+                    var fontSize=Number(value_1.fontSize)/32;
+                     j++;
+                    startTextY=Number(startTextY)+Number(incY)*j;
+                    if(value_1.float=="left"){
+                        var html_1='<div style="position: absolute;top:'+startTextY+'%;left:'+starTextX+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model" >'+$("#"+name).val()+'</span></div>';
+                        $("#span_1").append(html_1);
+                    }
+                }else{
+                    var fontSize=Number(value_1.fontSize)/32;
+                     j++;  
+                    startTextY=Number(startTextY)+Number(incY)*j;
+                    if(value_1.float=="left"){
+                        var html_1='<div style="position: absolute;top:'+startTextY+'%;left:'+starTextX+'%;font-size:'+fontSize+'em" id="'+name+'_1">'+value_1.text+'<span id="'+name+'_model" >'+$("#"+name).val()+'</span></div>';
+                        $("#span_1").append(html_1);
+                    }
+                    
+                }
+            }
+           }
+            for(var i=0;i<$("input").length;i++){
+           //显示模版中的属性：显示行时不变灰且可编辑，且显示隐藏按钮为蓝色
+            if($("input").eq(i).attr("id")==name){
+            //   $("#"+name).addClass("enable_1");
+                
+               $("#"+name).parent().siblings(".yingc").removeClass("color_1_2");
+               $("#"+name).parent().siblings(".yingc").addClass("color_1_1");
+               $("#"+name).parent().siblings(".yingc").find(".ying_z").html("隐藏"); 
+               
+                
+                $("#"+name).parent().removeClass("input_1");
+                $("#"+name).parent().addClass("input_2");
+                $("#"+name).parent().siblings(".jc_dbtd_left").removeClass("ai-ph-ucommon");
+                $("#"+name).parent().siblings(".jc_dbtd_left").addClass("ai-ph-display");
+                $("#"+name).removeAttr("readonly");
+               
+            } 
+        }
+     
+     
+    
+ });
+ //若该属性为必须，则该行该属性不为灰并且可编辑
+    $(".required").parent().removeClass("input_1");
+    $(".required").parent().addClass("input_2");
+    $(".required").parent().siblings(".jc_dbtd_left").removeClass("ai-ph-ucommon");
+    $(".required").parent().siblings(".jc_dbtd_left").addClass("ai-ph-display");
+    $(".required").removeAttr("readonly");
+                    
+             
+ }
+ }
+   
+        appcan.ready(function() {   
+            console.log($("#img_1111").width());
+            $("#role").css("width",$("#img_1111").width());
+           $("body").on("tap",function (e){
+               if(e.target==$("#saveBtn")[0]){
+                 var flag = true;
+               $("#addForm .required").each(function(i,obj){
+                if(appcan.trim($(obj).val()) == ""){
+                    
+                  appcan.window.openToast($(obj).attr("placeholder"),2000,5,0);
+                   flag = !flag;
+                    return false;
+                }
+                
+                var reg = $(obj).attr("regex");
+                
+                if(typeof(reg) != "undefined" && reg != null){
+                    var patt = new RegExp(reg);
+                    if(!patt.test($(obj).val())){
+                        flag = !flag;
+                       appcan.window.openToast($(obj).attr("errorMsg"),2000,5,0);
+                        return false;
+                    }
+                }
+               
+            });
+            if($("input").hasClass("required")==false){
+                
+            }
+            if(!flag)return;  
+            else{
+             appcan.window.publish("cardEdit_share_open",$("#saveBtn").data("action_name"));    
+            }
+             
+            //  appcan.window.publish("cardEdit_share_open",$("#saveBtn").data("action_name"));    
+               }
+               //关闭demo浮动窗口
+               appcan.frame.close('card_more');
+            }); 
+            
+        });
+        
+        $("input").on("input",function (){
+           renderInput();
+        });
+       function copyByInput(obj){
+           $("#"+obj.id+"_model").html(obj.value);
+       }
+        $(".yingc").on("tap",function (){
+            console.log($(this).hasClass("color_1_1"));
+            if($(this).hasClass("color_1_1")==true){
+                $(this).removeClass("color_1_1");
+                $(this).addClass("color_1_2");
+            }else {
+                $(this).removeClass("color_1_2");
+                $(this).addClass("color_1_1");
+            
+            }
+        });
+    
+        $(".ying_z").on("tap",function (){
+            $(this).html($(this).html()=="显示"?"隐藏":"显示");
+        })
+        TouchSlide({ 
+            slideCell:"#slideBox",
+            titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+            mainCell:".bd ul",
+            effect:"leftLoop",
+            interTime:2800,
+            autoPage:true//自动分页
+        });
+           // var length=$(".slideBox .bd li img").css("width");
+             // console.log(length);
+             // $("#hd ul li").on("click",function (e){
+                 // if($("#bannerList").css("-webkit-transform")=="translate(-"+length+", 0px) translateZ(0px)"){
+                      // $("#span_1").removeClass("uhide");
+                 // }else{
+                    // $("#span_1").addClass("uhide");
+                 // }
+              // });
+               // $("#bannerList").on("swipeLeft",function (){
+                   // var length_1=Number(length.substring(0,length.length-2))*2;
+                 // if($("#bannerList").css("-webkit-transform")=="translate(-"+length_1+"px, 0px) translateZ(0px)"){
+                      // $("#span_1").addClass("uhide");
+                 // }else{
+                    // $("#span_1").removeClass("uhide");
+                 // }
+              // });
+               // $("#bannerList").on("swipeRight",function (){
+                 // if($("#bannerList").css("-webkit-transform")=="translate(0px, 0px) translateZ(0px)"){
+                      // $("#span_1").addClass("uhide");
+                 // }else{
+                    // $("#span_1").removeClass("uhide");
+                 // }
+              // });
+
+        appcan.switchBtn(".switch", function(obj, value) {
+            
+        })
+        appcan.select(".select",function(ele,value){
+            console.log(value);
+            renderInput();
+        });
+        function renderInput(){
+             var length=$(".slideBox .bd li img").css("width");
+            $("#bannerList").css("-webkit-transform","translate(-"+length+", 0px) translateZ(0px)");
+            $(".slideBox .hd li").eq(1).removeClass("on");
+            $(".slideBox .hd li").eq(0).addClass("on");
+        }
+         //根据所在input的id去除隐藏
+       function removeToDisplay(ID){
+            ID.parent().removeClass("input_1");
+            ID.parent().addClass("input_2");
+            ID.parent().siblings(".jc_dbtd_left").removeClass("ai-ph-ucommon");
+            ID.parent().siblings(".jc_dbtd_left").addClass("ai-ph-display");
+           ID.removeAttr("readonly");
+       }
+        //根据所在input的id隐藏该行
+       function addToDisplay(ID){
+           ID.parent().removeClass("input_2");
+           ID.parent().addClass("input_1");
+           ID.parent().siblings(".jc_dbtd_left").removeClass("ai-ph-display");
+           ID.parent().siblings(".jc_dbtd_left").addClass("ai-ph-ucommon");
+           ID.attr("readonly",true);
+       }
+       
+       
+        
+        
+ </script>
+</html>

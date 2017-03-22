@@ -1,0 +1,212 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/PORTAL_BPMI_ProcCancel/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PORTAL_BPMI_ProcCancel" targetNamespace="http://www.thitech.com/PORTAL_BPMI_ProcCancel/">
+  <wsdl:documentation>取消流程</wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/PORTAL_BPMI_ProcCancel/">
+       <!-- 增加部分1 开始 -->
+            <xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			<xsd:element name="PORTALBPMIProcCancel" type="tns:PORTALBPMIProcCancel">
+
+			</xsd:element>
+			<xsd:element name="PORTALBPMIProcCancelResponse" type="tns:PORTALBPMIProcCancelResponse">
+
+			</xsd:element>
+
+			<xsd:complexType name="PORTALBPMIProcCancel">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:PORTALBPMIProcCancelInput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="PORTALBPMIProcCancelResponse">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:PORTALBPMIProcCancelOutput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="PORTALBPMIProcCancelInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="pubAppr" type="tns:PubAppr">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="bussType" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										单据类型
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										单据号
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="PORTALBPMIProcCancelOutput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:ReturnCode"/>
+            	</xsd:complexContent>
+            </xsd:complexType>
+            <xsd:complexType name="PubAppr">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="taskId" type="xsd:string">
+            			<xsd:annotation>
+            				<xsd:documentation>任务ID</xsd:documentation>
+            			</xsd:annotation>
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="appType" type="xsd:string">
+            			<xsd:annotation>
+            				<xsd:documentation>审批类型</xsd:documentation>
+            			</xsd:annotation>
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="appOpinion" type="xsd:string">
+            			<xsd:annotation>
+            				<xsd:documentation>审批意见</xsd:documentation>
+            			</xsd:annotation>
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="usrId" type="xsd:string">
+            			<xsd:annotation>
+            				<xsd:documentation>
+            					当前人人员编码
+            				</xsd:documentation>
+            			</xsd:annotation>
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="usrName" type="xsd:string">
+            			<xsd:annotation>
+            				<xsd:documentation>
+            					当前人人员名称
+            				</xsd:documentation>
+            			</xsd:annotation>
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="currStep" type="xsd:string"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="PORTALBPMIProcCancelRequest">
+    <wsdl:part element="tns:PORTALBPMIProcCancel" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="PORTALBPMIProcCancelResponse">
+    <wsdl:part element="tns:PORTALBPMIProcCancelResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="PORTAL_BPMI_ProcCancel">
+    <wsdl:operation name="PORTALBPMIProcCancel">
+      <wsdl:input message="tns:PORTALBPMIProcCancelRequest"/>
+      <wsdl:output message="tns:PORTALBPMIProcCancelResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.thitech.com/PORTAL_BPMI_ProcCancel/" name="PORTAL_BPMI_ProcCancel_Binding" type="ptns:PORTAL_BPMI_ProcCancel">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="PORTALBPMIProcCancel">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="PORTAL_BPMI_ProcCancel">
+<wsdl:port xmlns:bprf="http://www.thitech.com/PORTAL_BPMI_ProcCancel/" binding="bprf:PORTAL_BPMI_ProcCancel_Binding" name="PORTAL_BPMI_ProcCancel_Port">
+<soap:address location="http://cpq.cttq.com:52200/PORTAL_BPMI_ProcCancel/PORTALBPMIProcCancelImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

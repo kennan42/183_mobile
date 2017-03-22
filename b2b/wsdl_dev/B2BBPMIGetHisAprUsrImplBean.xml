@@ -1,0 +1,203 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.zcttq.com/B2B_BPMI_GetHisAprUsr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_GetHisAprUsr" targetNamespace="http://www.zcttq.com/B2B_BPMI_GetHisAprUsr/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.zcttq.com/B2B_BPMI_GetHisAprUsr/">
+			<!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="channelSerialNo" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+
+			<xsd:element name="B2BBPMIGetHisAprUsr" type="tns:B2BBPMIGetHisAprUsr">
+
+			</xsd:element>
+			<xsd:element name="B2BBPMIGetHisAprUsrResponse" type="tns:B2BBPMIGetHisAprUsrResponse">
+
+			</xsd:element>
+
+			<xsd:complexType name="B2BBPMIGetHisAprUsr">
+				<xsd:sequence>
+					<xsd:element name="input" type="tns:B2BBPMIGetHisAprUsrInput"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIGetHisAprUsrInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="bussType" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="orderId" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="taskID" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="usrPostId" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="usrDeptId" type="xsd:string">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIGetHisAprUsrResponse">
+				<xsd:sequence>
+					<xsd:element name="output" type="tns:B2BBPMIGetHisAprUsrOutput"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIGetHisAprUsrOutput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="approvalType" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="usrList" type="tns:usrHisInfo">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+		
+			<xsd:complexType name="usrHisInfo">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="usrId" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>历史审批人工号</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="usrName" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>历史审批人名称</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="usrUniId" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>历史用户唯一标识</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="nextStep" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>历史审批人步骤号</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="B2BBPMIGetHisAprUsrRequest">
+		<wsdl:part element="tns:B2BBPMIGetHisAprUsr" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIGetHisAprUsrResponse">
+		<wsdl:part element="tns:B2BBPMIGetHisAprUsrResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="B2B_BPMI_GetHisAprUsr">
+		<wsdl:operation name="B2BBPMIGetHisAprUsr">
+			<wsdl:input message="tns:B2BBPMIGetHisAprUsrRequest"/>
+			<wsdl:output message="tns:B2BBPMIGetHisAprUsrResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="B2B_BPMI_GetHisAprUsrSOAP" type="tns:B2B_BPMI_GetHisAprUsr">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="B2BBPMIGetHisAprUsr">
+			<soap:operation soapAction="http://www.zcttq.com/B2B_BPMI_GetHisAprUsr/B2BBPMIGetHisAprUsr"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="B2B_BPMI_GetHisAprUsr">
+		<wsdl:port binding="tns:B2B_BPMI_GetHisAprUsrSOAP" name="B2B_BPMI_GetHisAprUsrSOAP">
+			<soap:address location="http://192.168.1.177:50000/B2B_BPMI_GetHisAprUsr/B2BBPMIGetHisAprUsrImplBean"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

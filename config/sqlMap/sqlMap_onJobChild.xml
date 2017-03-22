@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 在职子部门数据分析 -->
+<sqlMap namespace="onJobChild">
+    <!-- 在职人员数量分析 -->
+	<sql id="analyOnjobCount">
+		<![CDATA[
+            SELECT 
+                {{childDept}},
+                {{childDeptName}},
+                sum("COUNT_NUM") AS "COUNT_NUM" 
+            FROM 
+                "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" (
+                'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+                'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}'))
+            WHERE  
+                {{parentDept}} IN ({{#parentDeptCodes}})
+                AND {{childDept}} NOT IN ({{#parentDeptCodes}})
+            {{if childDeptCodes}}
+                AND {{childDept}} IN ({{#childDeptCodes}})
+            {{/if}}
+            GROUP BY {{childDept}},{{childDeptName}}
+            order by COUNT_NUM desc
+            
+		]]>
+	</sql>
+
+    <!-- 在职人员性别分析 -->
+	<sql id="analyOnjobSex">
+        <![CDATA[
+        SELECT 
+            "GESCH",
+            "GESCHT",
+            sum("COUNT_NUM") AS "COUNT_NUM"
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL"  (
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+            'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}'))
+        WHERE 
+            {{parentDept}} IN ({{#parentDeptCodes}}) 
+            AND {{childDept}} NOT IN ({{#parentDeptCodes}})
+        {{if childDeptCodes}}
+            AND {{childDept}} IN ({{#childDeptCodes}})
+        {{/if}}
+        GROUP BY "GESCH", "GESCHT" ORDER BY "COUNT_NUM" desc
+        
+        ]]>
+	</sql>
+
+    <!-- 在职人员性别分析分页查询 -->
+	<sql id="analyOnjobSexByPage">
+        <![CDATA[
+        SELECT 
+            PERNR, 
+            NACHN, 
+            DEPT07, 
+            DEPTN07 
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" (
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+            'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}')) 
+        WHERE 
+            "GESCH" IN ('{{gesch}}')
+            AND "{{parentDept}}" IN ({{#parentDeptCodes}}) 
+            AND "{{childDept}}" NOT IN ({{#parentDeptCodes}})
+        {{if childDeptCodes}}
+            AND {{childDept}} IN ({{#childDeptCodes}})
+        {{/if}}
+        order by DEPTN07 desc
+        limit {{pageSize}} offset {{offset}}
+        ]]>
+	</sql>
+
+
+    <!-- 在职人员学历分析 -->
+    <sql id="analyOnjobEducation">
+        <![CDATA[
+        SELECT 
+            "SLART",
+            "SLART_DES",
+            sum("COUNT_NUM") AS "COUNT_NUM"
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" (
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+            'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}'))
+        WHERE 
+            "{{parentDept}}" in ({{#parentDeptCodes}})  
+            and "{{childDept}}" not in ({{#parentDeptCodes}})
+            {{if childDeptCodes}}
+                AND {{childDept}} IN ({{#childDeptCodes}})
+            {{/if}}
+        GROUP BY "SLART","SLART_DES" 
+        order by "COUNT_NUM" desc
+
+        ]]>
+    </sql>
+
+    <!-- 在职人员学历分页查询 -->
+    <sql id="analyOnjobEducationByPage">
+        <![CDATA[
+            SELECT 
+                PERNR, 
+                NACHN, 
+                DEPT07, 
+                DEPTN07 
+            FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" ( 
+                'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'),
+                'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}'))
+            WHERE 
+                "SLART" IN ('{{slart}}')
+                AND "{{parentDept}}" IN ({{#parentDeptCodes}}) 
+                AND "{{childDept}}" NOT IN ({{#parentDeptCodes}})
+            {{if childDeptCodes}}
+                AND {{childDept}} IN ({{#childDeptCodes}})
+            {{/if}}
+            order by DEPTN07 desc
+            limit {{pageSize}} offset {{offset}}
+        ]]>
+    </sql>
+
+    <!-- 在职人员司龄分析 -->
+    <sql id="analyOnjobSiling">
+        <![CDATA[
+        SELECT 
+            "SL_ID",
+            "SL_NAME",
+            sum("COUNT_NUM") AS "COUNT_NUM"
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" (
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+            'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}'))
+        WHERE 
+            "{{parentDept}}" IN ({{#parentDeptCodes}}) 
+            AND "{{childDept}}" NOT IN ({{#parentDeptCodes}})
+        {{if childDeptCodes}}
+            AND {{childDept}} IN ({{#childDeptCodes}})
+        {{/if}}
+        GROUP BY "SL_ID", "SL_NAME" 
+        ORDER BY "COUNT_NUM"  desc
+        ]]>
+    </sql>
+
+    <!-- 在职人员司龄分页查询 -->
+    <sql id="analyOnjobSilingByPage">
+        <![CDATA[
+            SELECT 
+                PERNR,
+                NACHN,
+                DEPT07,
+                DEPTN07 
+            FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" (
+                'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+                'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}')) 
+            WHERE 
+                 "SL_ID" IN ('{{slRangeId}}')
+                AND "{{parentDept}}" IN ({{#parentDeptCodes}}) 
+                AND "{{childDept}}" NOT IN ({{#parentDeptCodes}})
+                {{if childDeptCodes}}
+                    AND {{childDept}} IN ({{#childDeptCodes}})
+                {{/if}}
+            order by DEPTN07 desc
+            limit {{pageSize}} offset {{offset}}
+        ]]>
+    </sql>
+
+    <!-- 在职人员年龄分析 -->
+    <sql id="analyOnjobAge">
+        <![CDATA[
+        SELECT 
+            "AGE_ID",
+            "AGE_NAME",
+            sum("COUNT_NUM") AS "COUNT_NUM"
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" (
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+            'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}'))
+        WHERE 
+            {{parentDept}} IN ({{#parentDeptCodes}}) 
+            AND {{childDept}} NOT IN ({{#parentDeptCodes}})
+        {{if childDeptCodes}}
+            AND {{childDept}} IN ({{#childDeptCodes}})
+        {{/if}}
+        GROUP BY "AGE_ID","AGE_NAME" 
+        order by "COUNT_NUM" desc
+        ]]>
+    </sql>
+    <!-- 在职人员年龄分页查询 -->
+    <sql id="analyOnjobAgeByPage">
+        <![CDATA[
+        SELECT 
+            PERNR,
+            NACHN,
+            DEPT07,
+            DEPTN07 
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" (
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+            'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}')) 
+        WHERE 
+            "AGE_ID" IN ('{{ageId}}')
+            AND "{{parentDept}}" IN ({{#parentDeptCodes}}) 
+            AND "{{childDept}}" NOT IN ({{#parentDeptCodes}})
+        {{if childDeptCodes}}
+            AND {{childDept}} IN ({{#childDeptCodes}})
+        {{/if}}
+        order by DEPTN07 desc
+        limit {{pageSize}} offset {{offset}}
+        ]]>
+    </sql>
+
+    <!-- 在职人员技能分析 -->
+    <sql id="analyOnjobTecAndDuty">
+        <![CDATA[
+        SELECT 
+            "TEC_LEVEL" "TYPESC",
+            "TEC_LEVELN"  "TYPEST",
+            sum("COUNT_NUM") AS "COUNT_NUM"
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" (
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+            'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}'))
+        WHERE 
+            {{parentDept}} IN ({{#parentDeptCodes}}) 
+            AND {{childDept}} NOT IN ({{#parentDeptCodes}})
+        {{if childDeptCodes}}
+            AND {{childDept}} IN ({{#childDeptCodes}})
+        {{/if}}
+        GROUP BY  "TEC_LEVEL","TEC_LEVELN"
+        ORDER BY COUNT_NUM desc
+        ]]>
+    </sql>
+    <!-- 在职人员技能分页查询 -->
+    <sql id="analyOnjobTecAndDutyByPage">
+        <![CDATA[
+        SELECT 
+            PERNR,
+            NACHN,
+            DEPT07,
+            DEPTN07 
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.onjob/CA_EMP_ONJOB_ALL" (
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'), 
+            'PLACEHOLDER' = ('$$P_DATE$$', '{{queryDate}}'))
+        WHERE 
+            "TEC_LEVEL" IN ('{{tzj}}')
+            AND {{parentDept}} IN ({{#parentDeptCodes}}) 
+            AND {{childDept}} NOT IN ({{#parentDeptCodes}})
+        {{if childDeptCodes}}
+            AND {{childDept}} IN ({{#childDeptCodes}})
+        {{/if}}
+        ORDER BY DEPTN07 desc
+        limit {{pageSize}} offset {{offset}}
+        ]]>
+    </sql>
+
+</sqlMap>

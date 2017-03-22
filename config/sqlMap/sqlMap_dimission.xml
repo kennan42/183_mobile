@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sqlMap namespace="dimission">
+    <!-- 离职趋势分析 -->
+	<sql id="tendencyAnaly">
+		<![CDATA[
+            SELECT
+                {{deptCode}},
+                {{deptName}},  
+                sum("COUNT_NUM") AS "LZ_NUM",
+                sum("COUNT_ZZ") AS "ZZ_NUM" , 
+                sum("COUNT_NUM")/(sum("COUNT_NUM")+sum("COUNT_ZZ")) * 100 AS "RATIO"
+            FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.leavejob/CA_EMP_LJ_ZZ_OUT" (
+                'PLACEHOLDER' = ('$$P_EDATE$$', '{{endMonth}}'),
+                'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'),
+                'PLACEHOLDER' = ('$$P_BDATE$$', '{{startMonth}}'))
+            WHERE 
+                1=1
+            {{if deptCodes}}
+                and {{deptCode}} IN ({{#deptCodes}})
+            {{/if}}
+            GROUP BY {{deptCode}},{{deptName}}
+            order by LZ_NUM desc
+		]]>
+	</sql>
+    <!-- 离职类型分析 -->
+	<sql id="typeAnaly">
+        <![CDATA[
+            SELECT
+                "REASONC",
+                "REASONT",
+                SUM("COUNT_NUM") AS "LZ_NUM" 
+            FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.leavejob/CA_EMP_LJ_ALL" (
+                'PLACEHOLDER' = ('$$P_EDATE$$', '{{endMonth}}'),
+                'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'),
+                'PLACEHOLDER' = ('$$P_BDATE$$', '{{startMonth}}')) 
+            WHERE 
+                1=1
+            {{if deptCodes}}
+                and {{deptCode}} IN ({{#deptCodes}})
+            {{/if}}
+            GROUP BY "REASONC", "REASONT"
+            order by LZ_NUM desc
+            
+        ]]>
+	</sql>
+    <!-- 离职类型分页查询 -->
+	<sql id="typeAnalyByPage">
+        <![CDATA[
+        SELECT 
+            "PERNR", 
+            "NACHN", 
+            "DEPT07",
+            "DEPTN07",
+            "REASONC",
+            "REASONT"
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.leavejob/CA_EMP_LJ_ALL" (
+            'PLACEHOLDER' = ('$$P_EDATE$$', '{{endMonth}}'),
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'),
+            'PLACEHOLDER' = ('$$P_BDATE$$', '{{startMonth}}'))
+        WHERE 
+            "REASONC" in ('{{reasonc}}')
+            {{if deptCodes}}
+                and {{deptCode}} IN ({{#deptCodes}})
+            {{/if}}
+        order by DEPTN07 desc
+        limit {{pageSize}} offset {{offset}}
+        ]]>
+	</sql>
+    <!-- 离职学历分析 -->
+    <sql id="eduAnaly">
+        <![CDATA[
+            SELECT
+                "SLART", "SLART_DES",
+                SUM("COUNT_NUM") AS "LZ_NUM" 
+            FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.leavejob/CA_EMP_LJ_ALL" (
+            'PLACEHOLDER' = ('$$P_EDATE$$', '{{endMonth}}'),
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'),
+            'PLACEHOLDER' = ('$$P_BDATE$$', '{{startMonth}}'))
+            WHERE 
+                1=1
+            {{if deptCodes}}
+                and {{deptCode}} IN ({{#deptCodes}})  
+            {{/if}}
+            GROUP BY "SLART", "SLART_DES"
+            order by LZ_NUM desc
+            
+        ]]>
+    </sql>
+
+    <!-- 离职学历分页查询 -->
+    <sql id="eduAnalyByPage">
+        <![CDATA[
+        SELECT 
+            "PERNR",
+            "NACHN",
+            "DEPT07",
+            "DEPTN07",
+            "SLART",
+            "SLART_DES"
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.leavejob/CA_EMP_LJ_ALL" (
+            'PLACEHOLDER' = ('$$P_EDATE$$', '{{endMonth}}'),
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'),
+            'PLACEHOLDER' = ('$$P_BDATE$$', '{{startMonth}}'))
+        WHERE "SLART" in ('{{slart}}')
+            {{if deptCodes}}
+                and {{deptCode}} IN ({{#deptCodes}})
+            {{/if}}
+        order by DEPTN07 desc
+        limit {{pageSize}} offset {{offset}}
+        ]]>
+    </sql>
+    <!-- 离职司龄分析 -->
+    <sql id="silingAnaly">
+        <![CDATA[
+            SELECT
+                "SL_ID", 
+                "SL_NAME",
+                SUM("COUNT_NUM") AS "LZ_NUM" 
+            FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.leavejob/CA_EMP_LJ_ALL" (
+            'PLACEHOLDER' = ('$$P_EDATE$$', '{{endMonth}}'),
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'),
+            'PLACEHOLDER' = ('$$P_BDATE$$', '{{startMonth}}'))
+            WHERE 
+                1=1
+            {{if deptCodes}}
+                and {{deptCode}} IN ({{#deptCodes}}) 
+            {{/if}}
+            GROUP BY "SL_ID", "SL_NAME"
+            order by LZ_NUM desc
+            
+        ]]>
+    </sql>
+    <!-- 离职司龄分页查询 -->
+    <sql id="silingAnalyByPage">
+        <![CDATA[
+        SELECT 
+            "PERNR",
+            "NACHN",
+            "DEPT07",
+            "DEPTN07",
+            "SL_ID",
+            "SL_NAME"
+        FROM "_SYS_BIC"."cttqdc.subjects.erp.hr.leavejob/CA_EMP_LJ_ALL" (
+            'PLACEHOLDER' = ('$$P_EDATE$$', '{{endMonth}}'),
+            'PLACEHOLDER' = ('$$P_UID$$', '{{userId}}'),
+            'PLACEHOLDER' = ('$$P_BDATE$$', '{{startMonth}}'))
+        WHERE 
+            "SL_ID" in ('{{slRangeId}}')
+        {{if deptCodes}}
+            and {{deptCode}} IN ({{#deptCodes}})
+        {{/if}}
+        order by DEPTN07 desc
+        limit {{pageSize}} offset {{offset}}
+        ]]>
+    </sql>
+</sqlMap>

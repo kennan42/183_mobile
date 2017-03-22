@@ -1,0 +1,482 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_Approve/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_Approve" targetNamespace="http://www.cttq.com/B2B_BPMI_Approve/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_Approve/">
+			<!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			<xsd:element name="B2BBPMINormalOrderApprove" type="tns:B2BBPMINormalOrderApproveInput">
+			</xsd:element>
+			<xsd:element name="B2BBPMINormalOrderApproveResponse" type="tns:B2BBPMINormalOrderApproveOutput">
+			</xsd:element>
+			<xsd:complexType name="B2BBPMINormalOrderApproveInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ApproveCommon" type="tns:ApproveCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IM_UPDKZ" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ISZXSP" type="xsd:string">
+							</xsd:element>
+
+							<xsd:element maxOccurs="1" minOccurs="0" name="IM_UPDATE_HEAD" type="tns:ZSDSALESORDERUPDATEHEAD">
+							</xsd:element>
+
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="IM_UPDATE_ITEM" type="tns:ZSDSALESORDERUPDATEITEM">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMINormalOrderApproveOutput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="apprUserInfo" type="tns:ApprUserInfo">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="1" name="ExResult" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>是否资信审批</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="1" name="ACTZL" type="xsd:int">
+								<xsd:annotation>
+									<xsd:documentation>客户账龄</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:element name="B2BBPMIAdjustOrderApprove" type="tns:B2BBPMIAdjustOrderApproveInput">
+			</xsd:element>
+			<xsd:element name="B2BBPMIAdjustOrderApproveResponse" type="tns:B2BBPMIAdjustOrderApproveOutput">
+			</xsd:element>
+			<xsd:element name="B2BBPMIRejectOrderApprove" type="tns:B2BBPMIRejectOrderApproveInput">
+			</xsd:element>
+			<xsd:element name="B2BBPMIRejectOrderApproveResponse" type="tns:B2BBPMIRejectOrderApproveOutput">
+			</xsd:element>
+
+
+			<!-- 冬储调货订单审批(Sep.08,2015) -->
+			<xsd:element name="B2BBPMIWinterOrderApprove" type="tns:B2BBPMIWinterOrderApproveInput">
+			</xsd:element>
+			<xsd:element name="B2BBPMIWinterOrderApproveResponse" type="tns:B2BBPMIWinterOrderApproveOutput">
+			</xsd:element>
+
+
+			<xsd:complexType name="B2BBPMIAdjustOrderApproveInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ApproveCommon" type="tns:ApproveCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IM_UPDKZ" type="xsd:string">
+							</xsd:element>
+
+							<xsd:element maxOccurs="1" minOccurs="0" name="IM_HEAD" type="tns:ZSD_HEAD_S">
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="IT_ITEM" type="tns:ZSD_ITEM_S">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIAdjustOrderApproveOutput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode"/>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+
+			<!-- 冬储调货订单审批(Sep.08,2015) -->
+			<xsd:complexType name="B2BBPMIWinterOrderApproveInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ApproveCommon" type="tns:ApproveCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IM_UPDKZ" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ISZXSP" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ZZSFCWGY" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IM_HEAD" type="tns:ZSD_HEAD_S">
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="IT_ITEM" type="tns:ZSD_ITEM_S">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+			<xsd:complexType name="B2BBPMIWinterOrderApproveOutput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="apprUserInfo" type="tns:ApprUserInfo">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="1" name="ExResult" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>是否资信审批</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="1" name="ACTZL" type="xsd:int">
+								<xsd:annotation>
+									<xsd:documentation>客户账龄</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+
+
+			<xsd:complexType name="B2BBPMIRejectOrderApproveInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ApproveCommon" type="tns:ApproveCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IM_UPDKZ" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IM_VBELN" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="t_RETURNED_OPT" type="tns:ZBCMFIS_RETURNED_OPT">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIRejectOrderApproveOutput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode"/>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="ApproveCommon">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="taskId" type="xsd:string"/>
+
+
+
+
+					<xsd:element maxOccurs="1" minOccurs="0" name="lastStep" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="appType" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="appOpinion" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="usrId" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="usrName" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="currStep" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="procType" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="amt" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="nextStepNo" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="nextStepDesc" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="ApprUser" type="tns:ApprUser">
+					</xsd:element>
+
+					<xsd:element maxOccurs="1" minOccurs="0" name="ordType" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="isCheck" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="custId" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="custNm" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="reprAccount" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="custAccount" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="disChannel" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ZSD_HEAD_S">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="VBELN" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="AUGRU" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNWE" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZKUNNR" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ZSD_ITEM_S">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="POSNR" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="MATNR" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="WMENG" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CHARG_D" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CHARG30" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="UPDKZ_D" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ZBCMFIS_RETURNED_OPT">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNNR_TO" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="POSNR" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="MENGE" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="MATNR" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZTHLX" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZTHLY" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZTHCLFS" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZSFSWTH" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CHARG" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CHARG30" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="UPDKZ_D" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZTHYY" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZSXRQ" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZSYKH" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ZSDSALESORDERUPDATEHEAD">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="VBELN" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZSFCWGY" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNWE" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="PARNR" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="ZSDSALESORDERUPDATEITEM">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="POSNR" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="MATNR" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="REQ_QTY" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZDDKP" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZKCL" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KBETR" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="UPDKZ" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="REQ_UNT" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ApprUser">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprUserCode" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprUserName" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprDeptCode" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprDeptDesc" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprPostCode" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprPostDesc" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ApprUserInfo">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprId" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprName" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="uniqueApprId" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprPostId" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprPost" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprDeptId" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprDept" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprLevelId" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprLevel" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprRoleType" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="B2BBPMINormalOrderApproveRequest">
+		<wsdl:part element="tns:B2BBPMINormalOrderApprove" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMINormalOrderApproveResponse">
+		<wsdl:part element="tns:B2BBPMINormalOrderApproveResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIAdjustOrderApproveRequest">
+		<wsdl:part element="tns:B2BBPMIAdjustOrderApprove" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIAdjustOrderApproveResponse">
+		<wsdl:part element="tns:B2BBPMIAdjustOrderApproveResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIRejectOrderApproveRequest">
+		<wsdl:part element="tns:B2BBPMIRejectOrderApprove" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIRejectOrderApproveResponse">
+		<wsdl:part element="tns:B2BBPMIRejectOrderApproveResponse" name="parameters"/>
+	</wsdl:message>
+
+	<!-- 冬储调货订单审批(Sep.08,2015) -->
+	<wsdl:message name="B2BBPMIWinterOrderApproveRequest">
+		<wsdl:part element="tns:B2BBPMIWinterOrderApprove" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIWinterOrderApproveResponse">
+		<wsdl:part element="tns:B2BBPMIWinterOrderApproveResponse" name="parameters"/>
+	</wsdl:message>
+
+
+	<wsdl:portType name="B2B_BPMI_Approve">
+		<wsdl:operation name="B2BBPMINormalOrderApprove">
+			<wsdl:documentation>正常订单审</wsdl:documentation>
+			<wsdl:input message="tns:B2BBPMINormalOrderApproveRequest"/>
+			<wsdl:output message="tns:B2BBPMINormalOrderApproveResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="B2BBPMIAdjustOrderApprove">
+			<wsdl:documentation>调货订单审</wsdl:documentation>
+			<wsdl:input message="tns:B2BBPMIAdjustOrderApproveRequest"/>
+			<wsdl:output message="tns:B2BBPMIAdjustOrderApproveResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="B2BBPMIRejectOrderApprove">
+			<wsdl:documentation>退货订单审批</wsdl:documentation>
+			<wsdl:input message="tns:B2BBPMIRejectOrderApproveRequest"/>
+			<wsdl:output message="tns:B2BBPMIRejectOrderApproveResponse"/>
+		</wsdl:operation>
+
+		<!-- 冬储调货订单审批(Sep.08,2015) -->
+		<wsdl:operation name="B2BBPMIWinterOrderApprove">
+			<wsdl:documentation>冬储调货订单审批</wsdl:documentation>
+			<wsdl:input message="tns:B2BBPMIWinterOrderApproveRequest"/>
+			<wsdl:output message="tns:B2BBPMIWinterOrderApproveResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding xmlns:ptns="http://www.cttq.com/B2B_BPMI_Approve/" name="B2B_BPMI_Approve_Binding" type="ptns:B2B_BPMI_Approve">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="B2BBPMINormalOrderApprove">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="B2BBPMIAdjustOrderApprove">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="B2BBPMIRejectOrderApprove">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<!-- 冬储调货订单审批(Sep.08,2015) -->
+		<wsdl:operation name="B2BBPMIWinterOrderApprove">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="B2B_BPMI_Approve_Service">
+		<wsdl:port xmlns:bprf="http://www.cttq.com/B2B_BPMI_Approve/" binding="bprf:B2B_BPMI_Approve_Binding" name="B2B_BPMI_Approve_Port">
+			<soap:address location="http://192.168.1.177:50000/B2B_BPMI_Approve_Service/B2BBPMIApproveImplBean"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,244 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_GRPEXP_QRYTVLISTOV/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GRPEXP_QRYTVLISTOV" targetNamespace="http://www.thitech.com/EM_GRPEXP_QRYTVLISTOV/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_GRPEXP_QRYTVLISTOV/">
+      <!-- 增加部分1 开始  -->
+      <xsd:complexType name="AbstractType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+            <xsd:annotation>
+              <xsd:documentation>当前员工号</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+            <xsd:annotation>
+              <xsd:documentation>域</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="3"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分1 结束 -->
+      <!-- 增加部分2 开始 -->
+      <xsd:complexType name="ExtendMapType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分2 结束 -->
+      <!-- 增加部分3 开始 -->
+      <xsd:complexType name="Entry">
+        <xsd:sequence>
+          <xsd:element name="Key" type="xsd:anyType"/>
+          <xsd:element name="Value" type="xsd:anyType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分3 结束 -->
+      <!-- 增加部分4 开始 -->
+      <xsd:complexType name="ReturnCode">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回类型</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回码</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回信息</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分4 结束 -->
+      <!-- 增加部分5 开始 -->
+      <xsd:simpleType name="ChannelSerialNoType">
+        <xsd:annotation>
+          <xsd:documentation>渠道流水号</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64"/>
+          <xsd:minLength value="23"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!-- 增加部分5 结束 -->
+      <xsd:element name="EM_GRPEXP_QRYTVLISTOV" type="tns:EM_GRPEXP_QRYTVLISTOV">
+      </xsd:element>
+      <xsd:element name="EM_GRPEXP_QRYTVLISTOVResponse" type="tns:EM_GRPEXP_QRYTVLISTOVResponse">
+      </xsd:element>
+      <xsd:complexType name="EM_GRPEXP_QRYTVLISTOV">
+        <xsd:sequence>
+          <xsd:element name="input" type="tns:EM_GRPEXP_QRYTVLISTOVInput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EM_GRPEXP_QRYTVLISTOVResponse">
+        <xsd:sequence>
+          <xsd:element name="output" type="tns:EM_GRPEXP_QRYTVLISTOVOutput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EM_GRPEXP_QRYTVLISTOVInput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:AbstractType">
+            <xsd:sequence>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="travsId" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="isCG" type="xsd:string">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EM_GRPEXP_QRYTVLISTOVOutput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ReturnCode">
+            <xsd:sequence>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="ZHSTrDetailItems" type="tns:trDetailItems">
+              </xsd:element>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="CTJTTrDetailItems" type="tns:trDetailItems">
+              </xsd:element>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="SNJTTrDetailItems" type="tns:trDetailItems">
+              </xsd:element>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="QTTrDetailItems" type="tns:trDetailItems">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="trDetailItems">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travsID" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travSubId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expGrp" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expGrpNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expForm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expFormNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origAddr" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destAddr" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="remark" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="fillAmt" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="classTyp" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="classTypNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="city" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="cityNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="days" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="lineNo" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origProv" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origProvNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCity" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCityNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCounty" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCountyNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destProv" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destProvNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCity" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCityNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCounty" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCountyNm" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="tcUsrs" type="tns:TcUser">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="tcNum" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="oilPrice" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="busPrice" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="bgMileage" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="edMileage" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expMonth" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="invNum" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="invDat" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="nat" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="natNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="prov" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="provNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="stayStandard" type="xsd:string">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TcUser">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="usrNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="deptNm" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EM_GRPEXP_QRYTVLISTOVRequest">
+    <wsdl:part element="tns:EM_GRPEXP_QRYTVLISTOV" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EM_GRPEXP_QRYTVLISTOVResponse">
+    <wsdl:part element="tns:EM_GRPEXP_QRYTVLISTOVResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GRPEXP_QRYTVLISTOV">
+    <wsdl:operation name="EM_GRPEXP_QRYTVLISTOV">
+      <wsdl:input message="tns:EM_GRPEXP_QRYTVLISTOVRequest"/>
+      <wsdl:output message="tns:EM_GRPEXP_QRYTVLISTOVResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding xmlns:ptns="http://www.thitech.com/EM_GRPEXP_QRYTVLISTOV/" name="EM_GRPEXP_QRYTVLISTOV_Binding" type="ptns:EM_GRPEXP_QRYTVLISTOV">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EM_GRPEXP_QRYTVLISTOV">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EM_GRPEXP_QRYTVLISTOV">
+    <wsdl:port xmlns:bprf="http://www.thitech.com/EM_GRPEXP_QRYTVLISTOV/" binding="bprf:EM_GRPEXP_QRYTVLISTOV_Binding" name="EM_GRPEXP_QRYTVLISTOV_Port">
+      <soap:address location="http://bmu.cttq.com:51800/EM_GRPEXP_QRYTVLISTOV/EMGRPEXPQRYTVLISTOVImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

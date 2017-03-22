@@ -1,0 +1,120 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_GRPEXP_ReSubmit/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GRPEXP_ReSubmit" targetNamespace="http://www.thitech.com/EM_GRPEXP_ReSubmit/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_GRPEXP_ReSubmit/">
+      <xsd:complexType name="AbstractType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="3"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExtendMapType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Entry">
+        <xsd:sequence>
+          <xsd:element name="Key" type="xsd:anyType"/>
+          <xsd:element name="Value" type="xsd:anyType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReturnCode">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="ChannelSerialNoType">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64"/>
+          <xsd:minLength value="23"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="EM_GRPEXP_ReSubmit" type="tns:EMGRPEXPReSubmit">
+      </xsd:element>
+      <xsd:element name="EM_GRPEXP_ReSubmitResponse" type="tns:EMGRPEXPReSubmitResponse">
+      </xsd:element>
+      <xsd:complexType name="EMGRPEXPReSubmit">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:EMGRPEXPReSubmitInput">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMGRPEXPReSubmitResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:EMGRPEXPReSubmitOutput">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMGRPEXPReSubmitInput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:AbstractType">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="docNo" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="docTyp" type="xsd:string">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EMGRPEXPReSubmitOutput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ReturnCode">
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EM_GRPEXP_ReSubmitRequest">
+    <wsdl:part element="tns:EM_GRPEXP_ReSubmit" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EM_GRPEXP_ReSubmitResponse">
+    <wsdl:part element="tns:EM_GRPEXP_ReSubmitResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GRPEXP_ReSubmit">
+    <wsdl:operation name="EM_GRPEXP_ReSubmit">
+      <wsdl:input message="tns:EM_GRPEXP_ReSubmitRequest"/>
+      <wsdl:output message="tns:EM_GRPEXP_ReSubmitResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding xmlns:ptns="http://www.thitech.com/EM_GRPEXP_ReSubmit/" name="EM_GRPEXP_ReSubmit_Binding" type="ptns:EM_GRPEXP_ReSubmit">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EM_GRPEXP_ReSubmit">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EM_GRPEXP_ReSubmit">
+    <wsdl:port xmlns:bprf="http://www.thitech.com/EM_GRPEXP_ReSubmit/" binding="bprf:EM_GRPEXP_ReSubmit_Binding" name="EM_GRPEXP_ReSubmit_Port">
+      <soap:address location="http://bmq.cttq.com:51600/EM_GRPEXP_ReSubmit/EMGRPEXPReSubmitImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

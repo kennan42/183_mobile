@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title>我的名片列表</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+          <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/mycss.css">
+    </head>
+    <style>
+    </style>
+    <body class="um-vp bc-bg"  ontouchstart>
+       <div class="jc_warp">
+        <div id="uploadresult" class="uhide" style="width: 8em;margin: 0 auto;margin-top:50%;"> 
+          <img src="images/loading_2.gif" alt="正在请求，请稍后..." style="float:left;min-width:2em" />
+          <div class="logss" style="float:left;margin-left:0.5em;line-height: 2em">请稍后...</div>
+        </div>
+        <div class="uhide" id="card_1">
+            <div class="ai-pat30">
+                 <img src="images/uc_1.png" class="card_myphoto_empty"/>
+            </div>
+            <div class="ub ub-ver ">
+             <h class=" ub-f1 ub-ac ub-pc ub ai-ph-display ai-fts-body ut-s tx-c" tabindex="0">我的名片</h>
+             <h class=" ub-f1 ub-ac ub-pc ub ai-ph-display ai-fts-body ut-s tx-c ai-mat-gap" tabindex="0">亲，你还未新建过名片呢</h>
+            </div>
+           <div class="ai-card_1">
+             <div class="ai-item" style="padding: 0px">
+               <div class=" ai-btn ai-btn_add ai-btn-block ai-btn-primaiy ai-mab-gap" id="card_1_btn">开始我的第一张名片</div>
+             </div>
+           </div>
+        </div>
+         <div class="mycard_all uhide" id="card_2" style="padding:0 1%;">
+           <ul id="cardList">
+           </ul>
+        </div>
+        </div>
+         <script src="js/appcan.js"></script>
+         <script src="js/appcan.control.js"></script>
+         <script src="js/view/common.js"></script>
+    </body>
+    <script>
+      appcan.ready(function() {
+        appcan.window.evaluateScript({
+                name:'index',
+                scriptContent:'loadWxConfig("hideMenu",\''+JSON.stringify({})+'\');'
+        });
+       var  userId=appcan.locStorage.getVal('user_id');
+       if(userId!=null){
+             console.log(userId);
+           loadCardList(userId);
+       }
+     addWeinxinBcardAction("我的名片(有)","我的名片进入"); 
+      })
+      $("#card_1_btn").on("tap", function() {
+        appcan.window.open("cardSelect", "cardSelect.html", 10);
+      });
+      
+      /*
+       * 根据用户id获取名片列表
+       */
+      function loadCardList(userId) {
+        var option = {
+          url : 'bcard/getUserBcardList',
+          data : {
+            "userId" : userId
+          },
+           beforeSend: function(XMLHttpRequest) {
+                  $("#uploadresult").removeClass("uhide");
+          },
+          success : function(data) {
+              console.log("列表");
+              console.log(data);
+            if (data.status == "0") {
+                var index=data.data.length+1;
+                //根据返回的名片列表数量，确定第一次使用时没有任何名片，微信自带TOP内标题应该是“我的名片”而不是“我的名片列表”；只有创建完名片之后回到首页才是我的名片列表
+                 // appcan.window.evaluateScript({
+                    // name:'index',
+                    // scriptContent:'getBcardTitle('+data.data.length+')'
+                // });
+                appcan.locStorage.setVal('userBcardIndex', index);
+              if (data.data.length == 0) {
+                $("#card_1").removeClass("uhide");
+                 addWeinxinBcardAction("我的名片(无)","开始创建"); 
+              } else {
+                $("#card_2").removeClass("uhide");
+                appcan.window.evaluateScript({
+                    name:'index',
+                    scriptContent:'$("#addBtn").removeClass("uhide");'
+                });
+                cardList = data.data;
+                var html = '';
+                for (var i in cardList) {
+                     var html= '\
+                        <li class="ai-us mycard_li onedit" id="' + cardList[i]._id + '">\
+                            <div><img src="' + cardList[i].bcardURL + '" /></div>\
+                            <div class="mycard_div">\
+                                <div class="mycard_div01 ai-fts-body ai-ph-common">' + cardList[i].bcardName + '</div>\
+                                <div class="mycard_div02">' + cardList[i].job.value + '</div>\
+                            </div>\
+                        </li>';
+                        
+                        $("#cardList").append(html);
+                }
+                /*
+                 * 点击名片列表中的名片，传递名片上的名片id到编辑页面，进行名片的编辑
+                 */
+                  $("li").on("tap",function (){
+                       var userBcardId = $(this).attr("id");
+                        appcan.locStorage.setVal('userBcardId', userBcardId);
+                        appcan.window.open("cardEdit", "cardEdit.html", 10);
+                        addWeinxinBcardAction("我的名片(有)","点击名片次数"); 
+                  });
+              }
+              $("#uploadresult").addClass("uhide");
+
+            }else{
+                 appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                 appcan.window.evaluateScript('','uexWindow.alert("提示","数据有误，请重新尝试或联系管理员!","确定");');
+               //  uexWindow.alert("提示",data.msg+"，请重新尝试或联系管理员!","确定");
+            }
+          }
+        }
+        view.ajax(option);
+      }
+    </script>
+</html>

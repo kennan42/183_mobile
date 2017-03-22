@@ -1,0 +1,234 @@
+/***************************/
+/*基础的字体大小*/
+.ai-fts-display3{
+    font-size: 3.5em;/*112像素，56sp*/
+}
+.ai-fts-display2{
+    font-size: 2.81em;/*90像素，45sp,行高ai-linh-display2=3em*/
+}
+.ai-fts-display1{
+    font-size: 2.12em;/*68像素，34sp，行高ai-linh-display1=2.5em*/
+}
+.ai-fts-headline{
+    font-size: 1.5em;/*48像素，24sp，行高ai-linh-headline=2em*/
+}
+.ai-fts-title{
+    font-size: 1.0625em;/*34像素，34sp*/
+}
+.ai-fts-subtitle{
+    font-size: 1.0625em;/*34像素，34sp*/
+}
+.ai-fts-title{
+    font-size: 1.25em;/*40像素，20sp*/
+}
+.ai-fts-ot{
+    font-size: 1.125em;/*36像素，18sp*/
+}
+.ai-fts-subhead{
+    font-size: 1em;/*32像素，16sp，行高ai-linh-body1=1.5em*/
+}
+.ai-fts-body{
+    font-size: 0.875em;/*28像素，14sp，行高ai-linh-body=1.25em*/
+}
+.ai-fts-button{
+    font-size: 0.875em;/*28像素，14sp*/
+}
+.ai-fts1{
+    font-size: 0.625em;
+}
+.ai-fts2{
+    font-size: 0.5em;
+}
+.ai-fts-caption{ font-size: 0.75em;/*24像素，12sp*/}
+
+/*基础的字体加粗*/
+.ai-ftw{font-weight: bold}
+/***************************/
+/*基础的图标字体大小*/
+.ft-a1{ font-size: 1.25em;}/*一般常用复选框字体大小*/
+.ft-a2{font-size: 0.9735em}/*一般常用箭头的图标字体大小*/
+.ft-a3{font-size:1.875em}
+.ft-a4{font-size: 3em}
+.ft-a5{font-size: 2em}
+.ft-a6{font-size: 3.6em}
+
+/***************************/
+/*基础的不透明值*/
+.ai-ph-display{color:rgba(0,0,0,.54);}
+.ai-ph-assist{color:rgba(0,0,0,.20);}
+.ai-ph-common{color:rgba(0,0,0,.87);}
+.ai-ph-arrow{color:rgba(0,0,0,.70);}
+.ai-ph-arrow1{color:rgba(0,0,0,.10);}
+.ai-ph-arrow2{color:rgba(0,0,0,.26);}
+
+
+/***************************/
+/*基础的行高值*/
+.ai-lin-h{line-height: 0.875em}
+.ai-linh-display2{line-height: 2.8125em;}/*96像素，48pt*/
+.ai-linh-display1{line-height: 2.5em;/*80像素，80pt*/}
+.ai-linh-headline{line-height: 2em;/*64像素，32pt*/}
+.ai-linh-subhead{line-height: 1.75em;/*56像素，28pt*/}
+.ai-linh-body1{line-height: 1.5em;/*48像素，24pt*/}
+.ai-linh-body{line-height: 1.25em;/*40像素，20pt*/}
+
+ /***************************/
+/*基础的列表边距值*/ 
+.botm{padding-bottom: 3em;}  
+.ai-malr-stable{margin:0em 1em;}/*左右各16dp,32像素*/
+.ai-lih{height: 2.5em;}
+.ai-ht-head{height:2.75em;}/*例如头部总高度，56dp*/
+.ai-ht-default{height:3em; }/*48dp，例如标题的那个高度*/ 
+.ai-hei4{height:4.5em;}/*72dp,如下拉列表那内容的高度*/   
+.ai-ht-gap{height:0.5em }/*8dp,标题中间的那个空隙*/ 
+.ai-dft-palr{padding: 0em 1.9em 0em 1em}/*8dp,标题中间的那个空隙*/ 
+.ai-mat-gap{margin-top: 0.5em}
+.ai-mal-gap{margin-left: .5em}
+.ai-mar-gap{margin-right: .5em}
+.ai-matb-gap{margin: .5em 0em}
+.ai-malr-gap{margin: 0em 0.5em}
+.ai-mab-gap{margin-bottom: .5em}
+.ai-pal-gap{padding-left: .5em}
+.ai-palr-gap{padding:0em .5em}
+.ai-pa-gap{padding:.5em}
+.ai-pab-gap{padding-bottom: .5em}
+.ai-pat-gap{padding-top: .5em}
+.ai-patb-gap{padding: 0.5em 0em}
+.ai-mal-stable{margin-left: 1em;}
+.ai-palr-stable{padding:0em 1em }
+.ai-mar-stable{margin-right: 1em;}
+.ai-ma-stable{margin:0em 1em;}
+.ai-mart-stable{margin-top: 1em;}
+.ai-par-stable{padding-right: 1em}
+.ai-patb-stable{padding:1em 0em}
+.ai-pal-stable{padding-left: 1em}
+.ai-patb30{padding:0.9375em 0em}
+.ai-pab30{padding-bottom: 0.9375em;}
+.ai-pat30{padding-top: 0.9375em;}
+.ai-pal30{padding-left: 0.9375em;}
+.ai-patb-common{padding: 1.0625em 0em}
+.ai-pa-common{padding: 1.0625em 1em}
+.ai-pa-comm{padding: .78125em 1em}
+.ai-pat-common{padding-top: 1.0625em}
+.ai-pab-common{padding-bottom: 1.0625em}
+.ai-mal-ldr{margin-left: 1.5625em}/*列表左右距离  50px*/
+.ai-pat-default{padding-top: 0.6875em}
+.ai-pal-default{padding-left: 0.6875em}
+.ai-pa6{padding-bottom: 0.625em}
+.ai-palr-default{padding:0em 0.6875em}
+.ai-botton-mal1{margin-left:1.093em }
+.ai-pai6{padding-right: 0.625em}
+.ai-paa{padding: 0.625em}
+.ai-pai6lr{padding:0em 0.625em}
+.ai-pai6tb{padding:0.625em 0em}
+.ai-pai6l{padding-left: 0.625em}
+.ai-pa-th{padding-right: 1.1em}
+.ai-pal3{padding-left: 3.1875em}
+.ai-pai8{padding-right: 0.8125em}
+.ai-mat-txh{margin-top: 0.78125em !important;}
+.ai-pab-txh{padding-bottom: 0.78125em !important;}/*上一行字与下一行字之间的距离*/
+
+/***************************/
+/*基础的标题的左右箭头*/
+.ai-left-btn{padding-left: 1em}
+.ai-right-btn{padding-right: 1em}
+
+/*阴影*/ 
+.ai-us{ 
+   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, .24);
+    box-shadow:  0px 1px 2px rgba(0, 0, 0, .24);
+    } 
+.ai-ust{ 
+-webkit-box-shadow: 0px -1px 2px rgba(0, 0, 0, .24);
+   box-shadow:  0px -1px 2px rgba(0, 0, 0, .24);
+    } 
+/***************************/
+
+/*上下划线*/ 
+.ai-ubb {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+.ai-ubt {
+    border-top: 1px solid rgba(0,0,0,0.2);
+  }
+ .ai-ubl {
+    border-left: 1px solid rgba(0,0,0,0.2);
+}
+.pcubl {
+    border-left: 2px solid;
+    border-color: #5677fc;
+}
+.ai-ubassid {
+    border: 1px solid;
+    border-color: #5677fc;
+}
+
+.ai-ubr {
+    border-right: 1px solid rgba(0,0,0,0.2);
+}
+ .ai-uba{
+   border: 1px solid rgba(0,0,0,0.2);
+  }
+ /***************************/
+
+/*默认头像*/
+.photo {
+background-image: url('../images/photo.png') !important;
+}
+.ai-img {
+width: 2.5em;
+height: 2.5em;
+border-radius: 1.25em;
+}
+.ai-img-circle{
+    border-radius: 50%;
+}
+/*显示或隐藏内容*/
+.ai-show {
+  display: block;
+}
+.ai-hidden {
+  display: none;
+}
+.ai-invisible {
+  visibility: hidden;
+}
+.ai-noline {
+  outline: none;
+}
+/*固定底部*/
+.bot{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.ai-poab{
+    position: absolute;
+}
+.ai-fixd{
+    position: fixed;
+}
+.ai-folt{
+    float: left;
+}
+.ai-fort{
+    float: right;
+}
+.ai-pore{
+    position: relative;
+}
+.ai-uc{
+    -webkit-border-radius: .6em;
+    border-radius: .6em
+}
+.ai-uc2{
+    -webkit-border-radius: .4em;
+    border-radius: .4em
+}
+
+ ::-webkit-input-placeholder { 
+　　color:rgba(0,0,0,.54);
+    color: black;
+    opacity:.54;
+　　}

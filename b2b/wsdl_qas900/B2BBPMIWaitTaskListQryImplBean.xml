@@ -1,0 +1,308 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_WaitTaskListQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_WaitTaskListQry" targetNamespace="http://www.cttq.com/B2B_BPMI_WaitTaskListQry/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_WaitTaskListQry/">
+    <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+    
+      <xsd:element name="B2BBPMIWaitTaskListQry" type="tns:B2BBPMIWaitTaskListQry">
+
+      </xsd:element>
+      <xsd:element name="B2BBPMIWaitTaskListQryResponse" type="tns:B2BBPMIWaitTaskListQryResponse">
+
+      </xsd:element>
+
+      <xsd:complexType name="B2BBPMIWaitTaskListQry">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:B2BBPMIWaitTaskListQryInput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="B2BBPMIWaitTaskListQryInput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:AbstractType">
+      			<xsd:sequence>
+      				<xsd:element maxOccurs="1" minOccurs="0" name="qryType" type="xsd:string">
+      					 <xsd:annotation>
+      						<xsd:documentation>
+								查询类型
+							</xsd:documentation>
+						</xsd:annotation>
+      				</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="startPage" type="xsd:int">
+								<xsd:annotation>
+									<xsd:documentation>
+										起始页
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="pageSize" type="xsd:int">
+								<xsd:annotation>
+									<xsd:documentation>
+										每页条数
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+      			</xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="B2BBPMIWaitTaskListQryResponse">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:B2BBPMIWaitTaskListQryOutput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="B2BBPMIWaitTaskListQryOutput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:ReturnCode">
+      			<xsd:sequence>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="totalCount" type="xsd:int">
+      				</xsd:element>
+                            <xsd:element maxOccurs="unbounded" minOccurs="0" name="taskInfoList" type="tns:TaskInfoList">
+      				</xsd:element>
+
+      			</xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="WaitTaskListQry">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+      			<xsd:annotation>
+      				<xsd:documentation>订单号</xsd:documentation>
+      			</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="custNo" type="xsd:string">
+      			<xsd:annotation>
+      				<xsd:documentation>客户编码</xsd:documentation>
+      			</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="custNM" type="xsd:string">
+      			<xsd:annotation>
+      				<xsd:documentation>客户名称</xsd:documentation>
+      			</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="subDate" type="xsd:string">
+      			<xsd:annotation>
+      				<xsd:documentation>订单提交日期</xsd:documentation>
+      			</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="amount" type="xsd:string">
+      			<xsd:annotation>
+      				<xsd:documentation>发货额：含税金额</xsd:documentation>
+      			</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="bussType" type="xsd:string">
+      			<xsd:annotation>
+      				<xsd:documentation>订单类型</xsd:documentation>
+      			</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="taskId" type="xsd:string">
+      			<xsd:annotation>
+      				<xsd:documentation>任务id</xsd:documentation>
+      			</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="currStep" type="xsd:string">
+      			<xsd:annotation>
+      				<xsd:documentation>当前步骤号</xsd:documentation>
+      			</xsd:annotation>
+      		</xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="TaskInfoList">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						订单号
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="custNo" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						客户编码
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="custNM" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						客户名称
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="subDate" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						订单提交日期
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="amount" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						发货额：含税金额
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="bussType" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						流程ID
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="ordType" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						订单类型
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="taskId" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						任务id
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="currStep" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						当前步骤号
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="zName" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>
+						采购员姓名
+					</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="B2BBPMIWaitTaskListQryRequest">
+    <wsdl:part element="tns:B2BBPMIWaitTaskListQry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="B2BBPMIWaitTaskListQryResponse">
+    <wsdl:part element="tns:B2BBPMIWaitTaskListQryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="B2B_BPMI_WaitTaskListQry">
+    <wsdl:operation name="B2BBPMIWaitTaskListQry">
+      <wsdl:input message="tns:B2BBPMIWaitTaskListQryRequest"/>
+      <wsdl:output message="tns:B2BBPMIWaitTaskListQryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.cttq.com/B2B_BPMI_WaitTaskListQry/" name="B2B_BPMI_WaitTaskListQry_Binding" type="ptns:B2B_BPMI_WaitTaskListQry">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="B2BBPMIWaitTaskListQry">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="B2B_BPMI_WaitTaskListQry_Service">
+<wsdl:port xmlns:bprf="http://www.cttq.com/B2B_BPMI_WaitTaskListQry/" binding="bprf:B2B_BPMI_WaitTaskListQry_Binding" name="B2B_BPMI_WaitTaskListQry_Port">
+<soap:address location="http://b2q.cttq.com:52200/B2B_BPMI_WaitTaskListQry_Service/B2BBPMIWaitTaskListQryImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

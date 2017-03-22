@@ -1,0 +1,186 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_RolesListQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_RolesListQry" targetNamespace="http://www.cttq.com/B2B_BPMI_RolesListQry/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_RolesListQry/">
+    
+    <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+    
+      <xsd:element name="B2BBPMIRolesListQry" type="tns:B2BBPMIRolesListQry">
+
+      </xsd:element>
+      <xsd:element name="B2BBPMIRolesListQryResponse" type="tns:B2BBPMIRolesListQryResponse">
+
+      </xsd:element>
+
+      <xsd:complexType name="B2BBPMIRolesListQry">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:B2BBPMIRolesListQryInput">
+      		</xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="B2BBPMIRolesListQryInput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:AbstractType">
+
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="B2BBPMIRolesListQryResponse">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:B2BBPMIRolesListQryOutput">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+      <xsd:complexType name="B2BBPMIRolesListQryOutput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:ReturnCode">
+      			<xsd:sequence>
+      				
+      				<xsd:element maxOccurs="unbounded" minOccurs="0" name="rolesInfoList" type="tns:rolesInfoList">
+      				</xsd:element>
+      				<xsd:element maxOccurs="unbounded" minOccurs="0" name="allRolesInfoList" type="tns:allRolesInfoList">
+      				</xsd:element>
+      			</xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+    
+      <xsd:complexType name="rolesInfoList">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="roleId" type="xsd:string">
+      				</xsd:element>
+      				<xsd:element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
+      				</xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="allRolesInfoList">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="allRoleId" type="xsd:string">
+      				</xsd:element>
+      				<xsd:element maxOccurs="1" minOccurs="0" name="allDescription" type="xsd:string">
+      				</xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="B2BBPMIRolesListQryRequest">
+    <wsdl:part element="tns:B2BBPMIRolesListQry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="B2BBPMIRolesListQryResponse">
+    <wsdl:part element="tns:B2BBPMIRolesListQryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="B2B_BPMI_RolesListQry">
+    <wsdl:operation name="B2BBPMIRolesListQry">
+      <wsdl:input message="tns:B2BBPMIRolesListQryRequest"/>
+      <wsdl:output message="tns:B2BBPMIRolesListQryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.cttq.com/B2B_BPMI_RolesListQry/" name="B2B_BPMI_RolesListQry_Binding" type="ptns:B2B_BPMI_RolesListQry">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="B2BBPMIRolesListQry">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="B2B_BPMI_RolesListQry_Service">
+<wsdl:port xmlns:bprf="http://www.cttq.com/B2B_BPMI_RolesListQry/" binding="bprf:B2B_BPMI_RolesListQry_Binding" name="B2B_BPMI_RolesListQry_Port">
+<soap:address location="http://192.168.1.177:50000/B2B_BPMI_RolesListQry_Service/B2BBPMIRolesListQryImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

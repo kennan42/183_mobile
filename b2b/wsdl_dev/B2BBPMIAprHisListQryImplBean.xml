@@ -1,0 +1,199 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_AprHisListQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_AprHisListQry" targetNamespace="http://www.cttq.com/B2B_BPMI_AprHisListQry/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_AprHisListQry/">
+    <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+      <xsd:element name="B2BBPMIAprHisListQry" type="tns:B2BBPMIAprHisListQry">
+
+      </xsd:element>
+      <xsd:element name="B2BBPMIAprHisListQryResponse" type="tns:B2BBPMIAprHisListQryResponse">
+
+      </xsd:element>
+
+      <xsd:complexType name="B2BBPMIAprHisListQry">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:B2BBPMIAprHisListQryInput">
+      		</xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="B2BBPMIAprHisListQryInput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:AbstractType">
+      			<xsd:sequence>
+      				<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+      				</xsd:element>
+      			</xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+
+      <xsd:complexType name="B2BBPMIAprHisListQryResponse">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:B2BBPMIAprHisListQryOutput">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+      <xsd:complexType name="B2BBPMIAprHisListQryOutput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:ReturnCode">
+      			<xsd:sequence>
+      				<xsd:element maxOccurs="unbounded" minOccurs="0" name="approveList" type="tns:ApproveList">
+      				</xsd:element>
+      			</xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+    
+      <xsd:complexType name="ApproveList">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="aprUsrNm" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>审批人姓名</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="aprUsrNo" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>审批人工工号 </xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="aprDate" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>审批时间</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="aprOpinion" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>审批意见</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="aprAction" type="xsd:string">
+      			<xsd:annotation>
+					<xsd:documentation>审批动作</xsd:documentation>
+				</xsd:annotation>
+      		</xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="B2BBPMIAprHisListQryRequest">
+    <wsdl:part element="tns:B2BBPMIAprHisListQry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="B2BBPMIAprHisListQryResponse">
+    <wsdl:part element="tns:B2BBPMIAprHisListQryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="B2B_BPMI_AprHisListQry">
+    <wsdl:operation name="B2BBPMIAprHisListQry">
+      <wsdl:input message="tns:B2BBPMIAprHisListQryRequest"/>
+      <wsdl:output message="tns:B2BBPMIAprHisListQryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+<wsdl:binding xmlns:ptns="http://www.cttq.com/B2B_BPMI_AprHisListQry/" name="B2B_BPMI_AprHisListQry_Binding" type="ptns:B2B_BPMI_AprHisListQry">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="B2BBPMIAprHisListQry">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="B2B_BPMI_AprHisListQry_Service">
+<wsdl:port xmlns:bprf="http://www.cttq.com/B2B_BPMI_AprHisListQry/" binding="bprf:B2B_BPMI_AprHisListQry_Binding" name="B2B_BPMI_AprHisListQry_Port">
+<soap:address location="http://192.168.1.177:50000/B2B_BPMI_AprHisListQry_Service/B2BBPMIAprHisListQryImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,88 @@
+/*分享*/
+.share_bt{margin: 1.0em 0; text-align: center;}
+.bc-hei{background:#000;height: auto;}
+.erweima { text-align: center;margin-top: 1.0em;}
+.erweima_02{margin: 0.75em 0px;color:#dd1615; font-size: 0.93em;}
+
+/*背景图片宽度不一样--解决方法*/
+/*.share_img{ background:url(../images/card.png) no-repeat center;-webkit-background-size: contain;
+background-size: contain;width:100%;height: 11.22em;}*/
+.share_img img{ width:100%;height: 11.22em;}
+.share_ys{width:90%;min-height: 3em;line-height: 3em;margin:1.62em auto 0;}
+
+/*我的名片（有）*/
+body.body_height{height:auto;}
+.nav_jia{ background: url(../images/jia.png) no-repeat right; -webkit-background-size: contain;background-size: contain;width:1.125em;height: 1.125em;}
+.mycard_all ul li {overflow: hidden; background: #fafafa;}
+li.mycard_li{margin-top:0.75em;}
+.mycard_all ul li img{float:left;-webkit-background-size: contain;background-size: contain; width:69%;height:auto;}
+.mycard_div{float:left;width:31%;height:auto;}
+.mycard_div .mycard_div01{padding:25% 0 0 0.56em;}
+.mycard_div .mycard_div02{padding:10% 0 0 0.56em;font-size:0.68em;color:#000;}
+
+/*选模板*/
+.lunbo_con{margin-top:0.59em;}
+.lunbo_all{ overflow: hidden;padding-top:0.62em;}
+.lunbo_bt01{float:left;padding-left:1em;}
+.lunbo_bt02{float:right;padding-right:1.125em;}
+ul.lb_ul{ overflow: hidden;white-space:nowrap;   text-overflow:ellipsis;}
+ul.lb_ul li{ float:left;width:5.15em;height:auto;margin-top:0.5em;margin-left:0.46em;}
+ul.lb_ul li img{width:100%;height:auto;}
+ul.lb_ul li .lb_bt{width:100%;text-align: center; font-size:0.68em;margin-top:0.34em;}
+
+   .center td img{
+        margin-right:0.46em;
+        width: 5.15em;
+        border: 2px solid transparent;
+        height: auto;
+        margin-top: 0.5em;
+       transition: -webkit-transform 2s;
+        -moz-transition: -webkit-transform 2s; 
+       -webkit-transition: -webkit-transform 2s; 
+       -o-transition: -webkit-transform 2s; 
+       }
+        .br_color{
+            border: 2px solid #5677fc;
+        }
+    .swiper-container {
+        width: 100%;
+        height: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .swiper-slide {
+        background-size: cover;
+        background-position: center;
+        width: 5.5em;
+        margin-left: 0.5em;}
+    .gallery-top {
+        height: 80%;
+        width: 100%;
+    }
+    .gallery-thumbs {
+        
+        height: 3em;
+        padding: 2em 0;
+    }
+    .gallery-thumbs .swiper-slide {
+        height: 3em;
+         border: 2px solid transparent;
+    }
+    .gallery-thumbs .swiper-slide-active {
+        border: 2px solid #d5132d;
+    }
+    .text-model{padding-top: 4.5em;text-align: center;}
+    
+/*名片预览*/
+body.pre_all{background:#000; /*background:url(../images/ylbj.png)no-repeat center;*/}
+.lb_all{margin-top:40%;}
+.download{width: 100%;position: absolute;bottom:0.5em;left:0;}*/
+.bc_bg{height: 100%;}
+.download_01{float:left;cursor:pointer;margin-left:2.46em;color:rgba(255,255,255,.54); line-height: 3.09em;}
+.download_02{float:right;margin-right:1.03em;color:rgba(255,255,255,.54);border:1px solid rgba(255,255,255,.54); padding:1.09em 2.28em;}
+
+
+
+
+
+

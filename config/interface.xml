@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meap>
+    <interfaces>
+        <interface>
+            <name>if_config</name>
+            <path>config</path>
+            <method>GET</method>
+            <public>true</public>
+        </interface>
+    </interfaces>
+</meap>

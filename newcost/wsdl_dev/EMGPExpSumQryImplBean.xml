@@ -1,0 +1,318 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_GP_ExpSumQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GP_ExpSumQry" targetNamespace="http://www.thitech.com/EM_GP_ExpSumQry/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_GP_ExpSumQry/">
+      <xsd:complexType name="AbstractType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="3"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExtendMapType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Entry">
+        <xsd:sequence>
+          <xsd:element name="Key" type="xsd:anyType"/>
+          <xsd:element name="Value" type="xsd:anyType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReturnCode">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="ChannelSerialNoType">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64"/>
+          <xsd:minLength value="23"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="EMGP_ExpSumQry" type="tns:EMGPExpSumQry">
+      </xsd:element>
+      <xsd:element name="EMGP_ExpSumQryResponse" type="tns:EMGPExpSumQryResponse">
+      </xsd:element>
+      <xsd:complexType name="EMGPExpSumQry">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:EMGPExpSumQryInput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPExpSumQryResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:EMGPExpSumQryOutput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPExpSumQryInput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:AbstractType">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="bkFlag" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="usrId" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="docStatus" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="docTyp" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="startDate" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="endDate" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="startPage" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="pageSize" type="xsd:string">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPExpSumQryOutput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ReturnCode">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="bkTotalCnt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="docList" type="tns:DocList">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="DocList">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="docNo" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="docId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="docStat" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="docType" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="docAmt" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travType" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="usrCode" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="usrNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="isGLTM" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="barCode" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="crtDate" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="reqUsrFlag" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="travelDocList" type="tns:TravelDocList">
+          </xsd:element>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="gpBusDocList" type="tns:PerItems">
+          </xsd:element>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="replaceFee" type="tns:ReFeeDocList"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TravelDocList">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="aufnr" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="aufnrNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="startDateMin" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="startDateMax" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travTyp" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="totalDay" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="totalAmt" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="uporhDistance" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travGrp" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="endDat" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="travlsList" type="tns:TravlsList">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="isReFee" type="xsd:string">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TravlsList">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travsId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="startDate" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="weekDay" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="endDat" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="endWeek" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="roundFlag" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origProv" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origProvNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCity" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCityNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCounty" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="origCountyNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destProv" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destProvNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCity" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCityNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCounty" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCountyNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travTopic" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travTyp" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="aufnr" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="aufnrNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="trvlsGrp" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="fillAmt" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="uporhDistance" type="xsd:string">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PerItems">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="perExpensesId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="perExpenseId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="perExpensesDat" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="reason" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="modeCode" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="modeNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="usrNum" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="entertainCode" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="entertainNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="sentertainCode" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="sentertainNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="aproAmt" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="aufnr" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="aufnrNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="docTyp" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="actType" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="actTypeNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expType" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expTypeNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expGrp" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expGrpNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expForm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expFormNm" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReFeeUsr">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="userId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="userNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="deptCode" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="deptNm" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ReFeeDocList">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travsId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travsSubId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="fillAmt" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="reFeeUsr" type="tns:ReFeeUsr">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="isReFee" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EMGP_ExpSumQryRequest">
+    <wsdl:part element="tns:EMGP_ExpSumQry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EMGP_ExpSumQryResponse">
+    <wsdl:part element="tns:EMGP_ExpSumQryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GP_ExpSumQry">
+    <wsdl:operation name="EMGP_ExpSumQry">
+      <wsdl:input message="tns:EMGP_ExpSumQryRequest"/>
+      <wsdl:output message="tns:EMGP_ExpSumQryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding xmlns:ptns="http://www.thitech.com/EM_GP_ExpSumQry/" name="EM_GP_ExpSumQry_Binding" type="ptns:EM_GP_ExpSumQry">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EMGP_ExpSumQry">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EM_GP_ExpSumQry">
+    <wsdl:port xmlns:bprf="http://www.thitech.com/EM_GP_ExpSumQry/" binding="bprf:EM_GP_ExpSumQry_Binding" name="EM_GP_ExpSumQry_Port">
+      <soap:address location="http://bmq.cttq.com:51600/EM_GP_ExpSumQry/EMGPExpSumQryImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

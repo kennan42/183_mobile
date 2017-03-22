@@ -1,0 +1,487 @@
+var MEAP = require("meap");
+var gm = require('gm').subClass({
+    imageMagick : true
+});
+var uuid = require("node-uuid");
+var fs = require("fs");
+var path = require("path");
+var async = require("async");
+var mongoose = require("mongoose");
+var bcardSchema = require("../bcardSchema.js");
+var bcardUtil = require("../util.js");
+
+/**
+ * 根据模版生成名片，其中商业公司名片需要单独生成
+ * @author donghua.wang
+ * @date 2016年1月19日 13:30
+ * */
+function run(Param, Robot, Request, Response, IF) {
+    console.log("bcard.createUserBcard start");
+    Response.setHeader("Content-Type", "text/json;charset=utf-8");
+    var arg = JSON.parse(Param.body.toString());
+    var templateEnName = arg.templateEnName;
+    var templateId = arg.templateId;
+    var bcardTemplate = null;
+    var msg = "";
+    if (templateEnName == "forth-template.png") {//商业公司名片模版右对齐，需要单独生成
+        createForthBcard(arg, Robot, Response, IF);
+    } else {
+        try {
+            async.series([
+            //查询名片模板信息
+            function(cb) {
+                var conn = mongoose.createConnection(global.mongodbURL);
+                var bcardTemplateModel = conn.model("bcard_template", bcardSchema.bcardTemplateSchema);
+                bcardTemplateModel.findById(templateId, function(err, doc) {
+                    conn.close();
+                    if (err || doc == null) {
+                        msg = "查询名片模版信息失败";
+                        cb(-1, null);
+                    } else {
+                        bcardTemplate = doc;
+                        cb(err, null);
+                    }
+                });
+            },
+            //动态生成名片
+            function(cb) {
+                var templatePath = bcardTemplate.templatePath;
+                //名片属性配置信息
+                var itemConfig = bcardTemplate.itemConfig;
+                var templateEnName = bcardTemplate.templateEnName;
+                //初始化位置信息
+                var startLocationConfig = bcardTemplate.startLocConfig;
+                var startLocX = startLocationConfig.startLocX;
+                var startLocY = startLocationConfig.startLocY;
+                var incrementX = startLocationConfig.incrementX;
+                var incrementY = startLocationConfig.incrementY;
+                //可选项最大显示数量
+                var selectedMaxDisplayCount = bcardTemplate.selectedMaxDisplayCount;
+                var selectedDisplayCount = 0;
+                //加载名片模版
+                var gmImg = gm(templatePath);
+                var userName = null;
+                var jobValueLoc = null;
+                for (var item in itemConfig) {
+                    var currentConfig = itemConfig[item];
+                    if (currentConfig.required == "1" || (arg[item].display == "1" && arg[item].value != "" && arg[item].enabled == "1")) {
+                        var locateType = currentConfig.locateType;
+                        if (locateType == "absolute") {//绝对定位
+                            //输出text
+                            if (currentConfig.text != "") {
+                                gmImg.font(currentConfig.fontFamily, currentConfig.fontSize);
+                                gmImg.drawText(currentConfig.textLocX, currentConfig.textLocY, currentConfig.text);
+                            }
+                            //输出value
+                            /**
+                             *如果是第一张名片，则需要根据用户名的长度计算岗位的偏移量
+                             *
+                             */
+                            if (item == "userName" && templateEnName == "first-template.png") {
+                                var userName = arg.userName.value;
+                                var length = userName.length;
+                                var valueLocX = currentConfig.valueLocX;
+                                if (length == 2) {
+                                    var tmpArr = userName.split("");
+                                    userName = tmpArr[0] + "  " + tmpArr[1];
+                                }
+                                gmImg.font(currentConfig.fontFamily, currentConfig.fontSize);
+                                gmImg.drawText(currentConfig.valueLocX, currentConfig.valueLocY, userName);
+                            } else if (item == "job" && templateEnName == "first-template.png") {
+                                if (arg.userName.value.length == 4) {
+                                    gmImg.font(currentConfig.fontFamily, currentConfig.fontSize);
+                                    gmImg.drawText(currentConfig.valueLocX + 60, currentConfig.valueLocY, arg[item].value);
+                                } else {
+                                    gmImg.font(currentConfig.fontFamily, currentConfig.fontSize);
+                                    gmImg.drawText(currentConfig.valueLocX, currentConfig.valueLocY, arg[item].value);
+                                }
+                            } else {
+                                gmImg.font(currentConfig.fontFamily, currentConfig.fontSize);
+                                gmImg.drawText(currentConfig.valueLocX, currentConfig.valueLocY, arg[item].value);
+                            }
+
+                        } else {//相对定位
+                            //输出text
+                            if (currentConfig.text != "") {
+                                gmImg.font(currentConfig.fontFamily, currentConfig.fontSize);
+                                gmImg.drawText(startLocX, startLocY, currentConfig.text);
+                            }
+                            //输出value
+                            gmImg.font(currentConfig.fontFamily, currentConfig.fontSize);
+                            gmImg.drawText(startLocX + incrementX, startLocY, arg[item].value);
+                            startLocY += incrementY;
+                        }
+                        if (currentConfig.required == "0" && arg[item].display == "1" && arg[item].value != "" && arg[item].enabled == "1") {
+                            selectedDisplayCount++;
+                        }
+                        if (selectedDisplayCount >= selectedMaxDisplayCount) {
+                            break;
+                        }
+                    }
+                }
+                //输出文件
+                var action = arg.action;
+                var newFilename = uuid.v1() + ".png";
+                if (action == "view") {//预览名片
+                    newFilename = "view_" + newFilename;
+                }
+                var output = "/opt/emm/uploads/bcard/images/" + newFilename;
+                gmImg.write(output, function(err) {
+                    var fileurl = null;
+                    if (!err) {
+                        fileurl = global.nginxURL + "uploads/bcard/images/" + newFilename;
+                    }
+                    cb(err, {
+                        "filepath" : output,
+                        "fileurl" : fileurl
+                    });
+                });
+            },
+            //生成名片背面
+            function(cb) {
+                var backgroundConfig = bcardTemplate.backgroundConfig;
+                var bg_type = backgroundConfig.type;
+                var backgroundFileNme = backgroundConfig.name;
+                var backgroundImagePath = "";
+                var backgroundImageURL = "";
+                if (bg_type == "fix") {
+                    backgroundImagePath = "";
+                    backgroundImageURL = global.nginxURL + "uploads/bcard/" + backgroundFileNme;
+                    cb(null, {
+                        "backgroundBcardPath" : backgroundImagePath,
+                        "backgroundBcardURL" : backgroundImageURL
+                    });
+                } else {
+                    var vCard = require('vcards-js');
+                    vCard = vCard();
+                    vCard.firstName = arg.userName.value;
+                    vCard.middleName = '';
+                    vCard.lastName = '';
+                    if (arg.mobileNumber.enabled == "1" && arg.mobileNumber.display == "1" && arg.mobileNumber.value != "") {
+                        vCard.cellPhone = arg.mobileNumber.value;
+                    }
+                    if (arg.company.enabled == "1" && arg.company.display == "1" && arg.company.value != "") {
+                        vCard.organization = arg.company.value;
+                    }
+                    if (arg.job.enabled == "1" && arg.job.display == "1" && arg.job.value != "") {
+                        vCard.title = arg.job.value;
+                    }
+                    if (arg.email.enabled == "1" && arg.email.display == "1" && arg.email.value != "") {
+                        vCard.email = arg.email.value;
+                    }
+                    var contactErweima = vCard.getFormattedString();
+                    var erweimaFileName = uuid.v1() + ".png";
+                    var erweimaImageURL = global.nginxURL + "uploads/bcard/images/" + erweimaFileName;
+                    var erweimaImagePath = "/opt/emm/uploads/bcard/images/" + erweimaFileName;
+                    var optionCreateErweima = {
+                        "url" : global.masJavaWebURL + "/WriteErweimaServlet",
+                        "method" : "POST",
+                        "Enctype" : "application/x-www-form-urlencoded",
+                        "Body" : {
+                            "path" : "/opt/emm/uploads/bcard/images/",
+                            "content" : contactErweima,
+                            "filename" : erweimaFileName,
+                            "width" : 185,
+                            "height" : 185
+                        }
+                    };
+                    MEAP.AJAX.Runner(optionCreateErweima, function(err, res, data) {
+                        if (!err) {//将生成的二维码写到名片背面模版
+                            var gmImg = gm("/opt/emm/uploads/bcard/" + backgroundFileNme);
+                            gmImg.draw("image", "over", backgroundConfig.location.start, backgroundConfig.location.size, "\"" + erweimaImagePath + "\"");
+                            var outputFileName = uuid.v1() + ".png";
+                            var outputFilePath = "/opt/emm/uploads/bcard/images/" + outputFileName;
+                            var outputFileURL = global.nginxURL + "uploads/bcard/images/" + outputFileName;
+                            gmImg.write(outputFilePath, function(err) {
+                                cb(err, {
+                                    "backgroundBcardURL" : outputFileURL,
+                                    "backgroundBcardPath" : outputFilePath,
+									"erweimaImagePath":erweimaImagePath,
+									"erweimaImageURL":erweimaImageURL
+                                });
+                            });
+                        } else {
+                            cb(err, null);
+                        }
+                    });
+
+                }
+            }], function(err, data) {
+                if (!err) {
+                    if (arg.action == "view") {
+                        Response.end(JSON.stringify({
+                            "status" : "0",
+                            "msg" : "生成预览信息成功",
+                            "fileurl" : data[1].fileurl,
+                            "filepath" : data[1].filepath,
+                            "backgroundBcardURL" : data[2].backgroundBcardURL,
+                            "backgroundBcardPath" : data[2].backgroundBcardPath
+                        }));
+                    } else if (arg.action == "create") {//将数据保存到数据
+                        var backgroundBcardPath = data[2].backgroundBcardPath;
+                        var backgroundBcardURL = data[2].backgroundBcardURL;
+                        var conn = mongoose.createConnection(global.mongodbURL);
+                        var bcardUserModel = conn.model("bcard_user", bcardSchema.bcardUserSchema);
+                        var times = Date.now();
+                        var uuidStr = uuid.v1();
+                        var bcardUserOjb = new bcardUserModel({
+                            "bcardName" : arg.bcardName,
+                            "userId" : arg.userId,
+                            "userName" : arg.userName,
+                            "job" : arg.job,
+                            "dept" : arg.dept,
+                            "company" : arg.company,
+                            "enName" : arg.enName,
+                            "mobileNumber" : arg.mobileNumber,
+                            "call" : arg.call,
+                            "companyAddress" : arg.companyAddress,
+                            "email" : arg.email,
+                            "QQ" : arg.QQ,
+                            "weixin" : arg.weixin,
+                            "companyEmail" : arg.companyEmail,
+                            "companyPage" : arg.companyPage,
+                            "fax" : arg.fax,
+                            "postcode" : arg.postcode,
+                            "servicePhone" : arg.servicePhone,
+                            "templateId" : arg.templateId,
+                            "bcardURL" : data[1].fileurl,
+                            "bcardPath" : data[1].filepath,
+                            "bcardBackgroudURL" : backgroundBcardURL,
+                            "bcardBackgroudPath" : backgroundBcardPath,
+							"contactErweimaURL":data[2].erweimaImageURL,
+							"contactErweimaPath":data[2].erweimaImagePath,
+                            "uuid" : uuidStr,
+                            "creatTime" : times,
+                            "updateTime" : times
+                        });
+                        bcardUserOjb.save(function(err, doc) {
+                            conn.close();
+                            if (!err) {
+                                Response.end(JSON.stringify({
+                                    "status" : "0",
+                                    "msg" : "保存名片成功",
+                                    "uuid" : uuidStr,
+                                    "fileurl" : data[1].fileurl,
+                                    "filepath" : data[1].filepath,
+                                    "backgroundPath" : backgroundBcardPath,
+                                    "backgroundURL" : backgroundBcardURL,
+                                    "id" : doc._id
+                                }));
+                            } else {
+                                Response.end(JSON.stringify({
+                                    "status" : "-1",
+                                    "msg" : "保存名片失败"
+                                }));
+                            }
+                        });
+                    } else {
+                        Response.end(JSON.stringify({
+                            "status" : "-1",
+                            "msg" : "参数传递错误"
+                        }));
+                    }
+                } else {
+                    Response.end(JSON.stringify({
+                        "status" : "-1",
+                        "msg" : msg == "" ? "生成模版信息失败" : msg
+                    }));
+                }
+            });
+        } catch(e) {
+            console.log("bcard.createUserBcard error", e);
+            Response.end(JSON.stringify({
+                "status" : "-1",
+                "msg" : "建立名片失败"
+            }));
+        }
+    }
+
+}
+
+//生成商业公司名片
+function createForthBcard(arg, Robot, Response, IF) {
+    var templateId = arg.templateId;
+    var action = arg.action;
+    var bcardPath = null;
+    var bcardURL = null;
+    var vcardPath = null;
+    var vcardurl = null;
+    var imageName = null;
+    var uuidStr = null;
+    var erweimaImageURL = null;
+    var contactErweimaPath = null;
+    async.parallel([
+    //查询名片模版
+    function(cb) {
+        var conn = mongoose.createConnection(global.mongodbURL);
+        var bcardTemplateModel = conn.model("bcard_template", bcardSchema.bcardTemplateSchema);
+        bcardTemplateModel.findById(templateId, function(err, bcardTemplate) {
+            conn.close();
+            cb(err, bcardTemplate);
+        });
+    },
+    //生成二维码图片
+    function(cb) {
+        imageName = uuid.v1() + ".png";
+        uuidStr = uuid.v1();
+        var vCard = require('vcards-js');
+        vCard = vCard();
+        vCard.firstName = arg.userName.value;
+        vCard.middleName = '';
+        vCard.lastName = '';
+        if (arg.mobileNumber.enabled == "1" && arg.mobileNumber.display == "1" && arg.mobileNumber.value != "") {
+            vCard.cellPhone = arg.mobileNumber.value;
+        }
+        if (arg.company.enabled == "1" && arg.company.display == "1" && arg.company.value != "") {
+            vCard.organization = arg.company.value;
+        }
+        if (arg.job.enabled == "1" && arg.job.display == "1" && arg.job.value != "") {
+            vCard.title = arg.job.value;
+        }
+        if (arg.email.enabled == "1" && arg.email.display == "1" && arg.email.value != "") {
+            vCard.email = arg.email.value;
+        }
+        var contactErweima = vCard.getFormattedString();
+        erweimaImageURL = global.nginxURL + "uploads/bcard/images/" + imageName;
+        contactErweimaPath = "/opt/emm/uploads/bcard/images/" + imageName;
+        var optionCreateErweima = {
+            "url" : global.masJavaWebURL + "/WriteErweimaServlet",
+            "method" : "POST",
+            "Enctype" : "application/x-www-form-urlencoded",
+            "Body" : {
+                "path" : "/opt/emm/uploads/bcard/images/",
+                "content" : contactErweima,
+                "filename" : imageName,
+                "width" : 185,
+                "height" : 185
+            }
+        };
+        MEAP.AJAX.Runner(optionCreateErweima, function(err, res, data) {
+            cb(err, contactErweimaPath);
+        });
+    }], function(err, rs) {
+        bcardTemplate = rs[0];
+        var uuidImgPath = rs[1];
+        async.parallel([
+        //生成个人名片
+        function(cb) {
+            var startLocConfig = bcardTemplate.startLocConfig;
+            var imgWidth = startLocConfig.imgWidth;
+            var startLocY = startLocConfig.startLocY;
+            var incrementY = startLocConfig.incrementY;
+            var gmImg = gm(bcardTemplate.templatePath);
+            var itemConfig = bcardTemplate.itemConfig;
+            var fileName = uuid.v1() + ".png";
+            var filePath = "/opt/emm/uploads/bcard/images/" + fileName;
+            var fileURL = global.nginxURL + "uploads/bcard/images/" + fileName;
+            //生产二维码
+            gmImg.draw("image", "over", "820,337", "180,180", "\"" + uuidImgPath + "\"");
+            //计算名字位置
+            var startLeft = 790;
+            var imageWidth = 1063;
+            var userNameConfig = itemConfig.userName;
+            var userName = arg.userName;
+            gmImg.font(userNameConfig.fontFamily, userNameConfig.fontSize);
+            gmImg.drawText(260, 340, userName.value, "NorthEast");
+            //计算部门位置
+            var deptConfig = itemConfig.dept;
+            var dept = arg.dept;
+            if (dept.value != "" && dept.display == "1" && dept.enabled == "1") {
+                gmImg.font(deptConfig.fontFamily, deptConfig.fontSize);
+                gmImg.drawText(260, startLocY, dept.value, "NorthEast");
+                startLocY += incrementY;
+            }
+            //计算电话位置
+            var mobileNumberConfig = itemConfig.mobileNumber;
+            var mobileNumber = arg.mobileNumber;
+            if (mobileNumber.value != "" && mobileNumber.display == "1" && mobileNumber.enabled == "1") {
+                gmImg.font(mobileNumberConfig.fontFamily, mobileNumberConfig.fontSize);
+                gmImg.drawText(260, startLocY, "Tel: " + mobileNumber.value, "NorthEast");
+                startLocY += incrementY;
+            }
+            //计算邮箱位置
+            var emailConfig = itemConfig.email;
+            var email = arg.email;
+            if (email.value != "" && email.display == "1" && email.enabled == "1") {
+                gmImg.font(emailConfig.fontFamily, emailConfig.fontSize);
+                gmImg.drawText(260, startLocY, "E-mail: " + email.value, "NorthEast");
+                startLocY += incrementY;
+            }
+            gmImg.write(filePath, function(err) {
+                if (!err) {
+                    bcardPath = filePath;
+                    bcardURL = fileURL;
+                }
+                cb(err, null);
+            });
+        }], function(err, data) {
+            if (action == "view") {
+                Response.end(JSON.stringify({
+                    "status" : "0",
+                    "msg" : "生成预览信息成功",
+                    "fileurl" : bcardURL,
+                    "filepath" : bcardPath,
+                    "backgroundBcardURL" : global.nginxURL + "uploads/bcard/" + bcardTemplate.backgroundConfig.name,
+                    "backgroundBcardPath" : ""
+                }));
+            } else {
+                var conn = mongoose.createConnection(global.mongodbURL);
+                var bcardUserModel = conn.model("bcard_user", bcardSchema.bcardUserSchema);
+                var times = Date.now();
+                var bcardUserOjb = new bcardUserModel({
+                    "bcardName" : arg.bcardName,
+                    "userId" : arg.userId,
+                    "userName" : arg.userName,
+                    "job" : arg.job,
+                    "dept" : arg.dept,
+                    "company" : arg.company,
+                    "enName" : arg.enName,
+                    "mobileNumber" : arg.mobileNumber,
+                    "call" : arg.call,
+                    "companyAddress" : arg.companyAddress,
+                    "email" : arg.email,
+                    "QQ" : arg.QQ,
+                    "weixin" : arg.weixin,
+                    "companyEmail" : arg.companyEmail,
+                    "companyPage" : arg.companyPage,
+                    "fax" : arg.fax,
+                    "postcode" : arg.postcode,
+                    "servicePhone" : arg.servicePhone,
+                    "templateId" : arg.templateId,
+                    "bcardURL" : bcardURL,
+                    "bcardPath" : bcardPath,
+                    "bcardBackgroudURL" : global.nginxURL + "uploads/bcard/" + bcardTemplate.backgroundConfig.name,
+                    "bcardBackgroudPath" : "",
+					"contactErweimaURL":erweimaImageURL,
+					"contactErweimaPath":contactErweimaPath,
+                    "uuid" : uuidStr,
+                    "creatTime" : times,
+                    "updateTime" : times
+                });
+                bcardUserOjb.save(function(err, doc) {
+                    conn.close();
+                    if (!err) {
+                        Response.end(JSON.stringify({
+                            "status" : "0",
+                            "msg" : "保存名片成功",
+                            "uuid" : uuidStr,
+                            "fileurl" : bcardURL,
+                            "filepath" : bcardPath,
+                            "backgroundPath" : "",
+                            "backgroundURL" : global.nginxURL + "uploads/bcard/" + bcardTemplate.backgroundConfig.name,
+                            "id" : doc._id
+                        }));
+                    } else {
+                        Response.end(JSON.stringify({
+                            "status" : "-1",
+                            "msg" : "保存名片失败"
+                        }));
+                    }
+                });
+            }
+        });
+    });
+}
+
+exports.Runner = run;
+

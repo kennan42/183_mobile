@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/mycss.css">
+    </head>
+    <body class="um-vp bc-bg body_height" ontouchstart>
+        <div class="mycard_all">
+           <ul>
+               <li class="ai-us mycard_li onedit">
+                   <div><img src="images/card_01.png" /></div>
+                   <div class="mycard_div">
+                       <div class="mycard_div01 ai-fts-body ai-ph-common">徐锐</div>
+                       <div class="mycard_div02">互联网产品经理</div>
+                   </div>
+               </li>
+               <li class="ai-us mycard_li onedit">
+                   <div><img src="images/card_02.png" /></div>
+                   <div class="mycard_div">
+                       <div class="mycard_div01 ai-fts-body ai-ph-common">徐锐</div>
+                       <div class="mycard_div02">互联网产品经理</div>
+                   </div>
+               </li>
+           </ul>
+        </div>
+    </body>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            $(".onedit").on("tap",function(){
+                appcan.window.open("lists","cardEdit.html",10);
+                
+            })
+        });
+
+    </script>
+</html>

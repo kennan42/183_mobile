@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title>参考新建名片</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/mycss.css">
+    </head>
+    <body class="um-vp " ontouchstart>
+        <div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
+            <!--header开始-->
+            <div id="header" class="uh ai-ht-head ub bc-head ai-ph-color">
+                <div class="ai-nav-btn ai-left-btn" id="nav-left">
+                    <div class=" fa fa-angle-left fa-2x"></div>
+                    <div class="ai-ph-color ai-fts-subhead more_gd ai_left">返回</div>
+                </div>
+                <h class=" ub-f1 ub-ac ub-pc ub ai-ph-color ai-fts-title ut-s tx-c" tabindex="0">参考新建</h>
+                <!-- <div class="nav-btn nav-bt ai-par-stable " id="nav-right"> 
+                    <div class="nav_jia"></div>
+                </div> -->
+                 <div class="ai-nav-btn ai-par-stable " id="nav-right">
+                     <!-- <div class="ub-f1 ub"></div>
+                     <div class="ai-ph-common ai-fts-subhead more_gd nav_jia"></div> -->
+                </div>
+            </div>
+            <!--header结束-->
+            <!--content开始-->
+            <div id="content" class="ub-f1 tx-l">
+
+            </div>
+            <!--content结束-->
+
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/view/common.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    </body>
+    <script>
+           
+        appcan.ready(function() {
+            renderW();
+          var titHeight = $('#header').offset().height;
+            appcan.frame.open("content", "referenceNew_content.html", 0, titHeight);
+            window.onorientationchange = window.onresize = function() {
+             //   appcan.frame.resize("content", 0, titHeight);
+            }
+            
+             addWeinxinBcardAction("参考新建页面","参考新建进入"); 
+        });
+        //返回上一页
+        appcan.button("#nav-left", "btn-act", function() {
+            appcan.locStorage.setVal('reference_close',1);
+           // appcan.window.close(-1);
+          // uexWindow.close();
+           appcan.window.open("index","index.html",9);
+        })
+         function renderShare(){
+           var extraInfo='{"extraInfo":{"opaque":"true","bgColor":"transparent","delayTime":"250"}}';
+           uexWindow.openPopover("share",0,"cardEdit_share.html","",0,0,"","","","",0,extraInfo);
+       }
+        function renderSave(){
+           var extraInfo='{"extraInfo":{"opaque":"true","bgColor":"transparent","delayTime":"250"}}';
+           uexWindow.openPopover("save",0,"cardEdit_save.html","",0,0,"","","","",0,extraInfo);
+       }
+        function renderRefresh(){
+            var extraInfo='{"extraInfo":{"opaque":"true","bgColor":"transparent","delayTime":"250"}}';
+           uexWindow.openPopover("refresh",0,"cardEdit_refresh.html","",0,0,"","","","",0,extraInfo);
+       }
+       function renderAlert(){
+             var extraInfo='{"extraInfo":{"opaque":"true","bgColor":"transparent","delayTime":"250"}}';
+             uexWindow.openPopover("alert",0,"cardEdit_alert.html","",0,0,"","","","",0,extraInfo);
+       }
+        function getWxConfig(){
+             var option = {
+                  url : 'bcard/wxconfig',
+                  data:{"url" : window.location.href.split("#")[0]},
+                  success : function(data) {
+                       data.data.debug = false;
+                      data.data.jsApiList=[
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone',
+                        'hideMenuItems',
+                        'showMenuItems',
+                        'hideAllNonBaseMenuItem',
+                        'showAllNonBaseMenuItem',
+                        'translateVoice',
+                        'startRecord',
+                        'stopRecord',
+                        'onVoiceRecordEnd',
+                        'playVoice',
+                        'onVoicePlayEnd',
+                        'pauseVoice',
+                        'stopVoice',
+                        'uploadVoice',
+                        'downloadVoice',
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage',
+                        'getNetworkType',
+                        'openLocation',
+                        'getLocation',
+                        'hideOptionMenu',
+                        'showOptionMenu',
+                        'closeWindow',
+                        'scanQRCode',
+                        'chooseWXPay',
+                        'openProductSpecificView',
+                        'addCard',
+                        'chooseCard',
+                        'openCard'
+                      ];
+                      wx.config(data.data);
+                  }
+                }
+                view.ajax(option);
+        }
+        function renderW(){
+             getWxConfig();
+             wx.ready(function(){
+                    wx.hideOptionMenu();
+             });
+        }
+       function preview(fileurl,backgroundBcardURL){
+            getWxConfig();
+             wx.ready(function(){
+                  wx.previewImage({
+                    current: fileurl, // 当前显示图片的http链接
+                    urls:[fileurl,backgroundBcardURL] // 需要预览的图片http链接列表
+                  });
+             });
+        }
+    </script>
+</html>

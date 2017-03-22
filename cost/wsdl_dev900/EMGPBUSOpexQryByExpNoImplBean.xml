@@ -1,0 +1,230 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_GPBUS_OpexQryByExpNo/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GPBUS_OpexQryByExpNo" targetNamespace="http://www.thitech.com/EM_GPBUS_OpexQryByExpNo/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_GPBUS_OpexQryByExpNo/">
+      <!-- 增加部分1 开始 -->
+      <xsd:complexType name="AbstractType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+            <xsd:annotation>
+              <xsd:documentation>当前员工号</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+            <xsd:annotation>
+              <xsd:documentation>域</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="3"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分1 结束 -->
+      <!-- 增加部分2 开始 -->
+      <xsd:complexType name="ExtendMapType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分2 结束 -->
+      <!-- 增加部分3 开始 -->
+      <xsd:complexType name="Entry">
+        <xsd:sequence>
+          <xsd:element name="Key" type="xsd:anyType"/>
+          <xsd:element name="Value" type="xsd:anyType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分3 结束 -->
+      <!-- 增加部分4 开始 -->
+      <xsd:complexType name="ReturnCode">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回类型</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回码</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回信息</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分4 结束 -->
+      <!-- 增加部分5 开始 -->
+      <xsd:simpleType name="ChannelSerialNoType">
+        <xsd:annotation>
+          <xsd:documentation>渠道流水号</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64"/>
+          <xsd:minLength value="23"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!-- 增加部分5 结束 -->
+      <xsd:element name="EMGPBUSOpexQryByExpNo" type="tns:EMGPBUSOpexQryByExpNo">
+      </xsd:element>
+      <xsd:element name="EMGPBUSOpexQryByExpNoResponse" type="tns:EMGPBUSOpexQryByExpNoResponse">
+      </xsd:element>
+      <xsd:complexType name="EMGPBUSOpexQryByExpNo">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:EMGPBUSOpexQryByExpNoInput">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPBUSOpexQryByExpNoResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:EMGPBUSOpexQryByExpNoOutput">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPBUSOpexQryByExpNoInput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:AbstractType">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="expNo" type="xsd:string">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="EMGPBUSOpexQryByExpNoOutput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ReturnCode">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="fillAmt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="aproAmt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="bagrAmt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="fagrAmt" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="actTyp" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="actTypNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="docTyp" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="docTypNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="docStat" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="docStatNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="usrCode" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="usrNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="usrArea" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="usrAreaNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="invHead" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="invHeadNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="compCode" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="compaNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="deptCode" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="deptNm" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="remark" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="1" minOccurs="0" name="crtDat" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="perItems" type="tns:PerItem">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="PerItem">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="usrCode" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="usrNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="perExpenseDat" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expMont" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="reason" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="usrNum" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expTyp" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expTypNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expGrp" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expGrpNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expForm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expFormNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="entertainCode" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="entertainNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="sentertainCode" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="sentertainNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="fillAmt" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="aproAmt" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="bagrAmt" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="fagrAmt" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="actTyp" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="actTypNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="remark" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="crtDat" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EMGPBUSOpexQryByExpNoRequest">
+    <wsdl:part element="tns:EMGPBUSOpexQryByExpNo" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EMGPBUSOpexQryByExpNoResponse">
+    <wsdl:part element="tns:EMGPBUSOpexQryByExpNoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GPBUS_OpexQryByExpNo">
+    <wsdl:operation name="EMGPBUSOpexQryByExpNo">
+      <wsdl:input message="tns:EMGPBUSOpexQryByExpNoRequest"/>
+      <wsdl:output message="tns:EMGPBUSOpexQryByExpNoResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding xmlns:ptns="http://www.thitech.com/EM_GPBUS_OpexQryByExpNo/" name="EM_GPBUS_OpexQryByExpNo_Binding" type="ptns:EM_GPBUS_OpexQryByExpNo">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EMGPBUSOpexQryByExpNo">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EM_GPBUS_OpexQryByExpNo"> 
+    <wsdl:port xmlns:bprf="http://www.thitech.com/EM_GPBUS_OpexQryByExpNo/" binding="bprf:EM_GPBUS_OpexQryByExpNo_Binding" name="EM_GPBUS_OpexQryByExpNo_Port">
+      <soap:address location="http://bmq.cttq.com:51600/EM_GPBUS_OpexQryByExpNo/EMGPBUSOpexQryByExpNoImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

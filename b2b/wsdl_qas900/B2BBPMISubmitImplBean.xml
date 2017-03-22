@@ -1,0 +1,791 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_Submit/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_Submit" targetNamespace="http://www.cttq.com/B2B_BPMI_Submit/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_Submit/">
+
+
+			<!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+
+
+			<xsd:element name="B2BBPMINormalOrderSubmit" type="tns:B2BBPMINormalOrderSubmitRequest">
+			</xsd:element>
+			<xsd:element name="B2BBPMINormalOrderSubmitResponse" type="tns:B2BBPMINormalOrderSubmitResponse">
+			</xsd:element>
+			<xsd:element name="B2BBPMIWinterOrderSubmit" type="tns:B2BBPMIWinterOrderSubmitRequest">
+			</xsd:element>
+			<xsd:element name="B2BBPMIWinterOrderSubmitResponse" type="tns:B2BBPMIWinterOrderSubmitResponse">
+			</xsd:element>
+			<xsd:element name="B2BBPMIAdjustOrderSubmit" type="tns:B2BBPMIAdjustOrderSubmitRequest">
+			</xsd:element>
+			<xsd:element name="B2BBPMIAdjustOrderSubmitResponse" type="tns:B2BBPMIAdjustOrderSubmitResponse">
+			</xsd:element>
+			<xsd:element name="B2BBPMIRejectOrderSubmit" type="tns:B2BBPMIRejectOrderSubmitRequest">
+			</xsd:element>
+			<xsd:element name="B2BBPMIRejectOrderSubmitResponse" type="tns:B2BBPMIRejectOrderSubmitResponse">
+			</xsd:element>
+
+			<xsd:complexType name="ProcCommon">
+				<xsd:sequence>
+
+					<xsd:element maxOccurs="1" minOccurs="0" name="CurrUserCode" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								当前步骤人编号
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CurrUserLevel" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								当前步骤人级别
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CurrUserName" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								当前步骤人名称
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="NextStepNo" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>下一步骤号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="NextStepDesc" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>下一步骤描述</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="IsCheck" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单是否需要复核(X-是)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ExtendMap" type="tns:ExtendMapType"/>
+
+
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="ApprUsers" type="tns:ApprUser"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ZSD_SALESORDER_HEAD">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="AUART" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单类型：ZOR1</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="VKORG" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>销售机构</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="VTWEG" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>分销渠道</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="SPART" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>部门</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CREATED_BY" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>创建对象的人员名称</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZSFCWGY" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>是否财务干预</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ORD_REASON" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订购原因( 业务原因 )</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="DLV_BLOCK" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>交货冻结（抬头）</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNAG" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>售达方 ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNWE" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>送达方 ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNRG" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>付款方 ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="PARNR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>法人委托人ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="PERNR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>代表工号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNRE" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>收取发票方</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ZIT_MATNR_T">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="MATNR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>产品ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="REQ_QTY" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单数量</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="REQ_UNT" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单单位</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZDDKP" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>是否独立开票</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZKCL" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>目前库存量</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KBETR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>含税单价</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ZKSCHL_CHANGE_T">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZJSID" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>计算ID号 </xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KSCHL" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>条件类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZYFZK" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>应付折扣</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMINormalOrderSubmitRequest">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="OrderCommon" type="tns:OrderCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ProcCommon" type="tns:ProcCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IS_HEAD" type="tns:ZSD_SALESORDER_HEAD">
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="IT_MATNR" type="tns:ZIT_MATNR_T">
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="IT_KSCHL" type="tns:ZKSCHL_CHANGE_T">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IM_BZ" type="xsd:string">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMINormalOrderSubmitResponse">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="VBELN" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>订单号</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="EX_RESULT" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>是否需要资信审批</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="ApprUsers" type="tns:ApprUser"/>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+
+			<!-- 冬储调货订单提交(Sep.07,2015) -->
+			<xsd:complexType name="B2BBPMIWinterOrderSubmitRequest">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="OrderCommon" type="tns:OrderCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ProcCommon" type="tns:ProcCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IT_B2B_013_HEAD" type="tns:ZSD_B2B_013_HEAD">
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="IT_B2B_013_T" type="tns:ZSD_B2B_013_T">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIWinterOrderSubmitResponse">
+				<xsd:annotation>
+					<xsd:documentation>订单号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="VBELN" type="xsd:string">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="OrderCommon">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ProcType" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>流程类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="OrdType" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="OrdNo" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="OrdStat" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单状态</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="DisChannel" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>分销渠道</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CustId" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>客户ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CustNm" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>客户名称</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CustAccount" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>客户账号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ReprAccount" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>代表账号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="TaxAmt" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								含税金额，ZRE1-退货、ZRD1-退货、必输
+            				</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="StartProcFlag" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								流程发起端标识，网页端额客户发起流程：400，天信端代表发起：230
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+
+					<xsd:element maxOccurs="1" minOccurs="0" name="ExtendMap" type="tns:ExtendMapType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIAdjustOrderSubmitRequest">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="OrderCommon" type="tns:OrderCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ProcCommon" type="tns:ProcCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="IT_B2B_013_HEAD" type="tns:ZSD_B2B_013_HEAD">
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="IT_B2B_013_T" type="tns:ZSD_B2B_013_T">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIAdjustOrderSubmitResponse">
+				<xsd:annotation>
+					<xsd:documentation>订单号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="VBELN" type="xsd:string">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="ZSD_B2B_013_T">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="MATNR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>产品ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="DZMENG" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单数量</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="DZMUNT" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单单位</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CHARG_D" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>产品批号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CHARG30" type="xsd:string">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIRejectOrderSubmitRequest">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="OrderCommon" type="tns:OrderCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="ProcCommon" type="tns:ProcCommon">
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="IT_RETURNED" type="tns:ZBCMFIS_RETURNED_PURCHASE">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="B2BBPMIRejectOrderSubmitResponse">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="VBELN" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>订单号</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+
+			<xsd:complexType name="ZBCMFIS_RETURNED_PURCHASE">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNNR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>客户ID（送达方）</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="MATNR" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>产品ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CHARG" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>产品批号</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="CHARG30" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZMENG" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>退货数量</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZMENT" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>退货单位</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZTHLY" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>退货来源类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZSYKH" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>退货来源上游客户ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZTHSJC" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>本次退货距原发货时间（天）</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZTHLX" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>退货类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZTHYY" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>退货原因</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZTHCLFS" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>退货处理方式</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZSXRQ" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>退货产品失效日期</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="KUNNR_TO" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>客户ID（售达方）</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ZZSFSWTH" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>是否有实物退回(Y，有实物；N，无实物。)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ZSD_B2B_013_HEAD">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="IM_KUNNR1" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>调入方客户ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="IM_KUNNR2" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>调出方客户ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="IM_KUNNR3" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>送达方ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="IM_KUNNR4" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>法人委托人</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="IM_CREATE_BY" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>创建人员名称</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="IM_AUART" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订单类型：ZDR1</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="IM_AUGRU" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>订购原因( 业务原因 )</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ApprUser">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprUserCode" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批人编号
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprUserName" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批人名称</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprDeptCode" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批部门编号
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprDeptDesc" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批部门名称
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprPostCode" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批人职务编号
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ApprPostDesc" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								审批人职务描述
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="ExtendMap" type="tns:ExtendMapType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="B2BBPMINormalOrderSubmitRequest">
+		<wsdl:part element="tns:B2BBPMINormalOrderSubmit" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMINormalOrderSubmitResponse">
+		<wsdl:part element="tns:B2BBPMINormalOrderSubmitResponse" name="parameters"/>
+	</wsdl:message>
+
+
+	<!-- 冬储调货订单提交(Sep.07,2015) -->
+	<wsdl:message name="B2BBPMIWinterOrderSubmitRequest">
+		<wsdl:part element="tns:B2BBPMIWinterOrderSubmit" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIWinterOrderSubmitResponse">
+		<wsdl:part element="tns:B2BBPMIWinterOrderSubmitResponse" name="parameters"/>
+	</wsdl:message>
+
+
+	<wsdl:message name="B2BBPMIAdjustOrderSubmitRequest">
+		<wsdl:part element="tns:B2BBPMIAdjustOrderSubmit" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIAdjustOrderSubmitResponse">
+		<wsdl:part element="tns:B2BBPMIAdjustOrderSubmitResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIRejectOrderSubmitRequest">
+		<wsdl:part element="tns:B2BBPMIRejectOrderSubmit" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIRejectOrderSubmitResponse">
+		<wsdl:part element="tns:B2BBPMIRejectOrderSubmitResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="B2B_BPMI_Submit">
+		<wsdl:operation name="B2BBPMINormalOrderSubmit">
+			<wsdl:documentation>正常销售订单提交</wsdl:documentation>
+			<wsdl:input message="tns:B2BBPMINormalOrderSubmitRequest"/>
+			<wsdl:output message="tns:B2BBPMINormalOrderSubmitResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="B2BBPMIAdjustOrderSubmit">
+			<wsdl:documentation>调货订单提交</wsdl:documentation>
+			<wsdl:input message="tns:B2BBPMIAdjustOrderSubmitRequest"/>
+			<wsdl:output message="tns:B2BBPMIAdjustOrderSubmitResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="B2BBPMIRejectOrderSubmit">
+			<wsdl:documentation>退货订单提交</wsdl:documentation>
+			<wsdl:input message="tns:B2BBPMIRejectOrderSubmitRequest"/>
+			<wsdl:output message="tns:B2BBPMIRejectOrderSubmitResponse"/>
+		</wsdl:operation>
+
+
+		<!-- 冬储调货订单提交(Sep.07,2015) -->
+		<wsdl:operation name="B2BBPMIWinterOrderSubmit">
+			<wsdl:documentation>冬储调货订单提交</wsdl:documentation>
+			<wsdl:input message="tns:B2BBPMIWinterOrderSubmitRequest"/>
+			<wsdl:output message="tns:B2BBPMIWinterOrderSubmitResponse"/>
+		</wsdl:operation>
+
+
+	</wsdl:portType>
+	<wsdl:binding name="B2B_BPMI_SubmitSOAP" type="tns:B2B_BPMI_Submit">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="B2BBPMINormalOrderSubmit">
+			<soap:operation soapAction="http://www.cttq.com/B2B_BPMI_Submit/B2BBPMINormalOrderSubmit"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="B2BBPMIAdjustOrderSubmit">
+			<soap:operation soapAction="http://www.cttq.com/B2B_BPMI_Submit/B2BBPMIAdjustOrderSubmit"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="B2BBPMIRejectOrderSubmit">
+			<soap:operation soapAction="http://www.cttq.com/B2B_BPMI_Submit/B2BBPMIRejectOrderSubmit"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<!-- 冬储调货订单提交(Sep.07,2015) -->
+		<wsdl:operation name="B2BBPMIWinterOrderSubmit">
+			<soap:operation soapAction="http://www.cttq.com/B2B_BPMI_Submit/B2BBPMIWinterOrderSubmit"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+	</wsdl:binding>
+	<wsdl:service name="B2B_BPMI_Submit">
+		<wsdl:port binding="tns:B2B_BPMI_SubmitSOAP" name="B2B_BPMI_SubmitSOAP">
+			<soap:address location="http://b2q.cttq.com:52200/B2B_BPMI_Submit/B2BBPMISubmitImplBean"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,200 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/PORTAL_BPMI_AprWithNtUsr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PORTAL_BPMI_AprWithNtUsr" targetNamespace="http://www.cttq.com/PORTAL_BPMI_AprWithNtUsr/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cttq.com/PORTAL_BPMI_AprWithNtUsr/">
+       <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+      
+      
+      <xsd:element name="PORTALBPMI_AprWithNtUsr" type="tns:PORTALBPMIAprWithNtUsr">
+
+      </xsd:element>
+      <xsd:element name="PORTALBPMI_AprWithNtUsrResponse" type="tns:PORTALBPMIAprWithNtUsrResponse">
+
+      </xsd:element>
+
+      <xsd:complexType name="PORTALBPMIAprWithNtUsr">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:PORTALBPMIAprWithNtUsrInput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="PORTALBPMIAprWithNtUsrResponse">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:PORTALBPMIAprWithNtUsrOutput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="PORTALBPMIAprWithNtUsrInput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:AbstractType">
+            			<xsd:sequence>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="bussType" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+            				</xsd:element>
+
+
+            				<xsd:element maxOccurs="1" minOccurs="0" name="taskId" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="aprUsrId" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="aprUsrName" type="xsd:string">
+            				</xsd:element>
+
+                            <xsd:element maxOccurs="1" minOccurs="0" name="deptCode" type="xsd:string">
+            				</xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="deptName" type="xsd:string">
+            				</xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="appType" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="appOpinion" type="xsd:string">
+            				</xsd:element>
+
+            				<xsd:element maxOccurs="1" minOccurs="0" name="stepNo" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="flag" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="unbounded" minOccurs="0" name="adUsrList" type="tns:ADUsrList">
+            				</xsd:element>
+            				<xsd:element maxOccurs="unbounded" minOccurs="0" name="extendMap" type="tns:Entry">
+            				</xsd:element>
+
+
+            			</xsd:sequence>
+            		</xsd:extension>
+            	</xsd:complexContent>
+            </xsd:complexType>
+
+      <xsd:complexType name="PORTALBPMIAprWithNtUsrOutput">
+      	<xsd:complexContent>
+      		<xsd:extension base="tns:ReturnCode">
+      			<xsd:sequence>
+      				<xsd:element maxOccurs="unbounded" minOccurs="0" name="extendMap" type="tns:Entry">
+      				</xsd:element>
+      			</xsd:sequence>
+      		</xsd:extension>
+      	</xsd:complexContent>
+      </xsd:complexType>
+    
+      <xsd:complexType name="ADUsrList">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="adUsrId" type="xsd:string">
+      		</xsd:element>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="adUsrName" type="xsd:string">
+      		</xsd:element>
+
+      		<xsd:element maxOccurs="1" minOccurs="0" name="adDeptCode" type="xsd:string"/>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="adDeptName" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="needBack" type="xsd:string">
+      		</xsd:element>
+                </xsd:sequence>
+</xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="PORTALBPMI_AprWithNtUsrRequest">
+    <wsdl:part element="tns:PORTALBPMI_AprWithNtUsr" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="PORTALBPMI_AprWithNtUsrResponse">
+    <wsdl:part element="tns:PORTALBPMI_AprWithNtUsrResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="PORTAL_BPMI_AprWithNtUsr">
+    <wsdl:operation name="PORTALBPMI_AprWithNtUsr">
+      <wsdl:input message="tns:PORTALBPMI_AprWithNtUsrRequest"/>
+      <wsdl:output message="tns:PORTALBPMI_AprWithNtUsrResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+<wsdl:binding xmlns:ptns="http://www.cttq.com/PORTAL_BPMI_AprWithNtUsr/" name="PORTAL_BPMI_AprWithNtUsr_Binding" type="ptns:PORTAL_BPMI_AprWithNtUsr">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="PORTALBPMI_AprWithNtUsr">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="PORTAL_BPMI_AprWithNtUsr">
+<wsdl:port xmlns:bprf="http://www.cttq.com/PORTAL_BPMI_AprWithNtUsr/" binding="bprf:PORTAL_BPMI_AprWithNtUsr_Binding" name="PORTAL_BPMI_AprWithNtUsr_Port">
+<soap:address location="http://cpq.cttq.com:52200/PORTAL_BPMI_AprWithNtUsr/PORTALBPMIAprWithNtUsrImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

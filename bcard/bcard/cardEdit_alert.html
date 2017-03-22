@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+          <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+         <link rel="stylesheet" href="css/1_content/css/main.css">
+         <link rel="stylesheet" href="css/main.css">
+         <!-- 弹框 -->
+        <style>
+         .modal {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #EA006F;
+            color: #000;
+            z-index: 1000000;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: 200ms ease;
+            border-radius: 10px;}
+        .modal.show { opacity: 1;visibility: visible;pointer-events: auto;}
+       .dialog {background: #ffffff; width: 80%; height:7.19em; top:38%; margin:0 auto;box-shadow: 0 0 0 1000px rgba(0,0,0,0.5);}  
+       .disable-mouse{ pointer-events: none;}   
+       .text_color{ color:#5677fc;}
+       .umar-t{margin-top: 1em;}
+       .after{ top:1.3125em;border-top: 1px solid #cecece}
+       .after_text{position: relative;padding-top:1em}
+       .text_padding{ line-height: 1.5em;padding: 1.25em; }
+       .del_all{ overflow: hidden;border-top:1px solid #d6d6d6;}
+       .del_01{color:#888888; line-height: 2.71em;cursor: pointer; }
+       .del_02{float:left;width:49.5%;color:#888888;line-height: 2.71em; cursor: pointer; border-left:1px solid #d6d6d6;}
+        </style>
+        <script>
+           
+   
+        </script>
+    </head>
+    <body class="um-vp disable-mouse"  ontouchstart>
+        <div id="uploadresult" class="uhide" style="width: 8em"> 
+                <img src="images/loading_1.gif" alt="正在请求，请稍后..." />
+                <div class="logss" style="margin-top: 0.25em;">请稍后...</div>
+        </div>
+       <div class="js-dialog  modal  dialog show" id="dig_remove" style="text-align: center" id="www">
+            <div class="ai-fts-body ai-ph-common tx-l text_padding">此模版已没有位置显示更多的内容，请重新选择！</div>
+            <div class="del_all" >
+                <div class="del_01 ai-fts-body close_btn" style="text-align: center" id="remain">确定</div>
+              
+            </div>
+
+          
+        </div>
+    </body>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+       <script src="js/view/common.js"></script>
+    </body>
+    <script>
+    appcan.ready(function (){
+        var userBcardId=appcan.locStorage.getVal('userBcardId_1');
+        var   bcardName=appcan.locStorage.getVal('bcardName_1');
+        $("#bcardName").html(bcardName);
+        console.log("userBcardId:"+userBcardId);
+        $("#dig_remove").data("user_bcard_id",userBcardId);
+         //确定操作
+        appcan.button("#remain", "btn-act", function() {
+            // uexWindow.closePopover('alert');
+            // $("input").removeAttr("disabled");
+             appcan.window.evaluateScript({
+                    name:'',
+                    scriptContent:'removeRenderAlert()'
+              });
+            //  appcan.window.close();
+              
+        });
+    });
+    </script>
+</html>

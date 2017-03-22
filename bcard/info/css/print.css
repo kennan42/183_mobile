@@ -1,0 +1,139 @@
+.ft-print{
+    font-size:0.9375em;
+}
+.mat{
+    margin-top: .78125em;
+}
+.print-mat{
+    margin-top: 1.5em;
+}
+.print-maa{
+    margin: 1.5em 1em 0em 1em;
+}
+.print-ma{
+    margin:0.875em 0em 0em 1.875em;
+}
+.img-print{
+    display:block;
+   width:100%;
+    width: 19.71875em; 
+    margin-top: 0.875em;
+
+}
+.img-pal{
+    padding-left: 1.875em;
+}
+.one{
+    height:1.71875em;
+    width:1.875em;
+   background-image: url('../img/1.png') !important; 
+}
+.step1{
+    
+    width:100%;
+    background-image: url('../img/step1.png') !important;
+}
+.two{
+    height:1.71875em;
+    width:1.875em;
+   background-image: url('../img/2.png') !important; 
+}
+.step2{
+    width:100%;
+    height:12.96875em;
+    background-image: url('../img/step2.png') !important;
+}
+.three{
+    height:1.71875em;
+    width:1.875em;
+   background-image: url('../img/3.png') !important; 
+}
+.step3{
+     width:100%;
+    height: 15.3125em;
+    background-image: url('../img/step3.png') !important;
+}
+.ub-er{max-width:23.43em;margin:0 auto;}
+
+.three{
+    height:1.71875em;
+    width:1.875em;
+   background-image: url('../img/3.png') !important; 
+}
+
+.four{
+    height:1.71875em;
+    width:1.875em;
+   background-image: url('../img/4.png') !important; 
+}
+.step4{
+    width:100%;
+    height:15.53125em;
+    background-image: url('../img/step4.png') !important;
+}
+.five{
+    height:1.71875em;
+    width:1.875em;
+   background-image: url('../img/5.png') !important; 
+}
+.step5{
+       width:100%;
+    height:15.40625em;
+    background-image: url('../img/step5.png') !important;
+}
+.six{
+    height:1.71875em;
+    width:1.875em;
+   background-image: url('../img/6.png') !important; 
+}
+.step6{
+      width:100%;
+    height: 15.46875em;
+    background-image: url('../img/step6.png') !important;
+}
+.seven{
+    height:1.71875em;
+    width:1.875em;
+   background-image: url('../img/7.png') !important; 
+}
+.step7{
+      width:100%;
+    height: 15.5625em;
+    background-image: url('../img/step7.png') !important;
+}
+.eight{
+    height:1.71875em;
+    width:1.875em;
+   background-image: url('../img/8.png') !important; 
+}
+.step8{
+      width:100%;
+    height: 15.46875em;
+    background-image: url('../img/step8.png') !important;
+}
+
+
+.img-print1{
+    display:block;
+   width:100%;
+   
+    margin-top: 0.875em;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

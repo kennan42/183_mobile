@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://cttq.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://cttq.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://cttq.org/">
+      <s:element name="CreateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fullName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orgName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginTo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="department" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="changePasswordNextLogon" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passwordNeverExpire" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifyUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="field" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="changeValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifyUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModifyUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisableUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisableUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DisableUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnableUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnableUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EnableUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oldPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangePasswordResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeSmsCodeByPhone">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeSmsCodeByPhoneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GeSmsCodeByPhoneResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeSmsCodeByLoginName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeSmsCodeByLoginNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GeSmsCodeByLoginNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSmsCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="smsCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSmsCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckSmsCodeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserStatusResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnLockUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnLockUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UnLockUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetPasswordResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOuUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ouPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOuUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOuUsersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ouPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOuResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfoByLoginName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invokeApp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfoByLoginNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserInfoByLoginNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModifyUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ModifyUser" />
+  </wsdl:message>
+  <wsdl:message name="ModifyUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ModifyUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="DisableUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DisableUser" />
+  </wsdl:message>
+  <wsdl:message name="DisableUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DisableUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnableUserSoapIn">
+    <wsdl:part name="parameters" element="tns:EnableUser" />
+  </wsdl:message>
+  <wsdl:message name="EnableUserSoapOut">
+    <wsdl:part name="parameters" element="tns:EnableUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUser" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GeSmsCodeByPhoneSoapIn">
+    <wsdl:part name="parameters" element="tns:GeSmsCodeByPhone" />
+  </wsdl:message>
+  <wsdl:message name="GeSmsCodeByPhoneSoapOut">
+    <wsdl:part name="parameters" element="tns:GeSmsCodeByPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="GeSmsCodeByLoginNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GeSmsCodeByLoginName" />
+  </wsdl:message>
+  <wsdl:message name="GeSmsCodeByLoginNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GeSmsCodeByLoginNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSmsCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSmsCode" />
+  </wsdl:message>
+  <wsdl:message name="CheckSmsCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSmsCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetUserStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnLockUserSoapIn">
+    <wsdl:part name="parameters" element="tns:UnLockUser" />
+  </wsdl:message>
+  <wsdl:message name="UnLockUserSoapOut">
+    <wsdl:part name="parameters" element="tns:UnLockUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:SetPassword" />
+  </wsdl:message>
+  <wsdl:message name="SetPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:SetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOuUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOuUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetOuUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOuUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOuSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOu" />
+  </wsdl:message>
+  <wsdl:message name="GetOuSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOuResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoByLoginNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserInfoByLoginName" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoByLoginNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserInfoByLoginNameResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AdWebServiceSoap">
+    <wsdl:operation name="CreateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">新增用户，组织不存在则添加至默认组织，密码为空则设置为默认密码,登录到为空则默认所有计算机</wsdl:documentation>
+      <wsdl:input message="tns:CreateUserSoapIn" />
+      <wsdl:output message="tns:CreateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">修改用户属性</wsdl:documentation>
+      <wsdl:input message="tns:ModifyUserSoapIn" />
+      <wsdl:output message="tns:ModifyUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除用户</wsdl:documentation>
+      <wsdl:input message="tns:DeleteUserSoapIn" />
+      <wsdl:output message="tns:DeleteUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">禁用用户</wsdl:documentation>
+      <wsdl:input message="tns:DisableUserSoapIn" />
+      <wsdl:output message="tns:DisableUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">启用用户</wsdl:documentation>
+      <wsdl:input message="tns:EnableUserSoapIn" />
+      <wsdl:output message="tns:EnableUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">用户密码修改</wsdl:documentation>
+      <wsdl:input message="tns:ChangePasswordSoapIn" />
+      <wsdl:output message="tns:ChangePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">身份认证</wsdl:documentation>
+      <wsdl:input message="tns:CheckUserSoapIn" />
+      <wsdl:output message="tns:CheckUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GeSmsCodeByPhone">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">通过手机号码获取短信验证码</wsdl:documentation>
+      <wsdl:input message="tns:GeSmsCodeByPhoneSoapIn" />
+      <wsdl:output message="tns:GeSmsCodeByPhoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GeSmsCodeByLoginName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">通过登录名获取短信验证码</wsdl:documentation>
+      <wsdl:input message="tns:GeSmsCodeByLoginNameSoapIn" />
+      <wsdl:output message="tns:GeSmsCodeByLoginNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSmsCode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">验证短信验证码</wsdl:documentation>
+      <wsdl:input message="tns:CheckSmsCodeSoapIn" />
+      <wsdl:output message="tns:CheckSmsCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取用户状态</wsdl:documentation>
+      <wsdl:input message="tns:GetUserStatusSoapIn" />
+      <wsdl:output message="tns:GetUserStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnLockUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">用户解锁</wsdl:documentation>
+      <wsdl:input message="tns:UnLockUserSoapIn" />
+      <wsdl:output message="tns:UnLockUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPassword">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">密码重置</wsdl:documentation>
+      <wsdl:input message="tns:SetPasswordSoapIn" />
+      <wsdl:output message="tns:SetPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOuUsers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询组织下的用户</wsdl:documentation>
+      <wsdl:input message="tns:GetOuUsersSoapIn" />
+      <wsdl:output message="tns:GetOuUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询组织</wsdl:documentation>
+      <wsdl:input message="tns:GetOuSoapIn" />
+      <wsdl:output message="tns:GetOuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoByLoginName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">按照用户登录名查询用户属性信息</wsdl:documentation>
+      <wsdl:input message="tns:GetUserInfoByLoginNameSoapIn" />
+      <wsdl:output message="tns:GetUserInfoByLoginNameSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdWebServiceSoap" type="tns:AdWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://cttq.org/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyUser">
+      <soap:operation soapAction="http://cttq.org/ModifyUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://cttq.org/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableUser">
+      <soap:operation soapAction="http://cttq.org/DisableUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableUser">
+      <soap:operation soapAction="http://cttq.org/EnableUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://cttq.org/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUser">
+      <soap:operation soapAction="http://cttq.org/CheckUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeSmsCodeByPhone">
+      <soap:operation soapAction="http://cttq.org/GeSmsCodeByPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeSmsCodeByLoginName">
+      <soap:operation soapAction="http://cttq.org/GeSmsCodeByLoginName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSmsCode">
+      <soap:operation soapAction="http://cttq.org/CheckSmsCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStatus">
+      <soap:operation soapAction="http://cttq.org/GetUserStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnLockUser">
+      <soap:operation soapAction="http://cttq.org/UnLockUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPassword">
+      <soap:operation soapAction="http://cttq.org/SetPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOuUsers">
+      <soap:operation soapAction="http://cttq.org/GetOuUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOu">
+      <soap:operation soapAction="http://cttq.org/GetOu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoByLoginName">
+      <soap:operation soapAction="http://cttq.org/GetUserInfoByLoginName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdWebServiceSoap12" type="tns:AdWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="http://cttq.org/CreateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyUser">
+      <soap12:operation soapAction="http://cttq.org/ModifyUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://cttq.org/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableUser">
+      <soap12:operation soapAction="http://cttq.org/DisableUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableUser">
+      <soap12:operation soapAction="http://cttq.org/EnableUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://cttq.org/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUser">
+      <soap12:operation soapAction="http://cttq.org/CheckUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeSmsCodeByPhone">
+      <soap12:operation soapAction="http://cttq.org/GeSmsCodeByPhone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeSmsCodeByLoginName">
+      <soap12:operation soapAction="http://cttq.org/GeSmsCodeByLoginName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSmsCode">
+      <soap12:operation soapAction="http://cttq.org/CheckSmsCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStatus">
+      <soap12:operation soapAction="http://cttq.org/GetUserStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnLockUser">
+      <soap12:operation soapAction="http://cttq.org/UnLockUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPassword">
+      <soap12:operation soapAction="http://cttq.org/SetPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOuUsers">
+      <soap12:operation soapAction="http://cttq.org/GetOuUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOu">
+      <soap12:operation soapAction="http://cttq.org/GetOu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoByLoginName">
+      <soap12:operation soapAction="http://cttq.org/GetUserInfoByLoginName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdWebService">
+    <wsdl:port name="AdWebServiceSoap" binding="tns:AdWebServiceSoap">
+      <soap:address location="http://192.168.2.48/AdService/AdWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AdWebServiceSoap12" binding="tns:AdWebServiceSoap12">
+      <soap12:address location="http://192.168.2.48/AdService/AdWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

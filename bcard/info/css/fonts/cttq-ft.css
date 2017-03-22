@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'AIFT';
+    src:    url('AIFT.eot?pqbgty');
+    src:    url('AIFT.eot?pqbgty#iefix') format('embedded-opentype'),
+        url('AIFT.ttf?pqbgty') format('truetype'),
+        url('AIFT.woff?pqbgty') format('woff'),
+        url('AIFT.svg?pqbgty#AIFT') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="aift-"], [class*=" aift-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'AIFT' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.aift-patch:before {
+    content: "\e916";
+}
+.aift-jiaban:before {
+    content: "\e915";
+}
+.aift-upArrow:before {
+    content: "\e911";
+}
+.aift-downArrow:before {
+    content: "\e912";
+}
+.aift-edit:before {
+    content: "\e913";
+}
+.aift-rightArrow:before {
+    content: "\e914";
+}
+.aift-buru:before {
+    content: "\e90f";
+}
+.aift-baby:before {
+    content: "\e910";
+}
+.aift-sick:before {
+    content: "\e90e";
+}
+.aift-care:before {
+    content: "\e900";
+}
+.aift-leftArrow:before {
+    content: "\e901";
+}
+.aift-injury:before {
+    content: "\e902";
+}
+.aift-sales:before {
+    content: "\e903";
+}
+.aift-marriage:before {
+    content: "\e904";
+}
+.aift-plan:before {
+    content: "\e905";
+}
+.aift-jianxiu:before {
+    content: "\e906";
+}
+.aift-losebaby:before {
+    content: "\e907";
+}
+.aift-year:before {
+    content: "\e908";
+}
+.aift-pei:before {
+    content: "\e909";
+}
+.aift-maternity:before {
+    content: "\e90a";
+}
+.aift-business:before {
+    content: "\e90b";
+}
+.aift-visitfamily:before {
+    content: "\e90c";
+}
+.aift-takework:before {
+    content: "\e90d";
+}
+

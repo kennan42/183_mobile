@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meap>
+	<interfaces>
+		<!-- 获取动态码 -->
+		<interface>			
+			<name>dycode/if_getCode</name>
+			<path>getDyCode</path>
+			<method>POST</method>
+			<public>true</public>
+		</interface>
+		<!-- 动态验证 -->
+		<interface>
+			<name>dycode/if_verify</name>
+			<path>verify</path>
+			<method>GET</method>
+			<public>true</public>
+		</interface>		
+	</interfaces>
+</meap>

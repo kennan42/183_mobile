@@ -1,0 +1,332 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_GPBUS_OpexApr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GPBUS_OpexApr" targetNamespace="http://www.thitech.com/EM_GPBUS_OpexApr/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_GPBUS_OpexApr/">
+      <!-- 增加部分1 开始 -->
+            <xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:anyType"/>
+					<xsd:element name="Value" type="xsd:anyType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			<xsd:element name="EMGPBUSOpexApr" type="tns:EMGPBUSOpexApr">
+
+			</xsd:element>
+			<xsd:element name="EMGPBUSOpexAprResponse" type="tns:EMGPBUSOpexAprResponse">
+
+			</xsd:element>
+
+			<xsd:complexType name="EMGPBUSOpexApr">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:EMGPBUSOpexAprInput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="EMGPBUSOpexAprResponse">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:EMGPBUSOpexAprOutput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="EMGPBUSOpexAprInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="taskId" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										任务ID
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="nextStep" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										下一个步骤
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="nextStepUser" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										下一个步骤人
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="nextDept" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										下一步骤部门编码
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="nextDeptNm" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										下一步骤部门名称
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="needBack" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										是否需要返回
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="lastStep" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										终审标识
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="appType" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										审批类型
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="appOpinion" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										审批意见
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="redReason" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										核减原因
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="compCode" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										当前人公司编码
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="perRangeID" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										当前人人事范围编码
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="perRangeNm" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										当前人人事范围名称
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="deptID" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										当前人部门ID
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="deptNm" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										当前人部门名称
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="userID" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										当前人人员编码
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="userName" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										当前人人员名称
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="perExpenseId" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										报销单id
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										报销单号
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="bagrAmt" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										业务批准金额
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="appTyp" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										审批标识
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="perItems" type="tns:PerItem">
+								<xsd:annotation>
+									<xsd:documentation>
+										个人费用子表信息列表
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="EMGPBUSOpexAprOutput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:ReturnCode"/>
+            	</xsd:complexContent>
+            </xsd:complexType>
+    
+			<xsd:complexType name="PerItem">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="perExpensesId" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>
+								子表费用ID
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="bagrAmt" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>业务批准金额</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EMGPBUSOpexAprRequest">
+    <wsdl:part element="tns:EMGPBUSOpexApr" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EMGPBUSOpexAprResponse">
+    <wsdl:part element="tns:EMGPBUSOpexAprResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GPBUS_OpexApr">
+    <wsdl:operation name="EMGPBUSOpexApr">
+      <wsdl:input message="tns:EMGPBUSOpexAprRequest"/>
+      <wsdl:output message="tns:EMGPBUSOpexAprResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.thitech.com/EM_GPBUS_OpexApr/" name="EM_GPBUS_OpexApr_Binding" type="ptns:EM_GPBUS_OpexApr">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="EMGPBUSOpexApr">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="EM_GPBUS_OpexApr"> 
+<wsdl:port xmlns:bprf="http://www.thitech.com/EM_GPBUS_OpexApr/" binding="bprf:EM_GPBUS_OpexApr_Binding" name="EM_GPBUS_OpexApr_Port">
+<soap:address location="http://bmq.cttq.com:51600/EM_GPBUS_OpexApr/EMGPBUSOpexAprImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

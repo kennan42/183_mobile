@@ -1,0 +1,224 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/EM_GRPTRVL_AllowanceQuery/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GRPTRVL_AllowanceQuery" targetNamespace="http://www.thitech.com/EM_GRPTRVL_AllowanceQuery/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/EM_GRPTRVL_AllowanceQuery/">
+      <!-- 增加部分1  开始  -->
+      <xsd:complexType name="AbstractType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+            <xsd:annotation>
+              <xsd:documentation>当前员工号</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="domain">
+            <xsd:annotation>
+              <xsd:documentation>域</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:length value="3"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分1 结束 -->
+      <!-- 增加部分2 开始 -->
+      <xsd:complexType name="ExtendMapType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分2 结束 -->
+      <!-- 增加部分3 开始 -->
+      <xsd:complexType name="Entry">
+        <xsd:sequence>
+          <xsd:element name="Key" type="xsd:anyType"/>
+          <xsd:element name="Value" type="xsd:anyType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分3 结束 -->
+      <!-- 增加部分4 开始 -->
+      <xsd:complexType name="ReturnCode">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回类型</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回码</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+            <xsd:annotation>
+              <xsd:documentation>返回信息</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+            <xsd:annotation>
+              <xsd:documentation>扩展数据</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <!-- 增加部分4 结束 -->
+      <!-- 增加部分5 开始 -->
+      <xsd:simpleType name="ChannelSerialNoType">
+        <xsd:annotation>
+          <xsd:documentation>渠道流水号</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64"/>
+          <xsd:minLength value="23"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <!-- 增加部分5 结束 -->
+      <xsd:element name="AllowanceQuery" type="tns:AllowanceQuery">
+      </xsd:element>
+      <xsd:element name="AllowanceQueryResponse" type="tns:AllowanceResponse">
+      </xsd:element>
+      <xsd:complexType name="AllowanceQuery">
+        <xsd:sequence>
+          <xsd:element name="input" type="tns:AllowanceQueryInput"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AllowanceQueryInput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:AbstractType">
+            <xsd:sequence>
+              <xsd:element maxOccurs="1" minOccurs="0" name="OPType" type="xsd:string">
+              </xsd:element>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="travelsGrpList" type="tns:TravelsGrp">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="AllowanceResponse">
+        <xsd:sequence>
+          <xsd:element name="output" type="tns:AllowanceQueryOutput">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AllowanceQueryOutput">
+        <xsd:complexContent>
+          <xsd:extension base="tns:ReturnCode">
+            <xsd:sequence>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="travelsGrpAllowanceList" type="tns:TravelsGrpAllowance">
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Travels">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travelsId" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="startDate" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="oriCity" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="oriCityNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCity" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCityNm" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TravelsGrp">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="travelsList" type="tns:Travels"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TravelsGrpAllowance">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="startDateMin" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="startDateMax" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="totalDay" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="totalAmount" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="totalHS" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="totalTX" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="allowanceTXRule" type="xsd:string"/>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="travelsAllowanceList" type="tns:TravelsAllowance">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TravelsAllowance">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="travelsId" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="startDate" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="oriCity" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="oriCityNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCity" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="1" minOccurs="0" name="destCityNm" type="xsd:string">
+          </xsd:element>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="allowanceList" type="tns:Allowance">
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Allowance">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expForm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="expFormNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="city" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="cityNm" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="allowanceRule" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="days" type="xsd:string"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="amount" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AllowanceQueryRequest">
+    <wsdl:part element="tns:AllowanceQuery" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AllowanceQueryResponse">
+    <wsdl:part element="tns:AllowanceQueryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GRPTRVL_AllowanceQuery">
+    <wsdl:operation name="AllowanceQuery">
+      <wsdl:input message="tns:AllowanceQueryRequest"/>
+      <wsdl:output message="tns:AllowanceQueryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EM_GRPTRVL_AllowanceQuerySOAP" type="tns:EM_GRPTRVL_AllowanceQuery">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="AllowanceQuery">
+      <soap:operation soapAction="http://www.thitech.com/EM_GRPTRVL_AllowanceQuery/AllowanceQuery"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EM_GRPTRVL_AllowanceQuery">
+    <wsdl:port binding="tns:EM_GRPTRVL_AllowanceQuerySOAP" name="EM_GRPTRVL_AllowanceQuerySOAP">
+      <soap:address location="http://bmu.cttq.com:51800/EM_GRPTRVL_AllowanceQuery/EMGRPTRVLAllowanceQueryImplBean"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,245 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_NtAprUser/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_NtAprUser" targetNamespace="http://www.cttq.com/B2B_BPMI_NtAprUser/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_NtAprUser/">
+			<!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="channelSerialNo" type="xsd:string"/>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			<xsd:element name="B2BBPMINtAprUser" type="tns:B2BBPMINtAprUser">
+
+			</xsd:element>
+			<xsd:element name="B2BBPMINtAprUserResponse" type="tns:B2BBPMINtAprUserResponse">
+
+			</xsd:element>
+
+			<xsd:complexType name="B2BBPMINtAprUser">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:B2BBPMINtAprUserInput"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMINtAprUserInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="taskID" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="currentStep" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation/>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="currentAprUsr" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<xsd:element maxOccurs="1" minOccurs="0" name="bussType" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="orderId" type="xsd:string">
+							</xsd:element>
+
+							<xsd:element maxOccurs="1" minOccurs="0" name="isendorse" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="disChannel" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="custAccount" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="reprAccount" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="custId" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="currUserDeptId" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="currUserPostId" type="xsd:string">
+							</xsd:element>
+
+							<xsd:element maxOccurs="1" minOccurs="0" name="taxAmt" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="temp01" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="temp02" type="xsd:string">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMINtAprUserResponse">
+				<xsd:sequence>
+					<xsd:element name="output" type="tns:B2BBPMINtAprUserOutput"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMINtAprUserOutput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="apprUserInfo" type="tns:ApprUserInfo">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="stepno" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="stepDesc" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="lastStep" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="approvalType" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="temp01" type="xsd:string">
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="temp02" type="xsd:string">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="ApprUserInfo">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprid" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprname" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="uniqueApprId" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprpostid" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprpost" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprdeptId" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprdept" type="xsd:string">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprLevelId" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprLevel" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprRoleType" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="temp01" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="temp02" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="temp03" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="B2BBPMINtAprUserRequest">
+		<wsdl:part element="tns:B2BBPMINtAprUser" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMINtAprUserResponse">
+		<wsdl:part element="tns:B2BBPMINtAprUserResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="B2B_BPMI_NtAprUser">
+		<wsdl:operation name="B2BBPMINtAprUser">
+			<wsdl:input message="tns:B2BBPMINtAprUserRequest"/>
+			<wsdl:output message="tns:B2BBPMINtAprUserResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="B2B_BPMI_NtAprUserSOAP" type="tns:B2B_BPMI_NtAprUser">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="B2BBPMINtAprUser">
+			<soap:operation soapAction="http://www.cttq.com/B2B_BPMI_NtAprUser/B2BBPMINtAprUser"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="B2B_BPMI_NtAprUser">
+		<wsdl:port binding="tns:B2B_BPMI_NtAprUserSOAP" name="B2B_BPMI_NtAprUserSOAP">
+			<soap:address location="http://b2b.cttq.com:50000/B2B_BPMI_NtAprUser/B2BBPMINtAprUserImplBean"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

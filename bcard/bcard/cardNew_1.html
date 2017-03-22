@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <style>
+        .banner_li{ position: relative;}
+        .banner_xing{ position: absolute;top:20%;left:54%;}
+        .banner_xm{color:#000;}
+        .banner_xm span.mingp{font-size:0.68em;margin-left:1.03em;}
+        .banner_bm{font-size:0.68em;text-align: left;position: absolute;top:32%;left:54%;}
+        .banner_z{font-size:0.68em; text-align: left;}
+        .banner_z_01{position: absolute;top:52%;left:54%;}
+        .banner_z_02{position: absolute;top:60%;left:54%;}
+        .banner_z_03{position: absolute;top:68%;left:54%;}
+        .banner_z_04{position: absolute;top:76%;left:54%;}
+        .banner_z_05{position: absolute;top:84%;left:54%;}
+        .hd{ z-index:1;  text-align: center; }
+       .hd li{display:inline-block; width:1.65em; height:0.187em; background:#e28191; text-indent:-9999px; overflow:hidden; margin:0 6px;}
+       .hd li.on{ background:#d5132d;  }
+       .user-font{font-family: "宋体";font-weight: bolder;}
+    </style>
+     <body class="um-vp bc-bg" ontouchstart>
+         
+            <!-- slideBox -->
+             <div class="ai-pat-default v_s_container" id="main_body">
+                   <form id="addForm">
+                <!-- <div style="position: relative;">
+                    <div id="slideBox" class="slideBox slideBox_border">
+                    <div class="bd djlb" >
+                        <div id="uploadresult" class="" style="width: 8em;margin: 0 auto;margin-top:3em;"> 
+                                  <img src="images/loading_2.gif" alt="正在请求，请稍后..." style="float:left;" />
+                                  <div class="logss" style="float:left;margin-left:0.5em;line-height: 3em;">请稍后...</div>
+                               </div>
+                        <ul id="bannerList" >
+                               <li class="banner_li">
+                                  <a class="pic"><img src=""  id="img_model"/></a>
+                                   <span id="span_1" class="" >
+                                    <div style="position: absolute;top:44.25%;left:75.7062%;right: 6.867%;width: 21%" id="img_1111" class="uhide">
+                                        <img src="images/appcan_opp.png" style="width: 100%"  id=""/>
+                                    </div> 
+                                    </span> 
+                                </li>
+                                 <li >
+                                  <a class="pic"><img src="" id="bg_img"/></a>
+                                </li> 
+                        </ul>
+                    </div>
+    
+                    <div class="hd" id="hd">
+                        <ul class=""></ul>
+                    </div>
+                </div>
+               
+          </div> -->
+                 <div id="uploadresult" class="uhide" style="margin-top:0px;"> 
+                  <img src="images/loading_2.gif" alt="正在请求，请稍后..." />
+                 </div>
+                 <!-- <div id="uploadresult_1" class="uhide" style="width: 11em;left: 34%;margin: 0 auto;margin-top: 50%;position: absolute;z-index: 10;"> 
+                      <img src="images/loading_1.gif" alt="正在请求，请稍后..." style="float:left;" />
+                      <div class="logss" style="float: left;margin-left: 0.5em;margin-top: 0.7em;line-height: 1em;font-size: 0.875em">正在提交，请稍后...</div>
+                 </div> -->
+                  <div id="uploadresult_1" class="ub ub-ac ub-pc uhide" style="z-index: 10;position: absolute;padding-top:25%;padding-left:30%;"> 
+                      <div>
+                          <img src="images/loading_1.gif" alt="正在请求，请稍后..." style="min-width:1.3em" />
+                      </div>
+                      <div>
+                          <div class="logss" style="line-height: 1em;font-size: 0.875em">正在提交，请稍后...</div>
+                      </div>
+                 </div>
+                <div style="clear:both;"></div>
+                  <div id="slider" class="slider">
+                      
+                  </div>
+                    <div class="hd" id="hd">
+                        <ul class=""><li class="on">1</li><li class="">2</li></ul>
+                    </div>
+                
+              
+                
+                
+                <div class="edit_card_text ai-ph-display ai-ubt he">基本信息2</div>
+                <div class="card_1 ai-us">
+                    <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">名片名称</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input type="text" id="templateId" name="templateId" class="uhide" value="" />
+                                 <input type="text" id="templateEnName" name="templateEnName" class="uhide" value="" />
+                                <input placeholder="请输入名片名称" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common"  name="bcardName" id="bcardName"  value="">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">姓名中文</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入姓名中文" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="userName" id="userName" value=""   oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="姓名中文格式不正确" regex="^([\u4e00-\u9fa5]){2,7}$">
+                            </div>
+                             <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                    </div>
+                   <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd uhide">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">公司名称</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 ">
+                                <div class="select uba bc-border bc-text select_all">
+                                    <div class="text select_text ai-fts-body">请选择</div>
+                                    <div class="select_xia"></div>
+                                    <select class="" placeholder="请选择公司" name="company" id="company_select">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd uhide">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">公司名称</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入公司名称" type="text" class="ai-fts-body bor0 tx-l ai-ph-common" name="company" id="company" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" >
+                            </div>
+                            <div class="yingc uhide color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                           
+                     </div>
+                      <div class="jc_flex pa_t7 pa_b7 jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">部门</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入部门" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common department" name="dept" id="dept" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                             
+                     </div>
+                    
+                </div>
+                <div class="edit_card_text ai-ph-display">更多</div>
+                <div class="card_1 ai-us" id="more_info_2">
+                     <div class="jc_flex pa_t7 pa_b7  bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">职位</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入职位" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="job" id="job" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                           
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">手机号码</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入手机号码" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="mobileNumber" id="mobileNumber" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="手机号码格式不正确" regex="^0?1[3|4|5|8][0-9]\d{8}$">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                          
+                     </div>
+                      <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">公司地址</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入公司地址" type="text" class="ai-fts-body bor0 tx-l ai-ph-common" name="companyAddress" id="companyAddress" value=""  oninput="copyByInput(this)" onpropertychange="copyByInput(this)">
+                            </div>
+                           <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">邮箱</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入邮箱" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="email" id="email"  value="" errorMsg="邮箱格式不正确" regex="^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+" oninput="copyByInput(this)" onpropertychange="copyByInput(this)">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">邮编</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入邮编号" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="postcode" id="postcode" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="邮编格式不正确" regex="^[1-9][0-9]{5}$">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                         
+                     </div>
+                      <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">电话号码</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入电话号码" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="call" id="call" value=""  oninput="copyByInput(this)" onpropertychange="copyByInput(this)">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                            
+                     </div>
+                      <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">传真</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入传真" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="fax" id="fax" value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">公司主页</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入公司主页" type="text"  class="ai-fts-body bor0 tx-l ai-ph-common" name="companyPage" id="companyPage"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">QQ</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入QQ号" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="QQ" id="QQ"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="QQ格式不正确" regex="^[1-9][0-9]{4,9}$">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 bor_db jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">微信</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入微信号" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="weixin" id="weixin"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" errorMsg="微信格式不正确" regex="^[a-zA-Z\d_]{5,}$">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                     <div class="jc_flex pa_t7 pa_b7 jc_dbtd">
+                            <div class="jc_dbtd_left pa_l7 ai-fts-body ai-ph-display">客服电话</div>
+                            <div class="jc_dbtd_1_left jc_flex_1 input_2">
+                                <input placeholder="请输入客服电话" type="number"  class="ai-fts-body bor0 tx-l ai-ph-common" name="servicePhone" id="servicePhone"  value="" oninput="copyByInput(this)" onpropertychange="copyByInput(this)" data-display="1">
+                            </div>
+                            <div class="yingc color_1_2 uhide">
+                                  <div class="ying_z ai-fts-caption">显示</div>
+                            </div>
+                     </div>
+                   
+                    
+                </div>
+                <div class="ai-card_2">
+                 <div class="ai-item" style="padding: 0px">
+                   <div class=" ai-btn ai-btn_add ai-btn-block ai-btn-primaiy ai-mab-gap" id="saveBtn" data-action_name="save">保存</div>
+                 </div>
+               </div>
+            </form>    
+            </div>
+        
+       
+         <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+       <script src="js/appcan.listview.js"></script>
+       <script src="js/view/common.js"></script>
+       <script src="js/appcan.slider.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+ </body>
+    <script>
+        var slider = appcan.slider({
+          selector : '#slider',
+          aspectRatio:10/16,
+          hasLabel:true,
+          index:0
+       });
+        appcan.ready(function() {
+              var templateId= appcan.locStorage.getVal('templateId');
+               //第一个模版
+            // var templateId="56a1893572a0512194fe9e78";
+                //第二个模版
+            // var templateId="56a19ab872a0512194fe9e7a";
+               //第三个模版
+           // var templateId="56a1ba6472a0512194fe9e7b";
+               //第四个模版
+            var templateId="56a1c00272a0512194fe9e7c";
+                renderModel_1(templateId);
+                var  userId=appcan.locStorage.getVal('user_id');
+                $("#addForm").data("user_id",userId);
+                                      console.log($("#company").parents(".jc_flex").hasClass("uhide"));
+        });
+            $("body").on("tap",function (e){
+                   //点击保存按钮
+               if(e.target==$("#saveBtn")[0]){
+                  var  action="create";
+                  var userId= $("#addForm").data("user_id");
+                  if(validate()==false){
+                      return;
+                  }else{
+                    saveNewCard(action,userId);
+                  }
+            }
+         });
+          slider.on("clickItem",function(index,data){
+                var  action="view";
+                //var userId="213865";
+               var userId=$("#addForm").data("user_id");
+                console.log("验证2222");
+                console.log(validate());
+                if(validate()==false){
+                    return;
+                }else{
+                     if(index==0){
+                        previewCard(action,userId,1);
+                     }else{
+        
+                          previewCard(action,userId,2);
+                     }
+                }
+               
+          }) 
+          function renderModel_1(templateId){
+               var option={
+                 url : 'bcard/getBcardTemplateById',
+                 data:{"templateId":templateId},
+                 beforeSend: function(XMLHttpRequest) {
+                   $("#slider").addClass("uhide");
+                   $("#uploadresult").removeClass("uhide");
+                 },
+                success : function(data) {
+                 console.log(data);
+                    if(data.status=="0"){
+                         $("#uploadresult").addClass("uhide");
+                          $("#slider").removeClass("uhide");
+                        //selectedMaxDisplayCount
+                        $("#span_1").data("max_display_count",data.selectedMaxDisplayCount);
+                         var data_1=data.data;
+                         //设置名片的背景图片
+                        slider.set([{
+                                    img : data_1.templateURL,
+                                    div:'<span id="span_1"><span id="span_2"></span><div style="position: absolute;top:44.25%;left:75.7062%;right: 6.867%;width: 22%" id="img_1111" class="uhide"><img src="images/appcan_opp.png" style="width: 100%"  id=""/></div> </span>'
+                                                         
+                                }, {
+                                    img :data_1.templateBackgroundURL,
+                                    div:''
+                                }]);
+                         $("#span_1").data("max_select_count",data_1.selectedMaxDisplayCount);
+                         var selectedMaxDisplayCount=data_1.selectedMaxDisplayCount;
+                        //不是模版上的特有字段，每个模版都包含的字段
+                        var startLocConfig=data_1.startLocationConfig;
+                       // console.log(startLocConfig);
+                        $("#span_1").data("inc_y",startLocConfig.incrementY*100);
+                        $("#span_1").data("start_value_x",startLocConfig.startValueX*100);
+                        $("#span_1").data("start_text_x",startLocConfig.startTextX*100);
+                        $("#span_1").data("start_text_y",startLocConfig.startTextY*100);
+                        $("#templateId").val(data_1._id);
+                        $("#templateEnName").val(data_1.templateEnName);
+                       
+                        //字的大小
+                        var relative_fontConfig=data_1.fontConfig;
+                         $("#span_1").data("font_size",relative_fontConfig.fontSize/ 1063 * $(".ub-img1").width());
+                        
+                        
+                       //不同模版不同的公司显示方式
+                        var inputFormat=data_1.companyConfig.inputFormat;
+                        if(inputFormat=="input"){
+                            $("#company").parents(".jc_flex").removeClass("uhide");
+                        }else if(inputFormat== "background"){
+                             // $("#company").parents(".jc_flex").removeClass("uhide");
+                             $("#company").addClass("display_0");
+                        }else if(inputFormat== "select"){
+                            //若公司为可选择的
+                            $("#company_select").addClass("display_0");
+                            var companyConfig_data=data_1.companyConfig.data;
+                             var  select_val='<option value="">请选择</option>';
+                            for(var i in companyConfig_data){
+                             select_val+='<option value="'+i+'">'+companyConfig_data[i]+'</option>';
+                               
+                            }
+                             $("#company_select").html(select_val);
+                            
+                            $("#company_select").parents(".jc_flex").removeClass("uhide");
+                            //当其进行选择时
+                             appcan.select(".select",function(ele,value){
+                               if(value!=""){
+                                   if( $("#company_select").hasClass("display_0")==true){
+                                       $("#company_select").removeClass("display_0");
+                                      $("#company_select").addClass("display_1");
+                                   }else{
+                                        $("#company_select").addClass("display_1");
+                                   }
+                                   
+                                 var text_1=$('#company_select option[value="'+value+'"]').text();
+                                 $("#company_model").html(text_1);
+                                // console.log( $("#company_select").val());
+                               }else{
+                                    var text_1="";
+                                    if($("#company_select").hasClass("display_1")==true){
+                                        $("#company_select").removeClass("display_1");
+                                      $("#company_select").addClass("display_0"); 
+                                    }else{
+                                         $("#company_select").addClass("display_0"); 
+                                    }
+                                   
+                                 $("#company_model").html(text_1);
+                               }
+                               
+                            
+                           });
+                        }
+                        //模版字段
+                          var starTextX= $("#span_1").data("start_text_x");
+                          var incY=startLocConfig.incrementY*100;
+                          var startTextY= startLocConfig.startTextY*100;
+                        var requiredItems=data_1.requiredItems;
+                        var selectedItems=data_1.selectedItems;
+                     
+                       var array=new Array();
+                       var array_1=new Array();
+                       //模版若是左上对齐
+                       if(data_1.align=="NorthWest"){
+                           //模版左对齐
+                            for(var i in requiredItems){
+                             var each_requiredItem=requiredItems[i];
+                               if(each_requiredItem.locateType=="absolute"){
+                                   //必须字段的绝对定位
+                                  var name=each_requiredItem.key;
+                                   array.push(name); 
+                                   if(name!="company"){
+                                          $("#"+name).addClass("required");
+                                           $("#"+name).addClass("display_0");
+                                          $("#"+name).addClass("absolute");
+                                           $("#"+name).attr("maxlength",each_requiredItem.maxLength);
+                                         if(each_requiredItem.text != ""){
+                                           //当text不为空时
+                                            var fontSize=Number(each_requiredItem.fontSize)/ 1063 * $(".ub-img1").width();
+                                            var text_left=Number(each_requiredItem.textX)*100;
+                                            var text_top=Number(each_requiredItem.textY)*100;
+                                            var html_1='<div style="position: absolute;top:'+text_top+'%;left:'+text_left+'%;font-size:'+fontSize+'px" id="'+name+'_1">'+each_requiredItem.text+'<span id="'+name+'_model" style="position: absolute"></span></div>';
+                                            $("#span_1").append(html_1);
+                                             if(name=="userName"){
+                                                 $("#userName_1").addClass("user-font");
+                                             }
+                                            
+                                        }else{
+                                             //当text为空时
+                                            var fontSize=Number(each_requiredItem.fontSize)/ 1063 * $(".ub-img1").width();
+                                            var value_left=Number(each_requiredItem.valueX)*100;
+                                            var value_top=Number(each_requiredItem.valueY)*100;
+                                            var html_1='<div style="position: absolute;top:'+value_top+'%;left:'+value_left+'%;font-size:'+fontSize+'px" id="'+name+'_1">'+each_requiredItem.text+'<div id="'+name+'_model"></div></div>';
+                                            $("#span_1").append(html_1);
+                                             
+                                        }
+                                        
+                                        if(name=="job"){
+                                             $("#job").data("value_left",$("#job").offset().left);
+                                        }
+                                   }else{ 
+                                          
+                                           var inputFormat=data_1.companyConfig.inputFormat;
+                                             if(inputFormat=="input"){
+                                                    $("#company").addClass("required");
+                                                    $("#company").addClass("absolute");
+                                                    $("#company").addClass("display_0");
+                                                 //   $("#company_select").addClass("enable_0");
+                                            }else if(inputFormat== "background"){
+                                                    //$("#company").addClass("required");
+                                                    //$("#company_select").removeClass("enable_1");
+                                                  //  $("#company_select").addClass("display_0");
+                                             }else if(inputFormat== "select"){
+                                                 $("#company_select").addClass("required");
+                                                  $("#company_select").addClass("absolute");
+                                                 $("#company_select").addClass("display_0");
+                                             }
+                                            var fontSize=Number(each_requiredItem.fontSize)/ 1063 * $(".ub-img1").width();
+                                            var value_left=Number(each_requiredItem.valueX)*100;
+                                            var value_top=Number(each_requiredItem.valueY)*100;
+                                            var html_1='<div style="position: absolute;top:'+value_top+'%;left:'+value_left+'%;font-size:'+fontSize+'px" id="'+name+'_1">'+each_requiredItem.text+'<div id="'+name+'_model"></div></div>';
+                                            $("#span_1").append(html_1);
+                                   }
+                                  
+                               }else{
+                                   //必须字段的相对定位
+                                    var name=each_requiredItem.key;
+                                    $("#"+name).addClass("required");
+                                    $("#"+name).addClass("display_0");
+                                     $("#"+name).addClass("relative");
+                                    $("#"+name).attr("maxlength",each_requiredItem.maxLength);
+                                  
+                                   
+                               }
+                              console.log(each_requiredItem);
+                             }
+                             for(var j in selectedItems){
+                                 var relative_item=selectedItems[j];
+                                  var name=relative_item.key;
+                                   if(name=="QQ"){
+                                      relative_item.text="Q&nbsp;&nbspQ : ";
+                                   }
+                                   
+                                   $("#"+name).addClass("relative");
+                                   $("#"+name).addClass("display_0");
+                                   $("#"+name).attr("maxlength",relative_item.maxLength);
+                             }
+                             //非必须，相对定位
+                           var arr_w=new Array();
+                           
+                            $(".relative").on("blur",function (){
+                                refreshLeft(data_1);
+                            })
+                            
+                                               //点击显示，隐藏按钮
+                           $(".yingc").on("tap",function (){
+                               if($(this).hasClass("color_1_1")==true){
+                                   //若颜色为蓝色，则点击将其隐藏
+                                   $(this).removeClass("color_1_1");
+                                   $(this).addClass("color_1_2");
+                                   $(this).find(".ying_z").html("显示"); 
+                                   var id=$(this).siblings(".jc_dbtd_1_left").find("input").attr("id"); 
+                                   if( $("#"+id).hasClass("display_1")==true){
+                                       $("#"+id).removeClass("display_1");
+                                        $("#"+id).addClass("display_0");
+                                   }
+                                   
+                                }else{
+                                     //显示
+                                     var show_len=$(".relative.display_1").length;
+                                     console.log(show_len);
+                                     var max_len=parseInt($("#span_1").data("max_select_count"));
+                                      console.log(max_len);
+                                     if(show_len>=max_len){
+                                         //打开一个提示框 
+                                        // alert('此模版最多可显示'+max_len+'项更多内容，当前内容已超出，请重新选择。');
+                                         alert("此模版已没有位置显示更多内容，请重新选择！")
+                                        return false;
+                                     }
+                                     $(this).removeClass("color_1_2");
+                                     $(this).addClass("color_1_1");
+                                     $(this).find(".ying_z").html("隐藏");
+                                     var id=$(this).siblings(".jc_dbtd_1_left").find("input").attr("id");
+                                     if($("#"+id).hasClass("display_0")==true){
+                                         $("#"+id).removeClass("display_0");
+                                        $("#"+id).addClass("display_1");
+                                   }
+                               }
+                               refreshLeft(data_1);
+                           });     
+           
+                             
+                       }else if(data_1.align=="NorthEast"){
+                           //模版右对齐
+                           if(data_1.templateEnName=="forth-template.png"){
+                                 $("#img_1111").removeClass("uhide");
+                           }
+                           for(var i in requiredItems){
+                             var each_requiredItem=requiredItems[i];
+                               if(each_requiredItem.locateType=="absolute"){
+                                   //必须字段的绝对定位
+                                  var name=each_requiredItem.key;
+                                   array.push(name); 
+                                   if(name!="company"){
+                                          $("#"+name).addClass("required");
+                                           $("#"+name).addClass("display_0");
+                                          $("#"+name).addClass("absolute");
+                                           $("#"+name).attr("maxlength",each_requiredItem.maxLength);
+                                         if(each_requiredItem.text != ""){
+                                           //当text不为空时
+                                            var fontSize=Number(each_requiredItem.fontSize)/ 1063 * $(".ub-img1").width();
+                                            var text_top=Number(each_requiredItem.textY)*100;
+                                            //var html_1='<div style="position: absolute;top:'+text_top+'%;left:'+text_left+'%;font-size:'+fontSize+'px" id="'+name+'_1">'+each_requiredItem.text+'<span id="'+name+'_model" style="position: absolute"></span></div>';
+                                             var text_right=Number(1-each_requiredItem.textX)*100;
+                                              var html_1='<div style="position: absolute;top:'+text_top+'%;width: 100%;font-size:'+fontSize+'px" id="'+name+'_1">\
+                                                   <div class="ub">\
+                                                        <div class="ub-f1"></div>\
+                                                        <div class="real" >'+each_requiredItem.text+'<span id="'+name+'_model"></span></div>\
+                                                        <div style="width:'+text_right+'%" class="role">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>';
+                                              $("#span_1").append(html_1);
+                                               if(name=="userName"){
+                                                 $("#userName_1").addClass("user-font");
+                                             }
+                                            
+                                        }else{
+                                             //当text为空时
+                                            var fontSize=Number(each_requiredItem.fontSize)/ 1063 * $(".ub-img1").width();
+                                            var value_top=Number(each_requiredItem.valueY)*100;
+                                            //var html_1='<div style="position: absolute;top:'+value_top+'%;left:'+value_left+'%;font-size:'+fontSize+'px" id="'+name+'_1">'+each_requiredItem.text+'<div id="'+name+'_model"></div></div>';
+                                            var text_right=Number(1-each_requiredItem.valueX)*100;
+                                            var html_1='<div style="position: absolute;top:'+value_top+'%;width: 100%;font-size:'+fontSize+'px" id="'+name+'_1">\
+                                               <div class="ub">\
+                                                    <div class="ub-f1"></div>\
+                                                    <div class="real">'+each_requiredItem.text+'<span id="'+name+'_model"></span></div>\
+                                                    <div style="width:'+text_right+'%" class="role">\
+                                                    </div>\
+                                                </div>\
+                                            </div>';
+                                            $("#span_1").append(html_1);
+                                              if(name=="userName"){
+                                                 $("#userName_1").addClass("user-font");
+                                             }
+                                        }
+                                   }else{ 
+                                          
+                                           var inputFormat=data_1.companyConfig.inputFormat;
+                                             if(inputFormat=="input"){
+                                                    $("#company").addClass("required");
+                                                    $("#company").addClass("absolute");
+                                                    $("#company").addClass("display_0");
+                                            }else if(inputFormat== "background"){
+                                                    
+                                             }else if(inputFormat== "select"){
+                                                 $("#company_select").addClass("required");
+                                                  $("#company_select").addClass("absolute");
+                                                 $("#company_select").addClass("display_0");
+                                             }
+                                                if(each_requiredItem.text != ""){
+                                           //当text不为空时
+                                            var fontSize=Number(each_requiredItem.fontSize)/ 1063 * $(".ub-img1").width();
+                                            var text_top=Number(each_requiredItem.textY)*100;
+                                            //var html_1='<div style="position: absolute;top:'+text_top+'%;left:'+text_left+'%;font-size:'+fontSize+'px" id="'+name+'_1">'+each_requiredItem.text+'<span id="'+name+'_model" style="position: absolute"></span></div>';
+                                             var text_right=Number(1-each_requiredItem.textX)*100;
+                                              var html_1='<div style="position: absolute;top:'+text_top+'%;width: 100%;font-size:'+fontSize+'px" id="'+name+'_1">\
+                                                   <div class="ub">\
+                                                        <div class="ub-f1"></div>\
+                                                        <div class="real" >'+each_requiredItem.text+'<span id="'+name+'_model">'+input_val+'</span></div>\
+                                                        <div style="width:'+text_right+'%" class="role">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>';
+                                              $("#span_1").append(html_1);
+                                            
+                                        }else{
+                                             //当text为空时
+                                            var fontSize=Number(each_requiredItem.fontSize)/ 1063 * $(".ub-img1").width();
+                                            var value_top=Number(each_requiredItem.valueY)*100;
+                                            //var html_1='<div style="position: absolute;top:'+value_top+'%;left:'+value_left+'%;font-size:'+fontSize+'px" id="'+name+'_1">'+each_requiredItem.text+'<div id="'+name+'_model"></div></div>';
+                                            var text_right=Number(1-each_requiredItem.valueX)*100;
+                                            var html_1='<div style="position: absolute;top:'+value_top+'%;width: 100%;font-size:'+fontSize+'px" id="'+name+'_1">\
+                                               <div class="ub">\
+                                                    <div class="ub-f1"></div>\
+                                                    <div class="real">'+each_requiredItem.text+'<span id="'+name+'_model">'+input_val+'</span></div>\
+                                                    <div style="width:'+text_right+'%" class="role">\
+                                                    </div>\
+                                                </div>\
+                                            </div>';
+                                            $("#span_1").append(html_1);
+                                        }
+                                   }
+                                  
+                               }else{
+                                   //必须字段的相对定位
+                                    var name=each_requiredItem.key;
+                                    $("#"+name).addClass("required");
+                                    $("#"+name).addClass("display_0");
+                                     $("#"+name).addClass("relative");
+                                    $("#"+name).attr("maxlength",each_requiredItem.maxLength);
+                                  
+                                   
+                               }
+                              //console.log(each_requiredItem);
+                             }
+                             for(var j in selectedItems){
+                                 var relative_item=selectedItems[j];
+                                  var name=relative_item.key;
+                                      if(name=="QQ"){
+                                          relative_item.text="Q&nbsp;&nbspQ : ";
+                                       }
+                                   $("#"+name).addClass("relative");
+                                   $("#"+name).addClass("display_0");
+                                   $("#"+name).attr("maxlength",relative_item.maxLength);
+                             }
+                             //非必须，相对定位
+                           var arr_w=new Array();
+                           
+                            $(".relative").on("blur",function (){
+                                 //右对齐的属性显示
+                               refreshRight(data_1);
+                            });
+                                   //点击显示，隐藏按钮
+                           $(".yingc").on("tap",function (){
+                               if($(this).hasClass("color_1_1")==true){
+                                   //若颜色为蓝色，则点击将其隐藏
+                                   $(this).removeClass("color_1_1");
+                                   $(this).addClass("color_1_2");
+                                   $(this).find(".ying_z").html("显示"); 
+                                   var id=$(this).siblings(".jc_dbtd_1_left").find("input").attr("id"); 
+                                   if( $("#"+id).hasClass("display_1")==true){
+                                       $("#"+id).removeClass("display_1");
+                                        $("#"+id).addClass("display_0");
+                                   }
+                                   
+                                }else{
+                                     //显示
+                                     var show_len=$(".relative.display_1").length;
+                                     console.log(show_len);
+                                     var max_len=parseInt($("#span_1").data("max_select_count"));
+                                      console.log(max_len);
+                                     if(show_len>=max_len){
+                                         //打开一个提示框 
+                                        // alert('此模版最多可显示'+max_len+'项更多内容，当前内容已超出，请重新选择。');
+                                         alert("此模版已没有位置显示更多内容，请重新选择！")
+                                        return false;
+                                     }
+                                     $(this).removeClass("color_1_2");
+                                     $(this).addClass("color_1_1");
+                                     $(this).find(".ying_z").html("隐藏");
+                                     var id=$(this).siblings(".jc_dbtd_1_left").find("input").attr("id");
+                                     if($("#"+id).hasClass("display_0")==true){
+                                         $("#"+id).removeClass("display_0");
+                                        $("#"+id).addClass("display_1");
+                                   }
+                               }
+                               //右对齐的属性显示
+                               refreshRight(data_1);
+                              
+                           }); 
+                           
+                       }
+                      
+                     }
+               }
+            }
+            view.ajax(option);
+
+        }
+        
+        //当输入框输入时，在模版上显示输入的值
+       function copyByInput(obj){
+           var i=0;
+           var k=$("#more_info_2 input").index($("#"+obj.id));
+           var maxLength=$("#"+obj.id).attr("maxlength");
+           if( $("#"+obj.id).attr("type")=="number"&&$("#"+obj.id+"_1").html()!=null){
+                limit(obj,maxLength);//XX字节内
+           }
+           var userName=$("#userName").val();
+            if(userName.length==2||userName.length==3){
+             
+              if($("#templateId").val()=="56a1893572a0512194fe9e78"){
+               var job_left=$("#job_1").offset().left;
+                var percent_job_left=job_left/ 1063 * $(".ub-img1").width();
+               console.log(job_left);
+              $("#job_1").css("left",job_left);
+             }
+           }else if(userName.length==4){
+               if($("#templateId").val()=="56a1893572a0512194fe9e78"){
+                 var per_userName_width=$("#userName_model").width()/4;
+               
+               console.log(per_userName_width);
+               var job_left=$("#job_1").offset().left+per_userName_width;
+                var percent_job_left=job_left/ 1063 * $(".ub-img1").width();
+               console.log(job_left);
+              $("#job_1").css("left",job_left);
+             }
+           }
+           $("#"+obj.id+"_model").html(obj.value);
+          if( $("#"+obj.id).val().length==0){
+               $("#"+obj.id+"_1").addClass("uhide");
+                if($("#"+obj.id).hasClass("display_1")==true){
+                          $("#"+obj.id).removeClass("display_1");
+                          $("#"+obj.id).addClass("display_0");
+               }else{
+                   $("#"+obj.id).addClass("display_0");
+               }
+               $("#"+obj.id).parent().siblings(".yingc").addClass("uhide");
+               $("#"+obj.id).parent().siblings(".yingc").removeClass("color_1_1");
+               $("#"+obj.id).parent().siblings(".yingc").addClass("color_1_2");
+               $("#"+obj.id).parent().siblings(".yingc").find(".ying_z").html("显示"); 
+             
+          }else{
+              if($("#"+obj.id+"_1").hasClass("uhide")==true){
+                  $("#"+obj.id+"_1").removeClass("uhide")
+              }
+             if($("#"+obj.id).hasClass("required")==false){
+                 if($("#"+obj.id).hasClass("display_0")==true){
+                  $("#"+obj.id).removeClass("display_0");
+                  $("#"+obj.id).addClass("display_1");
+                 }else{
+                   $("#"+obj.id).addClass("display_1");
+                 }
+               
+               $("#"+obj.id+"_1").removeClass("uhide");
+               $("#"+obj.id).parent().siblings(".yingc").removeClass("uhide");
+               $("#"+obj.id).parent().siblings(".yingc").removeClass("color_1_2");
+               $("#"+obj.id).parent().siblings(".yingc").addClass("color_1_1");
+               $("#"+obj.id).parent().siblings(".yingc").find(".ying_z").html("隐藏");               
+              }else{
+                  if($("#"+obj.id).hasClass("display_0")==true){
+                  $("#"+obj.id).removeClass("display_0");
+                  $("#"+obj.id).addClass("display_1");
+                 }else{
+                   $("#"+obj.id).addClass("display_1");
+                 } 
+              }
+          } 
+       }
+        // $("input").on("focus",function (){
+//             
+            // if($(this).hasClass("relative")==true){
+                // console.log($(this).attr("id"));
+                 // if($(this).val().length==0){
+                 // var show_len=$(".relative.display_1").length;
+                 // console.log(show_len);
+                 // var max_len=parseInt($("#span_1").data("max_select_count"));
+                  // console.log(max_len);
+                 // if(show_len>=max_len){
+                     // alert("此模版已没有位置显示更多内容，请重新选择！")
+//                     
+                  // // $(this).blur();
+                   // return false;
+                 // }
+//                 
+               // }else{
+                // //return tr
+             // }
+           // }
+//            
+//            
+        // })
+      //前端"名字"在模版上显示两个字时必须隔开
+       $("#userName").on("blur",function (){
+           var userName=$(this).val();
+           if(userName.length==2){
+              var userName_model=userName.substring(0,1)+"　"+userName.substring(1,2);
+              $("#userName_model").html(userName_model);
+           }
+           /*
+            else if(userName.length==3){
+               if($("#templateId").val()=="56a1893572a0512194fe9e78"){
+                   var job_left=$("#job_1").offset().left;
+                    var percent_job_left=job_left/ 1063 * $(".ub-img1").width();
+                   console.log(job_left);
+                  $("#job_1").css("left",job_left);
+                 }
+           }else if(userName.length==4){
+               if($("#templateId").val()=="56a1893572a0512194fe9e78"){
+                 var per_userName_width=$("#userName_model").width()/4;
+               
+               console.log(per_userName_width);
+               var job_left=$("#job_1").offset().left+per_userName_width;
+                var percent_job_left=job_left/ 1063 * $(".ub-img1").width();
+               console.log(job_left);
+              $("#job_1").css("left",job_left);
+             }
+           }
+            * */
+            
+         
+       });
+      function saveNewCard(action,userId){
+         var arr= serializeJson($("#addForm"));
+         var url="bcard/createUserBcard";
+         arr.action=action;
+         arr.userId=userId;
+        var option={
+               url : url,
+              data:arr,
+              
+              success:function (data){
+                  console.log(data);
+                if(data.status=="0"){
+                      //打开一个确认框 
+                    appcan.locStorage.setVal('uuid_11',data.uuid);
+                     uexWindow.closePopover("refresh");
+                      appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                    appcan.locStorage.setVal('bcard_share',data);
+                      appcan.locStorage.setVal('userName',$("#userName").val());
+                     appcan.window.evaluateScript({
+                            name:'cardNew',
+                            scriptContent:'renderSave()'
+                      });
+                }else{
+                      uexWindow.closePopover("refresh");
+                      alert("数据有误，请重新尝试或联系管理员!");
+                }
+              },
+              fail:function (){
+                 
+                   uexWindow.closePopover("refresh");
+                    alert("网络异常，请重新尝试或联系管理员!");
+              },
+              error:function (){
+                   uexWindow.closePopover("refresh");
+                     alert("请求失败，请重新尝试或联系管理员!");
+              },
+                timeout:30000
+         }
+         appcan.window.evaluateScript({
+                            name:'',
+                            scriptContent:'renderRefresh()'
+                      });
+          view.ajax(option);  
+       }
+       
+      function previewCard(action,userId,view_index){
+             
+         var arr= serializeJson($("#addForm"));
+         var url="";
+        if(action!=""){
+           arr.action=action; 
+           url="bcard/createUserBcard";
+        }
+         arr.userId=userId;
+        var option={
+               url : url,
+              data:arr,
+              success:function (data){
+                 if(data.status=="0"&& data.msg=="生成预览信息成功"){
+                 //打开预览页面
+                 $("#uploadresult_1").addClass("uhide");
+                 console.log(data);
+                  var fileurl=data.fileurl;
+                     var backgroundBcardURL=data.backgroundBcardURL;
+                     console.log(data.fileurl);
+                     console.log("名片背面====》》"+data.backgroundBcardURL);
+                     if(view_index==1){
+                          appcan.window.evaluateScript({
+                                name:'cardEdit',
+                                scriptContent:'preview("'+fileurl+'","'+backgroundBcardURL+'");'
+                         });
+                     }else if(view_index==2){
+                         appcan.window.evaluateScript({
+                                name:'cardEdit',
+                                scriptContent:'preview("'+backgroundBcardURL+'","'+fileurl+'");'
+                         });
+                     }
+                }else{
+                      $("#uploadresult_1").addClass("uhide");
+                      alert("数据有误，请重新尝试或联系管理员!");
+                }
+              },
+              fail:function (){
+                 
+                    $("#uploadresult_1").addClass("uhide");
+                    alert("请求失败");
+              },
+              error:function (){
+                   $("#uploadresult_1").addClass("uhide");
+                     alert("请求失败");
+              },
+                timeout:30000
+         }
+          $("#uploadresult_1").removeClass("uhide");
+          view.ajax(option);
+       }
+       
+       function serializeJson(ID) {
+            var serializeObj = {};
+            $(ID.serializeArray()).each(function() {
+               // console.info(this.name);
+               // console.log(this.name+":"+$("#"+this.name).data("text_left"));
+               if($("#"+this.name).hasClass("display_1")==true){
+                  this.display="1"; 
+               }else{
+                    this.display="0"; 
+                    
+               }
+               if(this.name=="bcardName"){
+                  
+                   serializeObj[this.name]=this.value;
+               }else if(this.name=="templateId"){
+                      serializeObj[this.name]=this.value;
+               }else if(this.name=="company"){
+                    console.log($("#company_select").parents(".jc_flex").hasClass("uhide"));
+                   if($("#company_select").parents(".jc_flex").hasClass("uhide")==false){
+                       if($("#company_select").hasClass("display_1")==true){
+                           this.display="1";
+                       }else{
+                           this.display="0";
+                       }
+                       if($("#company_select").siblings(".text").html()=="请选择"){
+                              this.value="";
+                        }else{
+                               this.value=$("#company_select").siblings(".text").html();
+                       }
+                       serializeObj["company"]= {"value":this.value,"display":this.display};
+                   }else{
+                       if($("#company").parents(".jc_flex").hasClass("uhide")==false){
+                          if($("#company").hasClass("display_1")==true){
+                               this.display="1";
+                           }else{
+                               this.display="0";
+                           }
+                          serializeObj["company"]= {"value":this.value,"display":this.display};
+                       }else{
+                            serializeObj["company"]= {"value":"","display":"0"};
+                       }
+                   }
+               }else if(this.name=="templateEnName"){
+                    serializeObj[this.name]=this.value ;
+               }else{
+                   serializeObj[this.name] = {"value":this.value,"display":this.display};
+               }
+                
+            });
+            return serializeObj;
+        };
+       
+       // 获取字符串的字节长度
+        function len(s) {
+            s = String(s);
+            return s.length + (s.match(/[^\x00-\xff]/g) || "").length;// 加上匹配到的全角字符长度
+        }
+        function limit(obj, limit) {
+           
+            var val = obj.value;
+            if (len(val) > limit) {
+                val=val.substring(0,limit);
+                while (len(val) > limit){
+                  val = val.substring(0, val.length - 1);
+                };
+                obj.value = val;
+            }
+        }
+        $("input").on("blur",function (){
+              var flag = true;
+                     for(var i=0;i<$(".display_1").length;i++){
+                         if($(".display_1").eq(i).attr("id")!="company_select"){
+                             var eachVal=$(".display_1").eq(i).val();
+                               if(eachVal==""){
+                                appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                                var toastStr = $(".display_1").eq(i).attr("placeholder");
+                                appcan.window.evaluateScript('','appcan.window.openToast("'+toastStr+'",3000,5,0)');
+                              //   $(this).focus();
+                             flag = !flag;
+                              return false;
+                              }
+                              var reg = $(".display_1").eq(i).attr("regex");
+                    
+                            if(typeof(reg) != "undefined" && reg != null){
+                            var patt = new RegExp(reg);
+                            if(!patt.test(eachVal)){
+                                flag = !flag;
+                               appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                                 var toastStr = $(".display_1").eq(i).attr("errorMsg");
+                                appcan.window.evaluateScript('','appcan.window.openToast("'+toastStr+'",3000,5,0)');
+                              //  $(this).focus();
+                                flag = !flag;
+                                return false;
+                            }
+                           }
+                         }else{
+                            
+                             var company_select_val= $("#company_model").html();;
+                             if(company_select_val==""){
+                                  appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                                //  appcan.window.openToast($("#company_select").attr("placeholder"),3000,5,0);
+                                 var toastStr =$("#company_select").attr("placeholder");
+                                appcan.window.evaluateScript('','appcan.window.openToast("'+toastStr+'",3000,5,0)');
+                              //   $(this).focus();
+                                flag = !flag;
+                                return false;
+                             }
+                         }
+                     
+                        
+                     }
+             if(!flag)return; 
+            
+        });
+        //验证
+          function validate(){
+                      var flag = true;
+                     //当模版显示内容大于7时
+                    var show_len=$(".relative.display_1").length;
+                     console.log(show_len);
+                     var max_len=parseInt($("#span_1").data("max_select_count"));
+                      console.log(max_len);
+                     if(show_len>max_len){
+                         //打开一个提示框 
+                         //alert('此模版最多可显示'+max_len+'项更多内容，当前内容已超出，请重新选择。');
+                          alert("此模版已没有位置显示更多内容，请重新选择！")
+                         flag = !flag;
+                        return false;
+                     }
+                    
+                    for(var i=0;i<$(".display_1").length;i++){
+                         if($(".display_1").eq(i).attr("id")!="company_select"){
+                             var eachVal=$(".display_1").eq(i).val();
+                               if(eachVal==""){
+                                appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                                var toastStr = $(".display_1").eq(i).attr("placeholder");
+                                appcan.window.evaluateScript('','appcan.window.openToast("'+toastStr+'",3000,5,0)');
+                             flag = !flag;
+                              return false;
+                              }
+                              var reg = $(".display_1").eq(i).attr("regex");
+                    
+                            if(typeof(reg) != "undefined" && reg != null){
+                            var patt = new RegExp(reg);
+                            if(!patt.test(eachVal)){
+                                flag = !flag;
+                               appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                                 var toastStr = $(".display_1").eq(i).attr("errorMsg");
+                                appcan.window.evaluateScript('','appcan.window.openToast("'+toastStr+'",3000,5,0)');
+                                return false;
+                            }
+                           }
+                         }else{
+                            
+                             var company_select_val= $("#company_model").html();;
+                             if(company_select_val==""){
+                                  appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                                //  appcan.window.openToast($("#company_select").attr("placeholder"),3000,5,0);
+                                 var toastStr =$("#company_select").attr("placeholder");
+                                appcan.window.evaluateScript('','appcan.window.openToast("'+toastStr+'",3000,5,0)');
+                                flag = !flag;
+                                return false;
+                             }
+                         }
+                       
+                        
+                     }
+                     for(var j=0;j<$(".required").length;j++){
+                             if($(".required").eq(j).attr("id")!="company_select"){
+                             var eachVal=$(".required").eq(j).val();
+                               if(eachVal==""){
+                                appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                                var toastStr = $(".required").eq(j).attr("placeholder");
+                                appcan.window.evaluateScript('','appcan.window.openToast("'+toastStr+'",3000,5,0)');
+                             flag = !flag;
+                              return false;
+                              }
+                              var reg = $(".required").eq(j).attr("regex");
+                    
+                            if(typeof(reg) != "undefined" && reg != null){
+                            var patt = new RegExp(reg);
+                            if(!patt.test(eachVal)){
+                                flag = !flag;
+                               appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                                 var toastStr = $(".required").eq(j).attr("errorMsg");
+                                appcan.window.evaluateScript('','appcan.window.openToast("'+toastStr+'",3000,5,0)');
+                                return false;
+                            }
+                           }
+                         }else{
+                            
+                             var company_select_val= $("#company_model").html();;
+                             if(company_select_val==""){
+                                  appcan.window.evaluateScript("","window.scrollTo(0,0)");
+                                //  appcan.window.openToast($("#company_select").attr("placeholder"),3000,5,0);
+                                 var toastStr =$("#company_select").attr("placeholder");
+                                appcan.window.evaluateScript('','appcan.window.openToast("'+toastStr+'",3000,5,0)');
+                                flag = !flag;
+                                return false;
+                             }
+                         }
+                     }
+               if(!flag)return; 
+            }
+            
+            function refreshLeft(data_1){
+                 var starTextX= $("#span_1").data("start_text_x");
+                  var startLocConfig=data_1.startLocationConfig;
+                 var incY=startLocConfig.incrementY*100;
+                 var startTextY= startLocConfig.startTextY*100;
+                var requiredItems=data_1.requiredItems;
+              var selectedItems=data_1.selectedItems;
+                var html_2="";
+                   var item_display=-1;
+                   var length=$(".relative").length;
+                   for(var i=0;i<length;i++){
+                       var input_val=$(".relative").eq(i).val();       
+                           var id=$(".relative").eq(i).attr("id");
+                          if($("#"+id).val().length>0){
+                              if($("#"+id).hasClass("display_1")==true){
+                                     if($("#"+id).hasClass("required")==true){
+                                   for(var j in requiredItems){
+                                       var show_Item=requiredItems[j];
+                                       var name=show_Item.key;
+                                       if(id==name){
+                                           console.log("前面输入的值"+id);
+                                           console.log("输入的text");
+                                            console.log(show_Item);
+                                            item_display++;
+                                            console.log(item_display);
+                                            var startTextY=$("#span_1").data("start_text_y");
+                                            var startTextY=Number(startTextY)+Number(incY)*item_display;
+                                            var value=$("#"+id).val();
+                                            console.log(startTextY);
+                                          var fontSize=$("#span_1").data("font_size");
+                                          if(show_Item.text!=""){
+                                              html_2+='<div style="position: absolute;left:'+starTextX+'%;font-size:'+fontSize+'px;top:'+startTextY+'%" id="'+id+'_1" >'+show_Item.text+'<span id="'+id+'_model" style="">'+value+'</span></div>';
+                                          }else{
+                                               html_2+='<div style="position: absolute;left:'+starTextX+'%;font-size:'+fontSize+'px;top:'+startTextY+'%" id="'+id+'_1"><span id="'+id+'_model" style=""></span>'+value+'</div>';
+                                          }
+                                         
+                                       }
+                                   }
+                              }else{
+                                  for(var j in selectedItems){
+                                       var show_Item=selectedItems[j];
+                                       var name=show_Item.key;
+                                       if(id==name){
+                                           console.log("前面输入的值"+id);
+                                           console.log("输入的text");
+                                         
+                                           item_display++;
+                                            console.log(item_display);
+                                            var startTextY=$("#span_1").data("start_text_y");
+                                            var startTextY=Number(startTextY)+Number(incY)*item_display;
+                                            console.log(startTextY);
+                                          var fontSize=$("#span_1").data("font_size");
+                                           var value=$("#"+id).val();
+                                          if(show_Item.text!=""){
+                                              html_2+='<div style="position: absolute;left:'+starTextX+'%;font-size:'+fontSize+'px;top:'+startTextY+'%" id="'+id+'_1" >'+show_Item.text+'<span id="'+id+'_model" style="">'+value+'</span></div>';
+                                          }else{
+                                               html_2+='<div style="position: absolute;left:'+starTextX+'%;font-size:'+fontSize+'px;top:'+startTextY+'%" id="'+id+'_1"><span id="'+id+'_model" style="">'+value+'</span></div>';
+                                          }
+                                         
+                                       }
+                                       
+                                   }
+                              } 
+                              }
+                           
+                          }
+                           
+                       
+                   }
+                   $("#span_2").html(html_2);
+            }
+            function refreshRight(data_1){
+                 var starTextX= $("#span_1").data("start_text_x");
+                 var startLocConfig=data_1.startLocationConfig;
+                var incY=startLocConfig.incrementY*100;
+                var startTextY= startLocConfig.startTextY*100;
+                var requiredItems=data_1.requiredItems;
+                var selectedItems=data_1.selectedItems;
+                 var html_2="";
+               var item_display=-1;
+               var length=$(".relative").length;
+               for(var i=0;i<length;i++){
+                   var input_val=$(".relative").eq(i).val();       
+                       var id=$(".relative").eq(i).attr("id");
+                      if($("#"+id).val().length>0){
+                          if($("#"+id).hasClass("display_1")==true){
+                           if($("#"+id).hasClass("required")==true){
+                               for(var j in requiredItems){
+                                   var show_Item=requiredItems[j];
+                                   var name=show_Item.key;
+                                   if(id==name){
+                                        item_display++;
+                                     //   console.log(item_display);
+                                        var startTextY=$("#span_1").data("start_text_y");
+                                        var startTextY=Number(startTextY)+Number(incY)*item_display;
+                                        var value=$("#"+id).val();
+                                        console.log(startTextY);
+                                      var fontSize=$("#span_1").data("font_size");
+                                      if(show_Item.text!=""){
+
+                                            //var text_right=28.000000000000004;
+                                             var text_right=100-Number($("#span_1").data("start_text_x"));
+                                          html_2+='<div style="position: absolute;top:'+startTextY+'%;width: 100%;font-size:'+fontSize+'px" id="'+name+'_1">\
+                                                   <div class="ub">\
+                                                        <div class="ub-f1"></div>\
+                                                        <div class="real">'+show_Item.text+'<span id="'+name+'_model">'+value+'</span></div>\
+                                                        <div style="width:'+text_right+'%" class="role">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>';
+                                      }else{  
+                                           var text_right=100-Number($("#span_1").data("start_text_x"));
+                                          html_2+='<div style="position: absolute;top:'+startTextY+'%;width: 100%;font-size:'+fontSize+'px" id="'+name+'_1" >\
+                                                   <div class="ub">\
+                                                        <div class="ub-f1"></div>\
+                                                        <div class="real"><span id="'+name+'_model">'+value+'</span></div>\
+                                                        <div style="width:'+text_right+'%" class="role">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>';
+                                      }
+                                     
+                                   }
+                               }
+                          }else{
+                              for(var j in selectedItems){
+                                   var show_Item=selectedItems[j];
+                                   var name=show_Item.key;
+                                   if(id==name){
+                                    
+                                        item_display++;
+                                     
+                                        var startTextY=$("#span_1").data("start_text_y");
+                                        var startTextY=Number(startTextY)+Number(incY)*item_display;
+                                   
+                                      var fontSize=$("#span_1").data("font_size");
+                                       var value=$("#"+id).val();
+                                      if(show_Item.text!=""){
+                                             var valueX=Number($("#img_1111").css("left").substring(0,$("#img_1111").css("left").length-1))/100;
+                                            
+                                             var text_right=100-Number($("#span_1").data("start_text_x"));
+                                            html_2+='<div style="position: absolute;top:'+startTextY+'%;width: 100%;font-size:'+fontSize+'px" id="'+name+'_1">\
+                                               <div class="ub">\
+                                                    <div class="ub-f1"></div>\
+                                                    <div class="real">'+show_Item.text+'<span id="'+name+'_model">'+value+'</span></div>\
+                                                    <div style="width:'+text_right+'%" class="role">\
+                                                    </div>\
+                                                </div>\
+                                            </div>';
+                                         // html_2+='<div style="position: absolute;left:'+starTextX+'%;font-size:'+fontSize+'px;top:'+startTextY+'%" id="'+id+'_1" >'+show_Item.text+'<span id="'+id+'_model" style="">'+value+'</span></div>';
+                                      }else{
+                                        
+                                          var text_right=100-Number($("#span_1").data("start_text_x"));
+                                          html_2+='<div style="position: absolute;top:'+startTextY+'%;width: 100%;font-size:'+fontSize+'px" id="'+name+'_1">\
+                                           <div class="ub">\
+                                                <div class="ub-f1"></div>\
+                                                <div class="real" >'+show_Item.text+'<span id="'+name+'_model">'+value+'</span></div>\
+                                                <div style="width:'+text_right+'%" class="role">\
+                                                </div>\
+                                            </div>\
+                                         </div>';
+                                          // html_2+='<div style="position: absolute;left:'+starTextX+'%;font-size:'+fontSize+'px;top:'+startTextY+'%" id="'+id+'_1"><span id="'+id+'_model" style="">'+value+'</span></div>';
+                                      }
+                                     
+                                   }
+                                   
+                               }
+                          }
+                          }
+                       
+                      }
+               }
+               $("#span_2").html(html_2);
+               
+            }
+            $("input").on("change",function(){
+                 var relative_len=$("#span_2").children().length;
+                console.log(relative_len);
+                 var max_len=parseInt($("#span_1").data("max_select_count"));
+                  console.log(max_len);
+             
+                  if(relative_len>=max_len){
+                        if($(this).hasClass("relative")==true){
+                          alert("此模版已没有位置显示更多内容，请重新选择！");
+                          $(this).val("");
+                          if($(this).hasClass("display_1")==true){
+                         $(this).removeClass("display_1");
+                          $(this).addClass("display_0");
+                           }else{
+                              $(this).addClass("display_0");
+                           }
+                           $(this).parent().siblings(".yingc").addClass("uhide");
+                           $(this).parent().siblings(".yingc").removeClass("color_1_1");
+                           $(this).parent().siblings(".yingc").addClass("color_1_2");
+                           $(this).parent().siblings(".yingc").find(".ying_z").html("显示"); 
+                          $(this).blur();
+                          return false;
+                     }else{
+                         $(this).blur();
+                     }
+                 }else{
+                     
+                 } 
+            });
+           
+    </script>
+</html>

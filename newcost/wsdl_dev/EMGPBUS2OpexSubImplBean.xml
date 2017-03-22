@@ -1,0 +1,251 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/EM_GPBUS2_OpexSub/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EM_GPBUS2_OpexSub" targetNamespace="http://www.cttq.com/EM_GPBUS2_OpexSub/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cttq.com/EM_GPBUS2_OpexSub/">
+    <!-- 增加部分1 开始 -->
+            <xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:anyType"/>
+					<xsd:element name="Value" type="xsd:anyType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			
+      <xsd:element name="EMGPBUS2_OpexSub" type="tns:EMGPBUS2OpexSub">
+
+      </xsd:element>
+      <xsd:element name="EMGPBUS2_OpexSubResponse" type="tns:EMGPBUS2OpexSubResponse">
+
+      </xsd:element>
+      
+      
+      <xsd:complexType name="ProcCommon">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="compCode" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="reqUsr" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="reqUsrNm" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="reqDept" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="reqDeptNm" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="nextStep" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="nextStepUser" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="nextDept" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="nextDeptNm" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="procType" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="appType" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="needBack" type="xsd:string">
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+        
+            <xsd:complexType name="PerItems">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="perExpensesId" type="xsd:string">
+            		</xsd:element>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="expAmt" type="xsd:string"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+    
+    
+            <xsd:complexType name="EMGPBUS2OpexSub">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:EMGPBUS2OpexSubInput"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="EMGPBUS2OpexSubResponse">
+            	<xsd:sequence>
+            		<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:EMGPBUS2OpexSubOutput"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="EMGPBUS2OpexSubInput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:AbstractType">
+            			<xsd:sequence>
+            				<xsd:element maxOccurs="1" minOccurs="1" name="procCommon" type="tns:ProcCommon">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="fillAmt" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="actType" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="actTypeNm" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="expType" type="xsd:string">
+            				</xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="expTypeNm" type="xsd:string">
+            				</xsd:element>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="docType" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="docTypeNm" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="invHead" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="invHeadNm" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="usrCode" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="usrNm" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="usrArea" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="usrAreaNm" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="compCode" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="compCodeNm" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="deptCode" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="deptCodeNm" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="remark" type="xsd:string">
+            				</xsd:element>
+
+
+
+                            <xsd:element maxOccurs="unbounded" minOccurs="0" name="perItems" type="tns:PerItems">
+            				</xsd:element>
+
+            			</xsd:sequence>
+            		</xsd:extension>
+            	</xsd:complexContent>
+            </xsd:complexType>
+            <xsd:complexType name="EMGPBUS2OpexSubOutput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:ReturnCode">
+            			<xsd:sequence>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="perExpenseId" type="xsd:string">
+            				</xsd:element>
+            			</xsd:sequence>
+            		</xsd:extension>
+            	</xsd:complexContent>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EMGPBUS2_OpexSubRequest">
+    <wsdl:part element="tns:EMGPBUS2_OpexSub" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EMGPBUS2_OpexSubResponse">
+    <wsdl:part element="tns:EMGPBUS2_OpexSubResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EM_GPBUS2_OpexSub">
+    <wsdl:operation name="EMGPBUS2_OpexSub">
+      <wsdl:input message="tns:EMGPBUS2_OpexSubRequest"/>
+      <wsdl:output message="tns:EMGPBUS2_OpexSubResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+<wsdl:binding xmlns:ptns="http://www.cttq.com/EM_GPBUS2_OpexSub/" name="EM_GPBUS2_OpexSub_Binding" type="ptns:EM_GPBUS2_OpexSub">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="EMGPBUS2_OpexSub">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="EM_GPBUS2_OpexSub">
+<wsdl:port xmlns:bprf="http://www.cttq.com/EM_GPBUS2_OpexSub/" binding="bprf:EM_GPBUS2_OpexSub_Binding" name="EM_GPBUS2_OpexSub_Port">
+<soap:address location="http://bmq.cttq.com:51600/EM_GPBUS2_OpexSub/EMGPBUS2OpexSubImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

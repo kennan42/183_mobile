@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EQwC3wZRfadGulqnbIcROD2E"></script>
+	<script type="text/javascript">
+		
+	function getParam(paramName){
+		var href = window.location.href;
+		var reg = paramName+"=(.*?)&|"+paramName+"=(.*?)$";
+		var REG = new RegExp(reg);
+		var res = REG.exec(href);
+		return res[1]||res[2];
+	}
+	
+	
+	</script>
+	
+	<title>百度地图</title>
+</head>
+<body>
+	<div id="allmap"></div>
+	<script type="text/javascript">
+        var longitude = Number(getParam("longitude"));
+        var latitude = Number(getParam("latitude"));
+        
+        var map = new BMap.Map("allmap");    //创建Map实例
+        map.centerAndZoom(new BMap.Point(longitude, latitude), 20);  // 初始化地图,设置中心点坐标和地图级别
+        map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+        map.setCurrentCity("test");          // 设置地图显示的城市
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    </script>
+</body>
+</html>
+

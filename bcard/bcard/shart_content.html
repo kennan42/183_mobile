@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/mycss.css">
+       
+    </head>
+    <style>
+       .hd{ z-index:1;  text-align: center; }
+       .hd li{display:inline-block; width:1.65em; height:0.187em; background:#e28191; text-indent:-9999px; overflow:hidden; margin:0 6px;}
+       .hd li.on{ background:#d5132d;  }
+    </style>
+
+    <body class="um-vp bc-bg " ontouchstart>
+          <div class="v_s_container" id="main_body">
+                <div class="share_bt ai-fts-body ai-ph-common">您的好友给您分享了TA的名片</div>
+                 <div id="uploadresult" class="uhide" style="margin-top:0px;"> 
+                  <img src="images/loading_2.gif" alt="正在请求，请稍后..." />
+                </div>
+                <div style="clear:both;"></div>
+                <div id="slider" class="slider">
+                      
+                  </div>
+                  <div class="hd" id="hd">
+                        <ul class=""><li class="on">1</li><li class="">2</li></ul>
+                  </div>
+            <!-- /轮播 -->
+            
+            <!-- 按钮 -->
+            <!-- <div class="ai-btn share_ys ai-btn-block ai-mab-gap ai-btn-primaiy">下载我的名片</div> -->
+            <!-- /按钮 -->
+            <!-- 长按二维码 -->
+            <div class="erweima">
+                <div class="erweima_01"><img src="" width="42%" class="contactErweimaURL" /></div>
+                <div class="erweima_02">长按二维码</div>
+                <div class="erweima_02" style="line-height: 0.4em;">可将名片信息保存至手机通讯录</div>
+                 <div class="" style="margin-top: 0.5em;height: 1em;width: 100%;"></div>
+                 <br/><br/>
+            </div>
+            <!-- /长按二维码 -->
+       </div>
+    </body>
+    <script src="js/TouchSlide.1.1.js"></script>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+    <script src="js/view/common.js"></script>
+    <script src="js/appcan.slider.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+ </body>
+    <script>
+       
+        appcan.ready(function() {
+            var uuid=appcan.locStorage.getVal('uuid');
+            console.log(uuid);
+            findBcardByUUID(uuid);
+        });
+
+        appcan.button(".back_head","ani-act",function(){
+            appcan.window.close(-1);
+        })
+        var slider = appcan.slider({
+          selector : '#slider',
+          aspectRatio:10/16,
+          hasLabel:true,
+          index:0
+        });
+              
+        function findBcardByUUID(uuid){
+              var option = {
+                  url : 'bcard/findBcardByUUID/'+uuid,
+                  type:"get",
+                  beforeSend: function(XMLHttpRequest) {
+                      $("#uploadresult").removeClass("uhide");
+                  },
+                  success : function(data) {
+                       $("#uploadresult").addClass("uhide");
+                      console.log(data);
+                      if(data.status=="0"){
+                          var shareCard=data.data;
+                          var img_data=[{
+                                        img : shareCard.bcardURL,
+                                        div:''
+                                                             
+                                    }, {
+                                        img : shareCard.bcardBackgroudURL,
+                                        div:''
+                                  }];
+                            slider.set(img_data);
+                            slider.on("clickItem",function(index,data){
+                                  if(data.img==img_data[1].img){
+                                      appcan.window.evaluateScript({
+                                                    name:"cardEdit_share_1",
+                                                    scriptContent:'preview("'+img_data[1].img+'","'+img_data[2].img+'");'
+                                      });
+                                  }else{
+                                       appcan.window.evaluateScript({
+                                                    name:"cardEdit_share_1",
+                                                    scriptContent:'preview("'+img_data[2].img+'","'+img_data[1].img+'");'
+                                      });
+                                  }
+                                 
+                                 
+                             }) 
+                            slider.on("slideTransitionEnd", function (index) {
+                                console.log(index);
+                                if(index==0){
+                                    console.log('当前为第一张slide');
+                                    if(  $(".erweima").hasClass("uhide")==true){
+                                         $(".erweima").removeClass("uhide");
+                                    }
+                                }else{
+                                     console.log('当前为第二张slide');
+                                     if( $(".erweima").hasClass("uhide")==false){
+                                         $(".erweima").addClass("uhide");
+                                    }
+
+                                }
+                            });
+                          // $(".bcardURL").attr("src",shareCard.bcardURL);
+                          // $(".bcardBackgroudURL").attr("src",shareCard.bcardBackgroudURL);
+                          $(".contactErweimaURL").attr("src",shareCard.contactErweimaURL)
+                      }
+                  }
+                }
+                view.ajax(option);
+        }
+        function getWxConfig(){
+             var option = {
+                  url : 'bcard/wxconfig',
+                  data:{"url" : window.location.href.split("#")[0]},
+                  success : function(data) {
+                      data.data.jsApiList=[
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone',
+                        'hideMenuItems',
+                        'showMenuItems',
+                        'hideAllNonBaseMenuItem',
+                        'showAllNonBaseMenuItem',
+                        'translateVoice',
+                        'startRecord',
+                        'stopRecord',
+                        'onVoiceRecordEnd',
+                        'playVoice',
+                        'onVoicePlayEnd',
+                        'pauseVoice',
+                        'stopVoice',
+                        'uploadVoice',
+                        'downloadVoice',
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage',
+                        'getNetworkType',
+                        'openLocation',
+                        'getLocation',
+                        'hideOptionMenu',
+                        'showOptionMenu',
+                        'closeWindow',
+                        'scanQRCode',
+                        'chooseWXPay',
+                        'openProductSpecificView',
+                        'addCard',
+                        'chooseCard',
+                        'openCard'
+                      ];
+                      wx.config(data.data);
+                  }
+                }
+                view.ajax(option);
+        }
+        function dowload(){
+            wx.downloadImage({
+                serverId: '', // 需要下载的图片的服务器端ID，由uploadImage接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function (res) {
+                    var localId = res.localId; // 返回图片下载后的本地ID
+                }
+          });
+        }
+
+ </script>
+</html>

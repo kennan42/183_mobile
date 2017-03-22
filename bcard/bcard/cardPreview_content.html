@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/mycss.css">
+            <!-- <style>
+        .slideBox{  overflow:hidden;}
+.slideBox .hd{ z-index:1;  text-align: center; }
+.slideBox .hd li{display:inline-block; width:1.65em; height:0.187em; background:#e28191; text-indent:-9999px; overflow:hidden; margin:0 6px;}
+.slideBox .hd li.on{ background:#d5132d;  }
+.slideBox .bd{ position:relative; z-index:0;overflow:hidden; }
+.slideBox .bd li{ position:relative;text-align:center;overflow:hidden;}
+.slideBox .bd li img{ background:url(../images/loading.gif) center center no-repeat;  vertical-align:top; width:100%; /* 图片宽度100%，达到自适应效果 */}
+.slideBox .bd li a{ -webkit-tap-highlight-color:rgba(0,0,0,0);  }  /* 去掉链接触摸高亮 */
+.slideBox .bd li .tit{ display:block; width:100%;  position:absolute; bottom:0; text-indent:10px; height:28px; line-height:28px; background:url(images/focusBg.png) repeat-x; color:#fff;  text-align:left;  }
+.he{margin-top:0.56em;}
+    </style> -->
+    <style>
+    .lb_all{margin-top:30%;}
+    .download{width: 100%;position: absolute;bottom:0.5em;left:0;}
+    </style>
+    </head>
+
+    
+    <body class="um-vp  pre_all " style=" position: relative;height:100%;" ontouchstart>
+         <div id="uploadresult" class="uhide"> 
+              <img src="images/loading_1.gif" alt="正在请求，请稍后..." />
+              <div class="logss">请稍后...</div>
+            </div>
+        <div class="um-vp  ub-ver main_body" style="background-color: black;height: 100%;" >
+            
+            <div class="ai-pat-default lb_all" >
+                <div id="slideBox" class="slideBox">
+                    <div class="bd" >
+                        <ul id="bannerList" class="mycard_li" >
+                            <li class="ai-us">
+                              <a class="pic"><img src="" id="image_1"/></a>
+                            </li>
+                            <li class="ai-us">
+                              <a class="pic"><img src="" class="image_2"/></a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="hd">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="download" id="bttom">
+                    <div class="download_01 ai-fts-body">原图尺寸53K</div>
+                    <div class="download_02 ai-fts-body">下载原图</div>
+                </div>
+      </div>
+    </body>
+    <script src="js/TouchSlide.1.1.js"></script>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+      <script src="js/view/common.js"></script>
+    </body>
+    <script>
+            TouchSlide({ 
+                slideCell:"#slideBox",
+                titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+                mainCell:".bd ul",
+                effect:"leftLoop",
+                interTime:2800,
+                autoPage:true//自动分页
+            });
+             appcan.ready(function() {
+                 var Preview_info= $.parseJSON(appcan.locStorage.getVal('cardPreview_info'));
+                 console.log(Preview_info);
+                 if(Preview_info!=null){
+                       $("#uploadresult").addClass("uhide");
+                      // $(".main_body").removeClass("uhide");
+                       $("#image_1").attr("src",Preview_info.fileurl);
+                       console.log(Preview_info.backgroundBcardURL);
+                       $(".image_2").attr("src",Preview_info.backgroundBcardURL)
+                 }else{
+                      $("#uploadresult").removeClass("uhide");
+                 }
+             });
+             
+             function deleteBcardView(filepath,backgroupFilePath){
+                  var option = {
+                      url : 'bcard/deleteBcardView',
+                      data : {
+                        "filepath" : filepath,
+                        "backgroupFilePath":backgroupFilePath
+                      },
+                      success : function(data) {
+                        console.log(data);
+            
+                        }
+                }
+                view.ajax(option);
+           }
+            // var height=window.screen.height;
+            // $("#bttom").css("margin-top",window.screen.height*0.1);
+        </script>
+</html>

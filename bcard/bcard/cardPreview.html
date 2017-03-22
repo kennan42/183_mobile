@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/ai-base-ui.css">
+        <link rel="stylesheet" href="css/ai-color.css">
+        <link rel="stylesheet" href="css/ai-control.css">
+        <link rel="stylesheet" href="css/mycss.css">
+    </head>
+     <style>
+        .bc-bg{height:100%;}
+    </style>
+    <body class="um-vp  " ontouchstart>
+        <div id="page_0" class="up ub ub-ver yl_bj" tabindex="0">
+            <!--header开始-->
+            <div id="header" class="uh ai-ht-head ub bc-head">
+                <div class="ai-nav-btn ai-left-btn ai-ph-color" id="nav-left">
+                    <div class=" fa fa-angle-left fa-2x"></div>
+                    <div class="ai-ph-color ai-fts-subhead more_gd ai_left"  >返回</div>
+                </div>
+                <h class=" ub-f1 ub-ac ub-pc ub ai-ph-color ai-fts-title ut-s tx-c" tabindex="0">预览</h>
+                <div class="ai-nav-btn ai-par-stable " id="nav-right"> </div>
+            </div>
+            <!--header结束-->
+            <!--content开始-->
+            <div id="content" class="ub-f1 tx-l content_bj" style="background-color: black">
+
+            </div>
+            <!--content结束-->
+            <!--footer-->
+            
+                
+            
+            <!-- <div id="footer" class="ubt bc-border ub sc-bg uinn bjys" >
+                <div class="download">
+                    <div class="download_01 ai-fts-body">原图尺寸53K</div>
+                    <div class="download_02 ai-fts-body">下载原图</div>
+                </div>
+            </div> -->
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/view/common.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            var titHeight = $('#header').offset().height;
+            appcan.frame.open("content", "cardPreview_content.html", 0, titHeight);
+            window.onorientationchange = window.onresize = function() {
+                appcan.frame.resize("content", 0, titHeight);
+            }
+            
+            addWeinxinBcardAction("预览名片","预览名片进入"); 
+        });
+        appcan.button("#nav-left", "btn-act", function() {
+            appcan.window.evaluatePopoverScript({
+                name:'cardPreview',
+                popName:'content',
+                scriptContent:' deleteBcardView( $("#image_1").attr("src"),$(".image_2").attr("src"));'
+            });
+            appcan.window.close(-1);
+        })
+       
+    </script>
+</html>

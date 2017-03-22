@@ -1,0 +1,160 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/B2B_BPMI_WaitTaskSum/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="B2B_BPMI_WaitTaskSum" targetNamespace="http://www.cttq.com/B2B_BPMI_WaitTaskSum/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.cttq.com/B2B_BPMI_WaitTaskSum/">
+			<!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			<xsd:element name="B2BBPMIWaitTaskSum" type="tns:B2BBPMIWaitTaskSum">
+
+			</xsd:element>
+			<xsd:element name="B2BBPMIWaitTaskSumResponse" type="tns:B2BBPMIWaitTaskSumResponse">
+
+			</xsd:element>
+
+			<xsd:complexType name="B2BBPMIWaitTaskSum">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:B2BBPMIWaitTaskSumInput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIWaitTaskSumInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType"/>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIWaitTaskSumResponse">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:B2BBPMIWaitTaskSumOutput"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="B2BBPMIWaitTaskSumOutput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="waitTaskSumList" type="tns:WaitTaskSumList">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="WaitTaskSumList">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="taskType" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="taskNum" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="B2BBPMIWaitTaskSumRequest">
+		<wsdl:part element="tns:B2BBPMIWaitTaskSum" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="B2BBPMIWaitTaskSumResponse">
+		<wsdl:part element="tns:B2BBPMIWaitTaskSumResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="B2B_BPMI_WaitTaskSum">
+		<wsdl:operation name="B2BBPMIWaitTaskSum">
+			<wsdl:input message="tns:B2BBPMIWaitTaskSumRequest"/>
+			<wsdl:output message="tns:B2BBPMIWaitTaskSumResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.cttq.com/B2B_BPMI_WaitTaskSum/" name="B2B_BPMI_WaitTaskSum_Binding" type="ptns:B2B_BPMI_WaitTaskSum">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="B2BBPMIWaitTaskSum">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="B2B_BPMI_WaitTaskSum_Service">
+<wsdl:port xmlns:bprf="http://www.cttq.com/B2B_BPMI_WaitTaskSum/" binding="bprf:B2B_BPMI_WaitTaskSum_Binding" name="B2B_BPMI_WaitTaskSum_Port">
+<soap:address location="http://192.168.1.177:50000/B2B_BPMI_WaitTaskSum_Service/B2BBPMIWaitTaskSumImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

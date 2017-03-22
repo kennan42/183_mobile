@@ -1,0 +1,216 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.thitech.com/PORTAL_BPMI_ProcPathQry/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PORTAL_BPMI_ProcPathQry" targetNamespace="http://www.thitech.com/PORTAL_BPMI_ProcPathQry/">
+  <wsdl:documentation>查询流程审批路径</wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.thitech.com/PORTAL_BPMI_ProcPathQry/">
+      <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+			<xsd:complexType name="ExtendMapType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="50" minOccurs="0" name="entry" type="tns:Entry">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="extendMap" type="tns:ExtendMapType">
+						<xsd:annotation>
+							<xsd:documentation>扩展数据</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+			<xsd:element name="PORTALBPMIProcPathQry" type="tns:PORTALBPMIProcPathQry">
+
+			</xsd:element>
+			<xsd:element name="PORTALBPMIProcPathQryResponse" type="tns:PORTALBPMIProcPathQryResponse">
+
+			</xsd:element>
+
+			<xsd:complexType name="PORTALBPMIProcPathQry">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:PORTALBPMIProcPathQryInput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="PORTALBPMIProcPathQryResponse">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:PORTALBPMIProcPathQryOutput">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="PORTALBPMIProcPathQryInput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:AbstractType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="1" minOccurs="0" name="bussType" type="xsd:string">
+                                <xsd:annotation>
+                                	<xsd:documentation>业务类型</xsd:documentation>
+                </xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="bussNo" type="xsd:string">
+                                <xsd:annotation>
+                                	<xsd:documentation>业务单号</xsd:documentation>
+                </xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="PORTALBPMIProcPathQryOutput">
+				<xsd:complexContent>
+					<xsd:extension base="tns:ReturnCode">
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" minOccurs="0" name="procApprInfoList" type="tns:ProcApprInfo">
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+    
+			<xsd:complexType name="ProcApprInfo">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="0" name="step" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批步骤</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="status" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批状态</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprUsrId" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批人ID</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprUsrNm" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批人名称</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprTm" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批时间</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="apprResult" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批结果</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="0" name="comments" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>审批意见</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="PORTALBPMIProcPathQryRequest">
+    <wsdl:part element="tns:PORTALBPMIProcPathQry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="PORTALBPMIProcPathQryResponse">
+    <wsdl:part element="tns:PORTALBPMIProcPathQryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="PORTAL_BPMI_ProcPathQry">
+    <wsdl:operation name="PORTALBPMIProcPathQry">
+      <wsdl:input message="tns:PORTALBPMIProcPathQryRequest"/>
+      <wsdl:output message="tns:PORTALBPMIProcPathQryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+<wsdl:binding xmlns:ptns="http://www.thitech.com/PORTAL_BPMI_ProcPathQry/" name="PORTAL_BPMI_ProcPathQry_Binding" type="ptns:PORTAL_BPMI_ProcPathQry">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="PORTALBPMIProcPathQry">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="PORTAL_BPMI_ProcPathQry">
+<wsdl:port xmlns:bprf="http://www.thitech.com/PORTAL_BPMI_ProcPathQry/" binding="bprf:PORTAL_BPMI_ProcPathQry_Binding" name="PORTAL_BPMI_ProcPathQry_Port">
+<soap:address location="http://10.10.1.137:53300/PORTAL_BPMI_ProcPathQry/PORTALBPMIProcPathQryImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

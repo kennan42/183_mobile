@@ -1,0 +1,170 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.cttq.com/PORTAL_BPMI_WaitTaskNum/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PORTAL_BPMI_WaitTaskNum" targetNamespace="http://www.cttq.com/PORTAL_BPMI_WaitTaskNum/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.cttq.com/PORTAL_BPMI_WaitTaskNum/">
+      <!-- 增加部分1 开始 -->
+			<xsd:complexType name="AbstractType">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="channelSerialNo" type="tns:ChannelSerialNoType">
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="currUsrId">
+						<xsd:annotation>
+							<xsd:documentation>当前员工号</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="domain">
+						<xsd:annotation>
+							<xsd:documentation>域</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:length value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分1 结束 -->
+			
+			<!-- 增加部分2 开始 -->
+
+			<!-- 增加部分2 结束 -->
+
+			<!-- 增加部分3 开始 -->
+			<xsd:complexType name="Entry">
+				<xsd:sequence>
+					<xsd:element name="Key" type="xsd:string"/>
+					<xsd:element name="Value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分3 结束 -->
+
+			<!-- 增加部分4 开始 -->
+			<xsd:complexType name="ReturnCode">
+				<xsd:sequence>
+					<xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回类型</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="code" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回码</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element maxOccurs="1" minOccurs="1" name="message" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>返回信息</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+
+
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- 增加部分4 结束 -->
+
+			<!-- 增加部分5 开始 -->
+			<xsd:simpleType name="ChannelSerialNoType">
+				<xsd:annotation>
+					<xsd:documentation>渠道流水号</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="64"/>
+					<xsd:minLength value="23"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<!-- 增加部分5 结束 -->
+      
+      
+      <xsd:element name="PORTALBPMI_WaitTaskNum" type="tns:PORTALBPMIWaitTaskNum">
+
+      </xsd:element>
+      <xsd:element name="PORTALBPMI_WaitTaskNumResponse" type="tns:PORTALBPMIWaitTaskNumResponse">
+
+      </xsd:element>
+    
+        
+      <xsd:complexType name="PORTALBPMIWaitTaskNum">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="input" type="tns:PORTALBPMIWaitTaskNumInput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="PORTALBPMIWaitTaskNumResponse">
+      	<xsd:sequence>
+      		<xsd:element maxOccurs="1" minOccurs="0" name="output" type="tns:PORTALBPMIWaitTaskNumOutput"/>
+      	</xsd:sequence>
+      </xsd:complexType>
+      
+            <xsd:complexType name="PORTALBPMIWaitTaskNumInput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:AbstractType">
+            			<xsd:sequence>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="reqUsrId" type="xsd:string">
+            				</xsd:element>
+
+            			</xsd:sequence>
+            		</xsd:extension>
+            	</xsd:complexContent>
+            </xsd:complexType>
+
+            <xsd:complexType name="PORTALBPMIWaitTaskNumOutput">
+            	<xsd:complexContent>
+            		<xsd:extension base="tns:ReturnCode">
+            			<xsd:sequence>
+
+
+            				<xsd:element maxOccurs="1" minOccurs="0" name="fmsSaveCPNum" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="fmsSaveWTNum" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="fmsReadCPNum" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="fmsReadWTNum" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="fmsDestCPNum" type="xsd:string">
+            				</xsd:element>
+            				<xsd:element maxOccurs="1" minOccurs="0" name="fmsDestWTNum" type="xsd:string">
+            				</xsd:element>
+            			</xsd:sequence>
+            		</xsd:extension>
+            	</xsd:complexContent>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="PORTALBPMI_WaitTaskNumRequest">
+    <wsdl:part element="tns:PORTALBPMI_WaitTaskNum" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="PORTALBPMI_WaitTaskNumResponse">
+    <wsdl:part element="tns:PORTALBPMI_WaitTaskNumResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="PORTAL_BPMI_WaitTaskNum">
+    <wsdl:operation name="PORTALBPMI_WaitTaskNum">
+      <wsdl:input message="tns:PORTALBPMI_WaitTaskNumRequest"/>
+      <wsdl:output message="tns:PORTALBPMI_WaitTaskNumResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+<wsdl:binding xmlns:ptns="http://www.cttq.com/PORTAL_BPMI_WaitTaskNum/" name="PORTAL_BPMI_WaitTaskNum_Binding" type="ptns:PORTAL_BPMI_WaitTaskNum">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="PORTALBPMI_WaitTaskNum">
+<soap:operation soapAction=""/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="PORTAL_BPMI_WaitTaskNum">
+<wsdl:port xmlns:bprf="http://www.cttq.com/PORTAL_BPMI_WaitTaskNum/" binding="bprf:PORTAL_BPMI_WaitTaskNum_Binding" name="PORTAL_BPMI_WaitTaskNum_Port">
+<soap:address location="http://cpq.cttq.com:52200/PORTAL_BPMI_WaitTaskNum/PORTALBPMIWaitTaskNumImplBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

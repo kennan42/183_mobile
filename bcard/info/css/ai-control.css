@@ -1,0 +1,322 @@
+/*单行文本框*/
+.ai-ftf-txt {
+    font-family: Regulai;
+}/*输入框字体*/
+.ai-hei-txt {
+    height: 3em;
+}/*输入框高度*/
+.ai-pad-txt {
+    padding: 1em 0em;
+}/*上线边距*/
+.ai-heix-txt {
+    height: 1em
+}
+/*多行文本框*/
+.ai-ftf-atxt {
+    font-family: Regulai;
+}/*输入框字体*/
+.ai-hei-txt {
+    height: 3em;
+}/*输入框高度*/
+.ai-pad-txt {
+    padding: 1em 0em;
+}/*上线边距*/
+.ai-heix-txt {
+    height: 1em
+}
+/*************点击效果**************/
+.buttonAct:active {
+    -webkit-transform: scale(.95);
+    transform: scale(.95);
+}
+.choiceAct:active {
+    background-color: #fafafa;
+}
+/***************************/
+/*按钮弹起扁平效果   <div class="ai-btn ai-btn-primaiy ai-btn-shadow">*/
+
+.ai-btn {
+    display: inline-block;
+    min-height: 2.8em;
+    min-width: 5.69em;
+    maigin-bottom: 0;
+    font-size: 0.875em;
+    line-height: 2.25em;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border-radius: .5em;
+}
+.ai-btn-primaiy {
+    color: #fff;
+    background-color: #5677fc;
+}
+.ai-btn-un {
+    color: #fff;
+    background-color: #BDBDBD;
+}
+.ai-btn-primaiy.active, .ai-btn-primaiy:active {
+    background-color: #4e6cef;
+}
+.ai-btn-default {
+    color: rgba(0,0,0,0.87);
+    background-color: #eeeeee;
+}
+.ai-btn-default.active, .ai-btn-default:active {
+    background-color: #e0e0e0;
+}
+.ai-btn-shadow {
+    -webkit-box-shadow: 1px 2px 2px rgba(1, 1, 1, .12), 1px 2px 2px rgba(1, 1, 1, .23);
+    box-shadow: 1px 2px 2px rgba(1, 1, 1, .12), 1px 2px 2px rgba(1, 1, 1, .23);
+}
+.ai-btn-shadow.active, .ai-btn-shadow:active {
+    -webkit-box-shadow: 1px 1px 1px rgba(1, 1, 1, .12), 1px 1px 1px rgba(1, 1, 1, .23);
+    box-shadow: 1px 1px 1px rgba(1, 1, 1, .12), 1px 1px 1px rgba(1, 1, 1, .23);
+}
+.ai-btn-block {
+    display: block;
+    clear: both;
+    width: 100%;
+}
+/*************扁平按钮**************/
+.ai-btn.ai-btn-clear {
+    border-color: transparent;
+    -webkit-transition: opacity 0.1s;
+    transition: opacity 0.1s;
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+}
+.ai-btn-positive {
+    border-color: #5677fc;
+    background-color: #5677fc;
+    color: #5677fc;
+}
+.ai-btn-clear:active, .ai-btn-clear.active {
+    opacity: 0.3;
+}
+.ai-btn-energized {
+    color: #ffc900;
+}
+/***************************/
+/*禁用的按钮
+ <div class="ai-disabled-default ai-btn"disabled="disabled">*/
+.ai-btn.disabled, .ai-btn[disabled] {
+    cursor: not-allowed;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.ai-disabled-default {
+    color: rgba(0,0,0,.30);
+    background: rgba(255,255,225,0.12);
+}
+.ai-disabled-dark {
+    color: rgba(0,0,0,.26);
+    background: rgba(0,0,0,0.12);
+}
+
+.ai-disabled-cdefault {
+    color: rgba(255,255,225,.30);
+}
+
+/*********列表******************/
+
+/*点击区域*/
+.ai-tap-area {
+    min-height: 2em;
+    min-width: 2em;
+}
+/*左边那个蓝色长矩形*/
+.left-ico {
+    height: 3em;
+    width: 0.3125em;
+    background-color: #5677fc;
+}
+.ai-nav-btn {
+    min-height: 2em;
+    min-width: 5em;
+    display: -webkit-box !important;
+    display: box !important;
+    position: relative;
+    -webkit-box-align: center;
+    box-align: center;
+    -webkit-box-pack: stait;
+    box-pack: center;
+}
+/*复选框*/
+/*<div class="ai-checkbox">
+ <input type="checkbox" class="fa ft-a1 " >
+ </div>*/
+/*.ai-checkbox{
+ width: 1.25em;
+ height: 1.25em;
+ }*/
+.ai-checkbox input[type=checkbox]:before {
+    font-family: 'AIFT';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-vaiiant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\e901";
+    color: rgba(255,255,255,1);
+    
+}
+.ai-checkbox input[type=checkbox]:checked:before {
+    font-family: 'AIFT';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-vaiiant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\e900";
+    color: #ff635b;
+    
+}
+
+input, textaiea, keygen, select, button {
+    maigin: 0em;
+    font: -webkit-small-control;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: stait;
+    -webkit-appeaiance: none;
+}
+.ai-checkbox input[type=checkbox], .ai-radiobox input[type=radio] {
+    -webkit-appearance: none;
+    background-color: transpaient;
+    outline: 0 !important;
+    border: 0;
+}
+
+/*滑动*/
+/* <label class="toggle toggle-positive">
+ <input type="checkbox" checked="">
+ <div class="track">
+ <div class="handle"></div>
+ </div>
+ </label>*/
+label {
+    text-align: -webkit-match-paient;
+}
+.ai-toggle input {
+    display: none;
+}
+.ai-toggle input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+}
+.ai-toggle input[type="checkbox"] {
+    margin: 3px 3px 3px 4px;
+}
+.ai-toggle input[type="checkbox"] {
+    -webkit-appeaiance: checkbox;
+    box-sizing: border-box;
+}
+.ai-toggle input[type="checkbox"] {
+    margin: 3px 0.5ex;
+    padding: initial;
+    background-color: initial;
+    border: initial;
+}
+.ai-toggle {
+    position: relative;
+    display: inline-block;
+    pointer-events: auto;
+    margin: -5px;
+    padding: 5px;
+    z-index: 3;
+}
+.ai-toggle.ai-toggle-positive input:checked + .ai-track {
+    border-color: #387ef5;
+    background-color: #387ef5;
+}
+.ai-track {
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: background-color, border;
+    transition-property: background-color, border;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 3.59375em;
+    height: 2em;
+    border: solid 2px #e6e6e6;
+    border-radius: 1.625em;
+    background-color: #fff;
+    content: ' ';
+    cursor: pointer;
+    pointer-events: none;
+}
+.ai-toggle input:checked + .ai-track .ai-handle {
+    -webkit-transform: translate3d(1.5em, 0, 0);
+    transform: translate3d(1.5em, 0, 0);
+    background-color: #fff;
+}
+.ai-handle {
+    -webkit-transition: 0.2s cubic-bezier(0, 1.1, 1, 1.1);
+    transition: 0.2s cubic-bezier(0, 1.1, 1, 1.1);
+    -webkit-transition-property: background-color, transform;
+    transition-property: background-color, transform;
+    position: absolute;
+    display: block;
+    width: 1.84375em;
+    height: 1.84375em;
+    border-radius: 1.84375em;
+    background-color: #fff;
+    top: 0em;
+    left: 2px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+/*卡片*/
+.ai-card {
+    padding: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: .5em 1em 0em 1em;
+    border-radius: 2px;
+    background-color: #fff;
+    line-height: 0.625em
+}
+.ai-card .ai-item:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-top: 0;
+}
+.ai-card .ai-item {
+    position: relative;
+    z-index: 2;
+    display: block;
+    padding: 1.5em;
+}
+.ai-card-action {
+    padding-bottom: 1em;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+/***********弹出框的样式****************/
+/***********样式一****************/
+
