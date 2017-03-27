@@ -19,7 +19,7 @@ function run(Param, Robot, Request, Response, IF) {
     Response.setHeader("Content-type", "text/json;charset=utf-8");
 
     var arg = JSON.parse(Param.body.toString());
-    if (!("channelSerialNo" in arg && "currUsrId" in arg )) {
+    if (!("channelSerialNo" in arg && "currUsrId" in arg)) {
         Response.end(JSON.stringify({
             staus: "1",
             msg: "参数错误"
@@ -28,30 +28,30 @@ function run(Param, Robot, Request, Response, IF) {
     }
 
     async.parallel([
-        function (cb) {
+        function(cb) {
             getSelfServiceWaitTaskNum(Param, Robot, Request, Response, IF, cb);
         },
-        function (cb) {
+        function(cb) {
             ifAdmin(Param, Robot, Request, Response, IF, cb);
         },
-        function (cb) {
+        function(cb) {
             B2BBPMIWaitTaskSumImplBean(Param, Robot, Request, Response, IF, cb);
         },
-        function (cb) {
+        function(cb) {
             getDocPlatformCount(Param, Robot, Request, Response, IF, cb);
         },
         //暂未上线
-        function (cb) {
-           getITServiceCount(Param, Robot, Request, Response, IF, cb);
+        function(cb) {
+            getITServiceCount(Param, Robot, Request, Response, IF, cb);
         },
-        function (cb) {
+        function(cb) {
             getCost(Param, Robot, Request, Response, IF, cb);
         },
         //新员工培训
-        function (cb) {
+        function(cb) {
             getTrain(Param, Robot, Request, Response, IF, cb);
         }
-    ], function (err, data) {
+    ], function(err, data) {
         if (err != null) {
             Response.end(JSON.stringify({
                 staus: "1",
@@ -95,7 +95,7 @@ function getSelfServiceWaitTaskNum(Param, Robot, Request, Response, IF, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/toList/getSelfServiceWaitTaskNum",
-        Cookie: "true",
+        Cookie: "false",
         agent: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
@@ -106,14 +106,14 @@ function getSelfServiceWaitTaskNum(Param, Robot, Request, Response, IF, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, 0);
             return
         }
         data = JSON.parse(data);
         var count = 0;
-        if (data!=null&&data.status!= null&&data.status == 0) {
+        if (data != null && data.status != null && data.status == 0) {
             var count = data.data.total;
         }
         cb(err, Number(count));
@@ -131,7 +131,7 @@ function ifAdmin(Param, Robot, Request, Response, IF, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/meet/ifAdmin ",
-        Cookie: "true",
+        Cookie: "false",
         agent: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
@@ -139,13 +139,13 @@ function ifAdmin(Param, Robot, Request, Response, IF, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, 0);
             return
         }
         data = JSON.parse(data);
-       if (data&&data.isAdmin == 1) {
+        if (data && data.isAdmin == 1) {
             examine(Param, Robot, Request, Response, IF, cb);
         } else {
             cb(err, 0);
@@ -164,7 +164,7 @@ function examine(Param, Robot, Request, Response, IF, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/meet/examine ",
-        Cookie: "true",
+        Cookie: "false",
         agent: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
@@ -175,14 +175,14 @@ function examine(Param, Robot, Request, Response, IF, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, 0);
             return
         }
         data = JSON.parse(data);
         var count = 0;
-        if (data&&data.status == 0) {
+        if (data && data.status == 0) {
             count = data.count;
         }
         cb(err, Number(count));
@@ -199,7 +199,7 @@ function B2BBPMIWaitTaskSumImplBean(Param, Robot, Request, Response, IF, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/b2b/B2BBPMIWaitTaskSumImplBean ",
-        Cookie: "true",
+        Cookie: "false",
         agent: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
@@ -217,14 +217,14 @@ function B2BBPMIWaitTaskSumImplBean(Param, Robot, Request, Response, IF, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, 0);
             return
         }
         data = JSON.parse(data);
         var sums = 0;
-        if (data&&data.output.type == 'S') {
+        if (data && data.output.type == 'S') {
             var waitTaskSumList = data.output.waitTaskSumList;
             var listArr = [];
             if (undefined != waitTaskSumList) {
@@ -259,7 +259,7 @@ function getDocPlatformCount(Param, Robot, Request, Response, IF, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/docPlatform/PORTALBPMIAIWaitTaskSumImplBean ",
-        Cookie: "true",
+        Cookie: "false",
         agent: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
@@ -280,14 +280,14 @@ function getDocPlatformCount(Param, Robot, Request, Response, IF, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         var count = 0;
         if (err != null) {
             cb(err, 0);
             return
         }
         data = JSON.parse(data);
-        if (data&&data.output.type == "S") {
+        if (data && data.output.type == "S") {
             if (!(data.output.taskList instanceof Array) && data.output.taskList instanceof Object) {
                 data.output.taskList = [data.output.taskList];
             }
@@ -312,7 +312,7 @@ function getITServiceCount(Param, Robot, Request, Response, IF, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/docPlatform/PORTALBPMIAIWaitTaskSumImplBean ",
-        Cookie: "true",
+        Cookie: "false",
         agent: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
@@ -333,14 +333,14 @@ function getITServiceCount(Param, Robot, Request, Response, IF, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, 0);
             return
         }
         var count = 0;
         data = JSON.parse(data);
-        if (data&&data.output.type == "S") {
+        if (data && data.output.type == "S") {
             if (!(data.output.taskList instanceof Array) && data.output.taskList instanceof Object) {
                 data.output.taskList = [data.output.taskList];
             }
@@ -368,7 +368,7 @@ function getCost(Param, Robot, Request, Response, IF, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/cost/EMCMBAIWaitTaskSumQryImplBean",
-        Cookie: "true",
+        Cookie: "false",
         agent: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
@@ -387,7 +387,7 @@ function getCost(Param, Robot, Request, Response, IF, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, 0);
             return
@@ -407,40 +407,40 @@ function getCost(Param, Robot, Request, Response, IF, cb) {
  *
  *
  * */
-function getTrain(Param, Robot, Request, Response, IF, cb){
+function getTrain(Param, Robot, Request, Response, IF, cb) {
     var arg = JSON.parse(Param.body.toString());
     var option = {
         method: "POST",
         url: global.baseURL + "/train/PORTALBPMIAIWaitTaskSumImplBean",
-        Cookie: "true",
+        Cookie: "false",
         agent: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
-          "input": {
-            "channelSerialNo":arg.channelSerialNo,
-            "currUsrId": arg.currUsrId,
-            "domain": "400",
-            "extendMap": {
-              "entry": {
-                "Key": "",
-                "Value": ""
-              }
-            },
-            "bussType": "ST",
-            "beginDate": "",
-            "endDate": ""
-          }
+            "input": {
+                "channelSerialNo": arg.channelSerialNo,
+                "currUsrId": arg.currUsrId,
+                "domain": "400",
+                "extendMap": {
+                    "entry": {
+                        "Key": "",
+                        "Value": ""
+                    }
+                },
+                "bussType": "ST",
+                "beginDate": "",
+                "endDate": ""
+            }
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, 0);
             return
         }
         var count = 0;
         data = JSON.parse(data);
-        if (data&&data.output&&data.output.type == "S") {
+        if (data && data.output && data.output.type == "S") {
             if (!(data.output.taskList instanceof Array) && data.output.taskList instanceof Object) {
                 data.output.taskList = [data.output.taskList];
             }
@@ -455,4 +455,3 @@ function getTrain(Param, Robot, Request, Response, IF, cb){
     }, Robot);
 }
 exports.Runner = run;
-
