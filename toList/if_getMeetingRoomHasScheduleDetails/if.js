@@ -17,7 +17,7 @@ function run(Param, Robot, Request, Response, IF) {
     }
 
 
-    searchSchedule(Param, Robot, scheduleId, function (err, scheduleDetail) {
+    searchSchedule(Param, Robot, scheduleId, function(err, scheduleDetail) {
         if (err != null) {
             Response.end(JSON.stringify({
                 status: 1,
@@ -46,7 +46,7 @@ function run(Param, Robot, Request, Response, IF) {
             }
         }
 
-        ZHR_GET_PER_EASY_INFO(Param, Robot, userIdArr, function (err, userDetails) {
+        ZHR_GET_PER_EASY_INFO(Param, Robot, userIdArr, function(err, userDetails) {
             scheduleDetail["userPhone"] = userDetails[scheduleDetail.userId].TELL;
             if (scheduleDetail.servicePersonal) {
                 for (var i in scheduleDetail.servicePersonal) {
@@ -105,13 +105,13 @@ function searchSchedule(Param, Robot, scheduleId, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/meet/searchSchedule",
-        Cookie: "true",
+        Cookie: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
             scheduleId: scheduleId
         })
     };
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null || data == null) {
             cb(err, {});
             return
@@ -138,7 +138,7 @@ function ZHR_GET_PER_EASY_INFO(Param, Robot, userIdArr, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/zhr/ZHR_GET_PER_EASY_INFO",
-        Cookie: "true",
+        Cookie: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
             "IS_PUBLIC": {
@@ -155,7 +155,7 @@ function ZHR_GET_PER_EASY_INFO(Param, Robot, userIdArr, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null || data == null) {
             cb(err, {});
             return

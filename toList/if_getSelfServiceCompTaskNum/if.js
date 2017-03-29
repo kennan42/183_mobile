@@ -27,13 +27,13 @@ function run(Param, Robot, Request, Response, IF) {
     }
 
     async.parallel([
-        function (cb) {
+        function(cb) {
             PORTALBPMIAIWaitTaskSumImplBean(Param, Robot, Request, Response, IF, cb);
         },
-        function (cb) {
+        function(cb) {
             zhrws2222(Param, Robot, Request, Response, IF, cb);
         }
-    ], function (err, data) {
+    ], function(err, data) {
         if (err != null) {
             Response.end(JSON.stringify({
                 staus: "1",
@@ -92,7 +92,7 @@ function PORTALBPMIAIWaitTaskSumImplBean(Param, Robot, Request, Response, IF, cb
     var option = {
         method: "POST",
         url: global.baseURL + "/docPlatform/PORTALBPMIAICompTaskSumImplBean",
-        Cookie: "true",
+        Cookie: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
             "input": {
@@ -112,7 +112,7 @@ function PORTALBPMIAIWaitTaskSumImplBean(Param, Robot, Request, Response, IF, cb
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, {});
             return
@@ -133,13 +133,13 @@ function PORTALBPMIAIWaitTaskSumImplBean(Param, Robot, Request, Response, IF, cb
  */
 function zhrws2222(Param, Robot, Request, Response, IF, cb) {
     var arg = JSON.parse(Param.body.toString());
-    var beginDate = arg.beginDate.split('-').join("");  // 格式 yyMMdd
-    var endDate = arg.endDate.split('-').join("");  // 格式 yyMMdd
+    var beginDate = arg.beginDate.split('-').join(""); // 格式 yyMMdd
+    var endDate = arg.endDate.split('-').join(""); // 格式 yyMMdd
 
     var option = {
         method: "POST",
         url: global.baseURL + "/zhrws/zhrws2222",
-        Cookie: "true",
+        Cookie: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
             P_BEGDA: beginDate,
@@ -149,7 +149,7 @@ function zhrws2222(Param, Robot, Request, Response, IF, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, {});
             return

@@ -32,7 +32,7 @@ function run(Param, Robot, Request, Response, IF) {
     var pageSize = parseInt(arg.pageSize, 10);
 
     zhrws2223(Param, Robot, pageNum, pageSize,
-        function (err, data) {
+        function(err, data) {
             if (err != null) {
                 Response.end(JSON.stringify({
                     status: "1",
@@ -67,7 +67,7 @@ function run(Param, Robot, Request, Response, IF) {
 
                 // 开始请求休假数据
                 PORTALBPMIAIWaitTaskListImplBean(Param, Robot, 1, pageSize - list.length,
-                    function (err, data1) {
+                    function(err, data1) {
                         if (err != null) {
                             Response.end(JSON.stringify({
                                 status: "1",
@@ -113,13 +113,13 @@ function run(Param, Robot, Request, Response, IF) {
 
                 // 并行获取
                 async.parallel([
-                    function (cb) {
+                    function(cb) {
                         PORTALBPMIAIWaitTaskListImplBean(Param, Robot, newPageNum + 1, pageSize, cb);
                     },
-                    function (cb) {
+                    function(cb) {
                         PORTALBPMIAIWaitTaskListImplBean(Param, Robot, newPageNum + 2, pageSize, cb);
                     }
-                ], function (err, data1) {
+                ], function(err, data1) {
                     if (err != null) {
                         Response.end(JSON.stringify({
                             status: "1",
@@ -180,7 +180,7 @@ function PORTALBPMIAIWaitTaskListImplBean(Param, Robot, pageNum, pageSize, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/docPlatform/PORTALBPMIAIWaitTaskListImplBean",
-        Cookie: "true",
+        Cookie: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
             input: {
@@ -201,9 +201,10 @@ function PORTALBPMIAIWaitTaskListImplBean(Param, Robot, pageNum, pageSize, cb) {
                 pageSize: pageSize
             }
         })
-    };console.info(option.Body);
+    };
+    console.info(option.Body);
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, {});
             return
@@ -226,7 +227,7 @@ function zhrws2223(Param, Robot, pageNum, pageSize, cb) {
     var option = {
         method: "POST",
         url: global.baseURL + "/zhrws/zhrws2223",
-        Cookie: "true",
+        Cookie: "false",
         Enctype: "application/json",
         Body: JSON.stringify({
             IS_PUBLIC: {
@@ -240,7 +241,7 @@ function zhrws2223(Param, Robot, pageNum, pageSize, cb) {
         })
     };
 
-    MEAP.AJAX.Runner(option, function (err, res, data) {
+    MEAP.AJAX.Runner(option, function(err, res, data) {
         if (err != null) {
             cb(err, {});
             return
