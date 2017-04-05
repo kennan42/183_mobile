@@ -5,22 +5,24 @@ function run(Param, Robot, Request, Response, IF) {
     var arg = JSON.parse(Param.body.toString());
     var option = {
         //wsdl:"http://cttqdev.cttq.com:8000/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zhrws2102/900/zhrws2102/zhrws2102?sap-client=900",
-        wsdl : path.join(__dirname.replace(IF.name, ""), global.wsdl2, "zhrws2102.xml"),
-        func : "ZHRWS2102.ZHRWS2102.ZHRWS2102",
-        Params : arg,
-        BasicAuth : global.TXSOAPAuth,
-        agent : false
+        wsdl: path.join(__dirname.replace(IF.name, ""), global.wsdl2, "zhrws2102.xml"),
+        func: "ZHRWS2102.ZHRWS2102.ZHRWS2102",
+        Params: arg,
+        BasicAuth: global.TXSOAPAuth,
+        agent: false
     };
 
     MEAP.SOAP.Runner(option, function(err, res, data) {
         Response.setHeader("Content-type", "text/json;charset=utf-8");
         if (!err) {
             Response.end(JSON.stringify(data));
+            return;
         } else {
             Response.end(JSON.stringify({
-                status : '-1',
-                message : 'Error'
+                status: '-1',
+                message: 'Error'
             }));
+            return;
         }
     });
 }
